@@ -1,0 +1,1 @@
+run_id,method_id,split,direction,query_id,image_group_id,positive_ids_json,ranked_top50_ids_json,best_positive_rank,hit_at_1,hit_at_5,hit_at_10,ndcg_at_10,gate_value,rerank_triggered,rerank_pairs,fallback_reason

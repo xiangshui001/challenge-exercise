@@ -1,0 +1,85 @@
+{
+  "template_note": "空白运行记录。null 表示未填写或未实测；本文件不表示一次已执行运行。",
+  "status": "not_run",
+  "run_id": null,
+  "method_id": null,
+  "timestamp": null,
+  "code_commit": null,
+  "command": null,
+  "protocol_version": "1.0-draft",
+  "frozen_config_path": null,
+  "data": {
+    "source": null,
+    "source_revision": null,
+    "manifest_path": null,
+    "split": null,
+    "direction": null,
+    "query_count": null,
+    "gallery_count": null,
+    "audit_passed": null,
+    "text_truncation_count": null
+  },
+  "models": {
+    "retriever_id": null,
+    "retriever_revision": null,
+    "processor_revision": null,
+    "reranker_id": null,
+    "reranker_revision": null,
+    "wrapper_revision": null,
+    "instruction": null,
+    "image_pixel_limits": null
+  },
+  "runtime": {
+    "gpu_name": null,
+    "gpu_memory_gb": null,
+    "driver": null,
+    "python": null,
+    "torch": null,
+    "transformers": null,
+    "sklearn": null,
+    "requirements_lock_path": null,
+    "dtype": null,
+    "batch_size": null,
+    "seed": null
+  },
+  "strategy": {
+    "candidate_count": null,
+    "fusion_weight": null,
+    "gate_threshold": null,
+    "triggered_queries": null,
+    "actual_trigger_ratio": null,
+    "max_pairs": null,
+    "budget_truncated": null,
+    "fallback_queries": null
+  },
+  "metrics": {
+    "hit_recall_at_1": null,
+    "hit_recall_at_5": null,
+    "hit_recall_at_10": null,
+    "ndcg_at_10": null,
+    "r10_ci_low": null,
+    "r10_ci_high": null,
+    "meets_r10_target": null
+  },
+  "cost": {
+    "mode": null,
+    "embedding_seconds": null,
+    "rerank_seconds": null,
+    "cache_generation_seconds": null,
+    "pairs_computed": null,
+    "counterfactual_pairs": null,
+    "peak_gpu_memory_gb": null,
+    "includes_model_load": null,
+    "api_requests_attempted": null,
+    "api_requests_succeeded": null,
+    "api_cost": null,
+    "api_currency": null
+  },
+  "evidence": {
+    "per_query_csv": null,
+    "metrics_csv": null,
+    "error_review_csv": null,
+    "log_path": null,
+    "notes": null
+  }
+}

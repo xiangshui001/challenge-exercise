@@ -1,0 +1,1 @@
+run_id,status,method_id,split,direction,query_count,gallery_count,hit_recall_at_1,hit_recall_at_5,hit_recall_at_10,ndcg_at_10,r10_ci_low,r10_ci_high,actual_rerank_ratio,rerank_pairs,cost_mode,embedding_seconds,rerank_seconds,peak_gpu_memory_gb,fallback_queries,notes

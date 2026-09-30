@@ -1,0 +1,30 @@
+# 密钥与本地配置
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# 原始数据、模型、缓存、未经审查的运行与 API 日志
+data/local/
+models/
+cache/
+runs/
+private_sources/
+external/
+*.npy
+*.npz
+*.pt
+*.pth
+*.safetensors
+*.zip
+
+# Python 与编辑器
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/

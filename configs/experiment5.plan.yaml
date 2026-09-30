@@ -1,0 +1,144 @@
+# 设计草案，不是已实现 CLI 的配置。正式运行前必须补齐版本与路径。
+schema_version: 1
+status: planning_only
+research_date: '2026-09-30'
+project:
+  experiment: 5
+  title: '预训练视觉语言模型驱动的图文语义匹配评估与预算约束重排优化'
+  excluded_experiments: [1, 2, 3, 4, 6]
+  local_training: false
+  deploy_service: false
+  ann_index: false
+hardware:
+  gpu_count: 1
+  gpu_family: A100
+  gpu_memory_gb: null
+  driver: null
+  inference_dtype_start: bfloat16
+  cached_feature_dtype: float32
+data:
+  name: flickr30k
+  split_protocol: karpathy
+  language: en
+  source_path: null
+  source_revision: null
+  expected_val_images: 1000
+  expected_test_images: 1000
+  captions_per_image: 5
+  separate_caption_queries: true
+  validate_ids_and_files: true
+  validation_subgroups:
+    split_by: image_id
+    tune_images: 500
+    confirm_images: 500
+    seed: 2026
+    keep_full_validation_gallery: true
+models:
+  B0:
+    model_id: openai/clip-vit-base-patch16
+    revision: null
+    image_batch_start: 64
+    text_batch_start: 128
+    use_own_processor: true
+  B1:
+    model_id: google/siglip2-so400m-patch14-384
+    revision: null
+    image_batch_start: 32
+    text_batch_start: 128
+    use_own_processor: true
+    lowercase_text: true
+    text_max_length: 64
+    text_padding: max_length
+    truncate_and_record_count: true
+retrieval:
+  method: exact_normalized_inner_product
+  normalize_features: true
+  stable_tie_break: candidate_id_lexicographic
+  F1_optional:
+    enabled: false
+    fusion: weighted_rrf
+    rank_starts_at: 1
+    offset: 60
+    B1_weights_to_validate: [0.0, 0.25, 0.5, 0.75, 1.0]
+    selected_weight: null
+rerank_research:
+  enabled: false
+  direction: t2i
+  fixed_retriever: B1
+  model_id: Qwen/Qwen3-VL-Reranker-2B
+  model_revision: null
+  wrapper_repository: https://github.com/QwenLM/Qwen3-VL-Embedding
+  wrapper_revision: null
+  candidate_count: 50
+  pilot_queries: 100
+  query_input: original_caption_text
+  candidate_input: image_pixels_only
+  include_ground_truth_caption: false
+  instruction: null
+  image_pixel_limits: null
+  batch_size_start: 4
+  score_fusion: weighted_rrf_within_top_m
+  rrf_offset: 60
+  reranker_weights_to_validate: [0.0, 0.5, 1.0]
+  selected_reranker_weight: null
+  preserve_tail_order: true
+  failure_policy: fallback_entire_query_to_B1_and_count
+  max_pairs: null  # 启动前按小试和执行者预算显式填写。
+gating:
+  enabled: false
+  signal: normalized_score_gap_between_rank_10_and_11
+  normalization: std_of_top_50_scores
+  epsilon: 1.0e-8
+  label_access: false
+  validation_quantiles: [0.25, 0.50]
+  frozen_thresholds: null
+  report_actual_test_trigger_ratio: true
+  hard_budget_truncation_requires_distinct_run_id: true
+  controls:
+    include_all_query_rerank: true
+    include_random_same_actual_query_count: true
+    random_seeds: [0, 1, 2]
+evaluation:
+  primary_direction: t2i
+  primary_metric: hit_recall_at_10
+  target: 0.85
+  directions_for_baselines: [t2i, i2t]
+  recall_ks: [1, 5, 10]
+  candidate_coverage_ks: [20, 50]
+  ndcg_k: 10
+  relevance: binary_original_pairs
+  hit_recall_separate_from_set_recall: true
+  ratio_scale_in_csv: zero_to_one
+  bootstrap:
+    repeats: 2000
+    seed: 2026
+    group_by: image_id
+    fixed_gallery: true
+    paired_method_comparison: true
+  save_per_query_predictions: true
+  freeze_before_test: true
+robustness_optional:
+  enabled: false
+  original_query_groups: 200
+  paraphrases_per_original: 2
+  seed: 2026
+  one_caption_per_sampled_image: true
+  human_review_required: true
+  keep_full_test_gallery: true
+  report_separately_from_standard_test: true
+api_optional:
+  enabled: false
+  provider: null
+  model_snapshot: null
+  base_url_env: MODEL_API_BASE_URL
+  key_env: MODEL_API_KEY
+  budget_currency: null
+  max_spend: null
+  max_requests: null
+  max_retries: 2
+  require_explicit_budget_before_run: true
+  upload_raw_logs_to_git: false
+cost_reporting:
+  modes: [measured, counterfactual_from_cache]
+  separate_embedding_and_reranking_cost: true
+  no_cache_lookup_as_model_inference_time: true

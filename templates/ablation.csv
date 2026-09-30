@@ -1,0 +1,1 @@
+run_id,status,method_id,changed_factor,fixed_retriever,fixed_reranker,candidate_count,fusion_weight,gate_quantile,gate_threshold,random_seed,split,actual_trigger_ratio,rerank_pairs,hit_recall_at_10,ndcg_at_10,paired_delta_r10,paired_delta_ci_low,paired_delta_ci_high,cost_mode,selection_notes
