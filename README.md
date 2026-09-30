@@ -4,7 +4,17 @@
 
 **拟定题目：预训练视觉语言模型驱动的图文语义匹配评估与预算约束重排优化。**
 
-本仓库只服务于实验五，不开展实验一、二、三、四、六。资源条件为单张 A100（显存容量待确认）以及可用模型 API。当前交付是**调研与开题方案包**，不是已经完成的 GPU 实验；不包含真实实验成绩，也没有调用付费 API。
+本仓库只服务于实验五，不开展实验一、二、三、四、六。当前包含**方案包与基础版 CLI**：数据审计、CLIP/SigLIP 2 编码适配、双向指标、可选 RRF、验证选择/冻结/独立测试与统计分析。CPU 合成测试已通过；真实数据与 GPU 实验尚未运行，不包含真实模型成绩，也没有调用付费 API。用户提供的 GPU 2 为 A100 80GB，实际可用容量以启动时占用为准。
+
+### 开始运行基础版
+
+```bash
+python -m pip install -e '.[test]'
+python -m unittest discover -s tests -v
+python -m exp5 --help
+```
+
+服务器流程见 [基础版运行说明](docs/10_RUNNING_BASELINE.md)，验证证据见 [CPU 测试记录](docs/11_CPU_VALIDATION.md)。模型命令默认离线，不因安装/导入/提交自动启动任务。
 
 ### 建议路线
 
@@ -41,7 +51,7 @@ CLIP 基线 → SigLIP 2 强基线 → 双向 Recall / NDCG / 错误分析
 
 ### 配置与记录
 
-[实验计划 YAML](configs/experiment5.plan.yaml) 是设计配置，尚无配套 CLI，不应当作已实现程序运行。`templates/` 中提供 [运行记录](templates/run_record.json)、[汇总指标](templates/metrics.csv)、[逐查询结果](templates/query_results.csv)、[错误复核](templates/error_review.csv)、[消融记录](templates/ablation.csv)。空值表示待实测，不能解释为 0 分或已完成。
+[实验计划 YAML](configs/experiment5.plan.yaml) 仍是设计配置，不由基础版 CLI 执行；实际参数见 `python -m exp5 --help` 与[运行说明](docs/10_RUNNING_BASELINE.md)。`templates/` 中提供 [运行记录](templates/run_record.json)、[汇总指标](templates/metrics.csv)、[逐查询结果](templates/query_results.csv)、[错误复核](templates/error_review.csv)、[消融记录](templates/ablation.csv)。空值表示待实测，不能解释为 0 分或已完成。
 
 ### 本次调研的关键区别
 
@@ -49,6 +59,6 @@ LamRA 为 CVPR 2025；MM-Embed、VLM2Vec 为 ICLR 2025；WISER、PinPoint 为 CV
 
 ### 状态与公开范围
 
-研究整理日期：2026-09-30。文档中的方法改进均为待验证假设。当前没有下载实验数据或模型、没有训练、没有运行 A100 推理、没有产生 Recall/NDCG 成绩，也没有配置自动执行任务。
+研究整理与首批代码日期：2026-09-30。文档中的方法改进均为待验证假设。CPU 人工样例/合成流程已通过；当前没有下载真实实验数据或模型、没有训练、没有运行 A100 推理、没有真实模型 Recall/NDCG 成绩，也没有配置自动执行任务。
 
 仓库为公开仓库，仅上传本次生成的方案、来源链接、配置草案和空白模板。原课程 PDF、论文全文、Flickr 图像、模型权重、API 密钥和未审查的原始 API 输出不在上传范围内。数据与上游代码分别遵守各自使用条件。

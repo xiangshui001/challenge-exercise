@@ -10,7 +10,7 @@ README → docs/00_SCOPE_AND_STATUS.md → docs/03_EXPERIMENT_PROTOCOL.md → do
 
 ## 当前代码状态
 
-这是研究与规划仓库，不是已经实现的检索软件。configs/experiment5.plan.yaml 是设计草案；文档中的模块名和命令流程不得被描述成已经存在的程序。后续实现先做数据检查与指标单元测试，再接模型。
+已有 exp5 基础版 CLI，CPU 人工指标与合成完整流程已测试；真实数据与 GPU 模型尚未运行。实际命令见 docs/10_RUNNING_BASELINE.md，CPU 证据见 docs/11_CPU_VALIDATION.md。configs/experiment5.plan.yaml 仍是设计草案，不由 CLI 执行；研究扩展模块仍为规划。继续保持先 CPU 检查再 GPU 小试的顺序，不把代码写好当作真实实验完成。
 
 ## 研究纪律
 
