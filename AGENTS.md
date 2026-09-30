@@ -1,27 +1,31 @@
 # 项目接手约定
 
-## 任务边界
+## 当前路线和任务边界
 
-只做实验五：语义匹配准确率评估与优化。不要为此补做其他五个实验。不要增加 Web 前后端、Faiss/Milvus、服务压测、TensorRT、微服务或分布式训练。单张 A100，显存容量未知；模型 API 可用，但预算和供应商需由执行者配置。
+用户于 2026-09-30 确认：第一次训练项目，成熟 Flickr30K + google/siglip-base-patch16-224，未微调基线 → 简单部分微调 → 至多两档学习率 → 评估与错误分析。训练代码是已确认路线的一部分；原“不训练”方案已被本轮更新。仍只服务实验五，不补做其他课程实验。
 
-## 必读顺序
+第一版不自建数据集、不从零预训练、不加 hard negative/LoRA/Qwen 重排/收费 API。无前后端、ANN、压测、TensorRT、分布式训练。用户获准的单张 GPU 2 为 A100 80GB，有现有占用；实际 batch 由启动时小试决定。
 
-README → docs/00_SCOPE_AND_STATUS.md → docs/03_EXPERIMENT_PROTOCOL.md → docs/09_HANDOFF.md。报告来源见 references/SOURCES.md。
+## 必读和真实状态
 
-## 当前代码状态
+README → docs/12_TRAINING_ROADMAP.md → docs/13_GITHUB_SERVER_SYNC.md → docs/14_PROGRESS_LOG.md → docs/09_HANDOFF.md。原指标口径参考 docs/03_EXPERIMENT_PROTOCOL.md，来源见 references/SOURCES.md。
 
-已有 exp5 基础版 CLI，CPU 人工指标与合成完整流程已测试；真实数据与 GPU 模型尚未运行。实际命令见 docs/10_RUNNING_BASELINE.md，CPU 证据见 docs/11_CPU_VALIDATION.md。configs/experiment5.plan.yaml 仍是设计草案，不由 CLI 执行；研究扩展模块仍为规划。继续保持先 CPU 检查再 GPU 小试的顺序，不把代码写好当作真实实验完成。
+已有 exp5 的 CLIP/SigLIP 2 审计/指标/缓存/统计和 24 项 CPU 测试。新 SigLIP-base、训练 Dataset 和训练入口尚未实现；目录与 planning_only 配置不能描述为已运行程序。原 B1 与主模型不同，禁止静默替换缓存方法身份。
 
-## 研究纪律
+## 实验纪律
 
-使用固定 Flickr30K 划分和完整候选库；保留五条描述，不按效果挑样本。验证集选参数，冻结后才评测试集。官方配对真值、人工辅助判定、API 推断必须分开。不能把论文结果或虚构值写入 results；实验结果必须附运行记录与逐查询预测。主指标 R@K 是命中式口径，不能和集合召回率混淆。
+固定划分/完整图库/五描述和 ID/版本。训练仅用 train；验证选配置/checkpoint，冻结后才评 test。不把示例或论文成绩写成结果，保留未提升/退化。R@K 为命中式，不能与集合召回混淆。
 
-仅重排原 Top-10 不会提高 R@10。选择性重排只能使用推理时可获得的分数、文本等信息，不能使用正例排名、命中标签或测试答案。若用全量重排缓存模拟不同预算，要单列实际缓存生成成本与反事实成本，不能声称已经实测相应加速。
+拟用下游对称 InfoNCE，不冒称原 sigmoid 预训练。每批图像 ID 唯一、每图选一条描述；重复图片需多正例处理，同图描述不得互作负例。梯度累积不自动扩大批内负例池。先检查具体模型层名再选择解冻层，不假定 projection 与 CLIP 相同。
 
-## 实现方式
+## 目录与阶段同步
 
-基础版优先。只在基础版可复现且时间预算允许时实现研究版。不要默认开训练，不预设改进必须有效。保留负结果。第三方模块通过明确的适配器接入，记录源码版本，不复制整个上游项目。
+服务器项目根目录为仓库 checkout，data/models/train/evaluation/configs/checkpoints 相对路径与 GitHub 一致。复用 exp5 指标，不复制两套实现。图片/manifest 放 data/local；下载权重放外部 HF 缓存或 models/pretrained；checkpoint 放 checkpoints；特征/log 放 cache/runs。这些大文件不提交。
 
-## 安全与协作
+每完成一个可复现阶段，更新实际文件、配置、docs/14_PROGRESS_LOG.md 和实际证据；推送工作分支并建立/更新 PR，由用户决定合并。开工先核对最新 commit 与未提交改动；服务器修改先推送再由云端接手，不覆盖未提交文件，不强推。
 
-所有密钥从环境变量加载，禁止写入仓库。下载数据、运行 GPU 任务和调用收费 API 需要执行者明确启动；本仓库提交不构成自动执行授权。不发布自动执行评论。保持非自动、交互式开发；后续代码形成 PR，由用户决定是否合并。公开上传图片或模型输出前先审查使用条件和敏感信息。
+## 执行边界
+
+云端没有且用户不授予公共服务器连接权限，不索要 SSH 信息。云端处理仓库与 CPU 检查；GPU/下载/训练由用户在获准环境中显式执行并反馈日志。提交不自动启动服务器任务，不改共享驱动或清理其他进程。
+
+密钥只用环境变量，不入库；公开轻量结果前检查内容/使用条件。不要发自动执行评论，不创建未经请求的定时同步任务。

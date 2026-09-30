@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "planning_only_not_executable",
+  "route": "siglip_base_finetuning",
+  "model": {
+    "model_id": "google/siglip-base-patch16-224",
+    "revision": null,
+    "strategy": "partial_finetuning",
+    "trainable_parameter_names": null
+  },
+  "data": {
+    "dataset": "flickr30k",
+    "split": "karpathy",
+    "root": "data/local",
+    "source_revision": null,
+    "train_count": null,
+    "validation_images": 1000,
+    "test_images": 1000,
+    "train_one_caption_per_unique_image_per_batch": true,
+    "evaluation_captions_per_image": 5
+  },
+  "training": {
+    "objective": "symmetric_infonce_downstream_not_original_siglip_pretraining",
+    "optimizer": "AdamW",
+    "seed": 2026,
+    "max_epochs_start": 5,
+    "learning_rate_candidates": [0.00001, 0.00005],
+    "selected_learning_rate": null,
+    "micro_batch_size": null,
+    "gradient_accumulation_steps": null,
+    "precision_start": "bfloat16",
+    "checkpoint_dir": "checkpoints",
+    "negative_pool_is_micro_batch": true
+  },
+  "hardware": {
+    "assigned_nvidia_smi_index": 2,
+    "assigned_gpu_uuid": null,
+    "logical_device_after_isolation": "cuda:0",
+    "free_memory_at_launch_mib": null
+  },
+  "evaluation": {
+    "same_model_pretrained_vs_finetuned": true,
+    "validation_only_selection": true,
+    "freeze_before_test": true,
+    "primary_metric": "t2i_hit_recall_at_10",
+    "recall_ks": [1, 5, 10],
+    "ndcg_k": 10,
+    "target": 0.85,
+    "save_all_query_predictions": true
+  },
+  "extensions_enabled": {
+    "hard_negatives": false,
+    "lora": false,
+    "custom_dataset": false,
+    "reranker": false,
+    "paid_api": false
+  }
+}
