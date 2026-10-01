@@ -4,13 +4,13 @@
 
 用户于 2026-09-30 确认：第一次训练项目，成熟 Flickr30K + google/siglip-base-patch16-224，未微调基线 → 简单部分微调 → 至多两档学习率 → 评估与错误分析。训练代码是已确认路线的一部分；原“不训练”方案已被本轮更新。仍只服务实验五，不补做其他课程实验。
 
-第一版不自建数据集、不从零预训练、不加 hard negative/LoRA/Qwen 重排/收费 API。无前后端、ANN、压测、TensorRT、分布式训练。用户获准的单张 GPU 2 为 A100 80GB，有现有占用；实际 batch 由启动时小试决定。
+第一版不自建数据集、不从零预训练、不加 hard negative/LoRA/Qwen 重排/收费 API。无前后端、ANN、压测、TensorRT。先用单卡实现跑通，分布式训练不作为第一版前置。用户可按空闲情况和任务需要选择卡数，GPU 2 只是当前选择，不是长期授权上限；按需使用、用完释放，不在没有任务时预占 GPU。多卡方案须有实际任务收益，不能把未实现的分布式训练描述为已支持。实际 batch 由启动时小试决定。
 
 ## 必读和真实状态
 
 README → docs/12_TRAINING_ROADMAP.md → docs/13_GITHUB_SERVER_SYNC.md → docs/14_PROGRESS_LOG.md → docs/09_HANDOFF.md。原指标口径参考 docs/03_EXPERIMENT_PROTOCOL.md，来源见 references/SOURCES.md。
 
-已有 exp5 的 CLIP/SigLIP 2 审计/指标/缓存/统计和 24 项 CPU 测试。新 SigLIP-base、训练 Dataset 和训练入口尚未实现；目录与 planning_only 配置不能描述为已运行程序。原 B1 与主模型不同，禁止静默替换缓存方法身份。
+已有 exp5 的 CLIP/SigLIP 2 审计/指标/缓存/统计和 24 项 CPU 测试。SigLIP-base 特征封装与小试入口已实现，但真实权重小试待用户运行；训练 Dataset 和训练入口尚未实现。目录与 planning_only 配置不能描述为已运行训练程序。原 B1 与主模型不同，禁止静默替换缓存方法身份。
 
 ## 实验纪律
 
@@ -27,5 +27,7 @@ README → docs/12_TRAINING_ROADMAP.md → docs/13_GITHUB_SERVER_SYNC.md → doc
 ## 执行边界
 
 云端没有且用户不授予公共服务器连接权限，不索要 SSH 信息。云端处理仓库与 CPU 检查；GPU/下载/训练由用户在获准环境中显式执行并反馈日志。提交不自动启动服务器任务，不改共享驱动或清理其他进程。
+
+每次运行显式选卡并记录 UUID、实际显存与成本；0% 利用率不等于无人使用。下载/CPU 数据准备时不把模型提前搬到 GPU。短小试完成后进程退出释放自己的显存；只管理本项目进程，不通过杀其他进程或更改共享 GPU 设置获取资源。
 
 密钥只用环境变量，不入库；公开轻量结果前检查内容/使用条件。不要发自动执行评论，不创建未经请求的定时同步任务。

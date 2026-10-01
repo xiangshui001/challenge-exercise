@@ -2,12 +2,12 @@
 
 当前路线见 [12](12_TRAINING_ROADMAP.md)：成熟 Flickr30K，SigLIP-base 未微调基线、简单部分微调、至多两档学习率、统一评估与错误分析。原 CLIP/SigLIP 2→Qwen 方案不再默认推进。
 
-PR #2 已合并。exp5 审计/指标/缓存/统计有 24 项 CPU 测试，真实 GPU 未运行。其 prepare 仅 val/test，B0/B1 仅 CLIP/SigLIP 2；新模型/train 数据层/checkpoint 适配还没有。
+PR #2 已合并。exp5 审计/指标/缓存/统计有 24 项 CPU 测试；其 prepare 仅 val/test，B0/B1 仅 CLIP/SigLIP 2。新 SigLIP-base 封装与短小试已实现，真实权重尚未运行；train 数据层/checkpoint 适配还没有。
 
 | 阶段 | 下一步 | 验收证据 |
 |---|---|---|
-| P0 | torch/CUDA 和服务器已有结构 | 用户日志、分支/commit/状态报告 |
-| P1 | SigLIP-base 封装 + 一图两文本小试 | revision、真实特征/相似度、显存/依赖 |
+| P0 | 核心环境已通过；服务器 checkout 仍待同步 | Python 3.11.16、torch 2.8.0+cu126、Transformers 4.57.3、pip check、A100 张量计算 |
+| P1 | 用户运行 [15](15_SIGLIP_SMOKE.md) 的 SigLIP-base 小试 | revision、真实特征/相似度、参数名、显存/依赖 |
 | P2 | train/val/test 审计、未微调基线 | 正确划分、完整图库、逐查询预测 |
 | P3 | 部分微调、InfoNCE/AdamW、验证/checkpoint | loss、解冻层、验证结果、恢复状态 |
 | P4 | 至多两档学习率，同预算验证 | 不用 test 选参，冻结配置 |
@@ -22,6 +22,7 @@ PR #2 已合并。exp5 审计/指标/缓存/统计有 24 项 CPU 测试，真实
 先检查实际模型层名，再定部分解冻范围。
 云端只改仓库/做 CPU 检查，给用户具体服务器命令并接收日志继续修正。
 不索要 SSH、不直接连接服务器、不自动下载或运行 GPU。
+按需使用空闲 GPU，用完释放；卡 2 只是当前示例，不是固定限制。
 每个可复现阶段提交文件、配置、实际证据和进度，推送 PR。
 ```
 

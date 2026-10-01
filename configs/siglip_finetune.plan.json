@@ -4,7 +4,7 @@
   "route": "siglip_base_finetuning",
   "model": {
     "model_id": "google/siglip-base-patch16-224",
-    "revision": null,
+    "revision": "7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed",
     "strategy": "partial_finetuning",
     "trainable_parameter_names": null
   },
@@ -33,9 +33,13 @@
     "negative_pool_is_micro_batch": true
   },
   "hardware": {
-    "assigned_nvidia_smi_index": 2,
-    "assigned_gpu_uuid": null,
-    "logical_device_after_isolation": "cuda:0",
+    "selection_policy": "choose_available_gpus_per_run_as_needed_and_release_when_finished",
+    "initial_nvidia_smi_index_example": 2,
+    "selected_nvidia_smi_indices": null,
+    "selected_gpu_uuids": null,
+    "initial_implementation": "single_gpu",
+    "multi_gpu_implementation_status": "not_implemented",
+    "logical_device_for_single_gpu_run": "cuda:0",
     "free_memory_at_launch_mib": null
   },
   "evaluation": {

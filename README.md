@@ -4,7 +4,7 @@
 
 实验五的第一次训练项目：成熟 Flickr30K → SigLIP-base 未微调基线 → 简单部分微调 → 至多两档学习率 → 冻结、测试和错误分析。先理解并跑通完整链路，不自建数据集、不从零预训练、不默认加入 hard negative、LoRA、重排或收费 API。
 
-主模型：`google/siglip-base-patch16-224`，其封装、训练 Dataset/程序尚未实现。已有 `exp5` 是此前 CLIP/SigLIP 2 评测基础代码，审计/指标/统计可以复用；24 项 CPU 测试通过，真实数据/GPU 实验未运行。不能把旧 B1 的 SigLIP 2 命令当作新 SigLIP-base。
+主模型：`google/siglip-base-patch16-224`。特征封装和短小试已实现，训练 Dataset/程序尚未实现。用户服务器的 Python 3.11.16 / PyTorch 2.8.0+cu126 / Transformers 4.57.3 已通过依赖检查与 A100 CUDA 张量计算；权重已通过 HF-Mirror 下载，revision 为 `7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed`，模型加载小试和 Flickr30K 实验待运行。已有 `exp5` 是此前 CLIP/SigLIP 2 评测基础代码，审计/指标/统计可以复用；不能把旧 B1 的 SigLIP 2 命令当作新 SigLIP-base。
 
 ## 统一目录
 
@@ -17,7 +17,7 @@
 | [configs/](configs/siglip_finetune.plan.json) | 当前训练计划，尚不可执行 |
 | [checkpoints/](checkpoints/README.md) | 本地训练输出，只提交说明 |
 | exp5/ | 现有审计、评测、缓存、统计 |
-| scripts/ / tests/ | 单卡启动、状态导出、测试 |
+| scripts/ / tests/ | 显式选卡的小试、状态导出、测试 |
 | docs/ / references/ / templates/ | 阶段记录、来源和报告模板 |
 
 服务器以本仓库 checkout 为项目根目录，相对结构保持一致。数据/权重/特征/未经审查的原始日志留在服务器；代码、配置、文档和审查后的轻量结果进入 GitHub。
@@ -31,13 +31,16 @@ python -m exp5 --help
 python scripts/project_state.py --out runs/sync/current.json
 ```
 
-这些命令不自动运行模型。新训练入口待 P1/P3 实现，不提供空跑的 train 占位程序。
+这些命令不自动运行模型。SigLIP-base 小试见 [15](docs/15_SIGLIP_SMOKE.md)，训练入口待 P3 实现。
+
+GPU 按任务需要选择，卡 2 是当前示例；先用单卡跑通，有实际需求再扩大资源。准备文件时不预占 GPU，运行结束退出进程释放自己的显存。
 
 ## 从这里继续
 
 - [12 当前训练路线和阶段状态](docs/12_TRAINING_ROADMAP.md)
 - [13 GitHub—服务器同步约定](docs/13_GITHUB_SERVER_SYNC.md)
 - [14 阶段进度日志](docs/14_PROGRESS_LOG.md)
+- [15 SigLIP-base 小试命令](docs/15_SIGLIP_SMOKE.md)
 - [09 最新交接](docs/09_HANDOFF.md)
 - [11 已有 CPU 测试证据](docs/11_CPU_VALIDATION.md)
 
@@ -49,4 +52,4 @@ python scripts/project_state.py --out runs/sync/current.json
 
 指标继续使用固定图库、命中式双向 R@1/5/10 和二值 NDCG@10；保留五描述/逐查询预测，验证选择并冻结后才评测试集。85% 是待实测目标；不预设微调一定有效、不填论文或示例成绩。来源见 [SOURCES](references/SOURCES.md) 与 [BibTeX](references/references.bib)。
 
-公开仓库不上传原课程 PDF、图片、权重、密钥或未审查日志。目录框架更新不表示服务器已同步或训练已运行。
+公开仓库不上传原课程 PDF、图片、权重、密钥或未审查日志。代码更新不表示服务器已同步或训练已运行。

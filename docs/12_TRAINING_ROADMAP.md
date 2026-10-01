@@ -16,20 +16,20 @@ SigLIP 原预训练使用 sigmoid loss，参考[原论文](https://arxiv.org/abs
 
 | 阶段 | 交付 | 当前状态 |
 |---|---|---|
-| P0 环境 | conda/Python/torch/CUDA、分配卡 UUID、依赖记录 | 用户报告 siglip 环境 Python 3.11.16，GPU 2 A100 80GB；torch/CUDA 小试待日志确认 |
-| P1 推理小试 | 一张本地图、两段文本、真实特征/相似度 | SigLIP-base 脚本待实现；不预填示例分数 |
+| P0 环境 | conda/Python/torch/CUDA、所选卡 UUID、依赖记录 | 核心环境已通过：Python 3.11.16、torch 2.8.0+cu126、Transformers 4.57.3、pip check、A100 CUDA 计算；完整锁文件/UUID 待 P1 记录 |
+| P1 推理小试 | 一张图、两段文本、真实权重特征/相似度 | 封装与 [小试脚本](15_SIGLIP_SMOKE.md) 已实现，待服务器运行；默认合成图仅验收接口，不验收语义质量 |
 | P2 基线 | 固定 val/test manifest、未微调 SigLIP-base 双向指标 | 现有审计/指标可复用，新模型入口待接 |
 | P3 微调 | train Dataset、部分微调、真实损失曲线、验证 checkpoint | 待实现/待运行 |
 | P4 小优化 | 至多两档学习率，同训练预算比较 | 待 P3 跑通 |
 | P5 最终评测 | 配置冻结、独立 test、修复/退化、人工错误分类与报告 | 待执行 |
 
-服务器事实来自用户提供的输出，云端没有连接权限，不直接操作服务器；所有 GPU/下载/训练命令由用户在其获准的环境里执行。GPU 2 快照已有 33295 MiB 占用，0% 利用率不表示无人使用；正式运行前看实际剩余显存。
+服务器事实来自用户提供的输出，云端没有连接权限，不直接操作服务器；所有 GPU/下载/训练命令由用户在其可用环境里执行。用户可按空闲情况和任务需要选择卡数，GPU 2 仅是当前选择；先用单卡跑通，多卡按实际收益再选实现方案。下载/CPU 准备时不提前把模型放到 GPU，结束后退出本项目进程释放显存，没有任务时不长期预占。GPU 2 的早前快照已有 33295 MiB 占用，0% 利用率不表示无人使用；正式运行前看实际剩余显存。
 
 ## 现有代码如何复用
 
 PR #2 已合并；exp5 的数据审计、指标、缓存、统计有 24 项 CPU 测试。其 B0/B1 模型是 CLIP 和 SigLIP 2，与新 SigLIP-base 路线不同。当前 `exp5 prepare` 只准备 val/test，并未实现训练 Dataset。现有 CLI 尚不支持新模型/训练 checkpoint；不为了目录相同就复制另一套指标。
 
-第一版目录已经建好，训练程序和 SigLIP-base 封装仍未实现。配置 [siglip_finetune.plan.json](../configs/siglip_finetune.plan.json) 标为 planning_only，不是已可执行的 train 配置。
+第一版目录已经建好，SigLIP-base 特征封装已实现，训练程序待实现。配置 [siglip_finetune.plan.json](../configs/siglip_finetune.plan.json) 标为 planning_only，不是已可执行的 train 配置。
 
 ## 统一项目结构
 
