@@ -1,19 +1,18 @@
 # 10｜基础版 CLI 与 A100 小试
 
-实现了 Issue #1 的基础评测代码，CPU 合成测试已通过。**真实 Flickr30K、CLIP/SigLIP 2 和 A100 尚未运行**。以下是交互式执行步骤；安装或导入不会自动启动任务。每次使用新的输出目录，程序拒绝覆盖旧运行。
+实现了 Issue #1 的基础评测代码，CPU 合成测试已通过。用户服务器依赖与四卡 BF16 小矩阵检查通过；**真实图片审计、CLIP/SigLIP 2 推理尚待执行**。以下是交互式执行步骤；安装或导入不会自动启动任务。每次使用新的输出目录，程序拒绝覆盖旧运行。
 
 ## 1. 获取与安装
 
 ```bash
 git clone https://github.com/xiangshui001/challenge-exercise.git
 cd challenge-exercise
-git switch --track origin/feature/exp5-baseline
 python -m pip install -e '.[test]'
 python -m unittest discover -s tests -v
 python -m exp5 --help
 ```
 
-建议使用独立 Python 3.11 环境。已有 clone 可 fetch 后切换本 PR 分支。CPU 路径只需 NumPy/Pillow；模型命令才导入 torch/transformers。模型依赖沿用方案起点（**未在用户服务器验证**）：
+基础代码已在 `main`，不再要求切换旧功能分支。建议使用独立 Python 3.11 环境。CPU 路径只需 NumPy/Pillow；模型命令才导入 torch/transformers。用户 2026-10-11 提供的终端记录已确认下面依赖安装、`pip check`、原有 24 项测试及四卡 BF16 小矩阵检查通过；真实模型适配仍待验收：
 
 ```bash
 python -m pip install torch==2.8.0 torchvision==0.23.0 \
@@ -25,16 +24,17 @@ python -m pip install -e '.[models]'
 
 ## 2. 本地数据审计
 
-从[来源说明](../references/SOURCES.md)取得经允许使用的 Karpathy JSON 和图片；当前不提供自动下载器或镜像转换器。
+从[来源说明](../references/SOURCES.md)取得经允许使用的 Karpathy JSON 和图片；具体下载、解压及原始 1014 验证图运行步骤见 [12](12_DATA_PREPARATION.md)。当前不提供自动下载器或镜像转换器。
 
 ```bash
 python -m exp5 prepare \
   --annotations /你的数据目录/dataset_flickr30k.json \
   --image-root /你的数据目录/flickr30k-images \
+  --expected-val-images 1014 \
   --source-revision '实际数据来源和版本' --out data/local/manifests
 ```
 
-路径为 `image-root / filepath / filename`，不要重复加目录。保留 `imgid`、`sentid`，无 sentid 时生成 `image_id:caption_index`。要求 val/test 各 1000 图、每图五描述；坏图、重复 ID、空文本、缺正例、跨划分相同图片字节、sentids 错序和路径越界都会停止。输出 manifests、按图分的 val_tune/val_confirm、审计及数据 SHA256。两验证组查询面对完整验证图库。
+路径为 `image-root / filepath / filename`，不要重复加目录。保留 `imgid`、`sentid`，无 sentid 时生成 `image_id:caption_index`。要求 val/test 数量与声明匹配：作者原始包为 1014/1000 图、每图五描述。默认验证数量仍为 1000，使用作者包时必须显式传 `--expected-val-images 1014`；不得删图凑数。坏图、重复 ID、空文本、缺正例、跨划分相同图片字节、sentids 错序和路径越界都会停止。输出 manifests、按图分的 val_tune/val_confirm、审计及数据 SHA256。两验证组查询面对完整验证图库。
 
 同划分重复图片字节与重复描述会记录，不按模型效果删样本。字节哈希不是感知重复检测。使用已确认的 Karpathy 文件，数量吻合本身不能证明来源正确；记录来源版本与原 JSON 哈希。`--small` 仅用于构造样例，无法进入冻结/正式测试。
 
@@ -52,7 +52,7 @@ CLI 拒绝空 revision 和 `main`。默认只用已有 Hugging Face 缓存，只
 
 ## 4. GPU 2：20 图、100 描述小试
 
-“2”指用户表中 `nvidia-smi` 编号 2 的 A100-SXM4-80GB，不是从 1 起数的第二张。快照已有 33295/81920 MiB 被占用；0% 利用率不能说明无人占用。程序不清理其他进程。启动器先将编号解析为 UUID，再设 `CUDA_VISIBLE_DEVICES`，进程中该卡是 `cuda:0`。
+“2”指用户表中 `nvidia-smi` 编号 2 的 A100-SXM4-80GB，不是从 1 起数的第二张。用户 2026-10-11 新快照显示四卡各约 80GB、仅 10MiB 占用，且四卡 BF16 检查通过；启动时仍读取当时的显存占用。程序不清理其他进程。启动器先将编号解析为 UUID，再设 `CUDA_VISIBLE_DEVICES`，进程中该卡是 `cuda:0`。
 
 ```bash
 nvidia-smi --query-gpu=index,uuid,name,pci.bus_id,memory.total,memory.used,utilization.gpu --format=csv
