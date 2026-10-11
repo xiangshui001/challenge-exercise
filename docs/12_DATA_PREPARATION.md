@@ -2,7 +2,7 @@
 
 ## 已确认的环境
 
-用户 2026-10-11 上传的终端记录确认：仓库已克隆至 `/workspace/challenge-exp5/repo`；独立 `challenge-exp5` 环境为 torch 2.8.0+cu126、torchvision 0.23.0+cu126、transformers 4.57.3、huggingface_hub 0.36.2；`pip check` 通过，原有 24 项 CPU 测试通过，四张约 80GB A100 的 BF16 小矩阵检查均通过。这不是 CLIP/SigLIP 2 模型验收或真实检索成绩。
+用户 2026-10-11 上传的终端记录确认：仓库已克隆至 `/workspace/challenge-exp5/repo`；独立 `challenge-exp5` 环境为 torch 2.8.0+cu126、torchvision 0.23.0+cu126、transformers 4.57.3、huggingface_hub 0.36.2；`pip check` 通过，四张约 80GB A100 的 BF16 小矩阵检查均通过。最新记录确认修复分支的 26 项 CPU 测试通过（41.807s），划分压缩包下载完成；图片下载因 Hugging Face 连接不可达而失败。这不是 CLIP/SigLIP 2 模型验收或真实检索成绩。
 
 ## 数据数量更正
 
@@ -43,6 +43,40 @@ hf download nlphuji/flickr30k flickr30k-images.zip \
 ```
 
 这些参数适用于已安装的 huggingface_hub 0.36.2。不要直接 `load_dataset` 执行镜像中的旧加载脚本，也无需为下载额外安装或升级 `datasets`。连接失败时先查看错误；HTTP 代理隧道可通过单条命令的 `http_proxy`/`https_proxy` 指定，不关闭 TLS 校验。
+
+### 2.1 Hugging Face 直连失败时复用电脑代理
+
+最新报错发生在 Hugging Face 的 HEAD 请求，原因为 `[Errno 101] Network is unreachable`；划分包已下载，无需重做安装或测试。先沿用已建立的隧道；若尚未建立，在电脑 PowerShell 中运行以下命令。示例假定代理软件的 HTTP/混合端口为 7890；将 `SERVER_HOST` 和 SSH 端口换成实际值，7890 换成代理软件显示的端口：
+
+```powershell
+curl.exe -I --proxy http://127.0.0.1:7890 --connect-timeout 10 --max-time 30 https://huggingface.co
+ssh -p 38 -N -T -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -R 127.0.0.1:17890:127.0.0.1:7890 root@SERVER_HOST
+```
+
+先确认电脑 curl 得到站点成功响应，再启动 SSH；按提示输入密码，保持 SSH 窗口打开。`-R` 将服务器回环端口 17890 转发到电脑的代理端口，语义见 [OpenSSH 手册](https://man.openbsd.org/ssh.1#R)。然后在服务器终端验证整条代理路径：
+
+```bash
+curl --proxy http://127.0.0.1:17890 --noproxy '' \
+  --silent --show-error --head --output /dev/null \
+  --write-out 'HTTP %{http_code}\n' \
+  --connect-timeout 10 --max-time 30 https://huggingface.co
+```
+
+应输出 `HTTP 200`。若 17890 连接被拒绝，先检查隧道；若 SSH 提示转发端口占用，先检查已有隧道，不重复启动或结束其他人的进程。代理验证通过后，只重试图片下载：
+
+```bash
+env http_proxy=http://127.0.0.1:17890 \
+    https_proxy=http://127.0.0.1:17890 \
+    no_proxy=localhost,127.0.0.1 \
+    HF_HUB_DISABLE_XET=1 HF_HUB_ENABLE_HF_TRANSFER=0 \
+    HF_HUB_ETAG_TIMEOUT=30 HF_HUB_DOWNLOAD_TIMEOUT=120 \
+    hf download nlphuji/flickr30k flickr30k-images.zip \
+      --repo-type dataset \
+      --revision 2b239befc81b6e3f035ce6bd52f5f4d60f5625f7 \
+      --local-dir data/local/raw
+```
+
+这些环境变量只作用于该下载进程。关闭 Xet 和 hf_transfer，使用普通 HTTP 下载；提高的是请求等待时间，不是允许跳过校验。依据 [Hub 0.36 环境变量文档](https://huggingface.co/docs/huggingface_hub/v0.36.0/package_reference/environment_variables)及 [Requests 代理文档](https://requests.readthedocs.io/en/latest/user/advanced/#proxies)。这里只验证了命令参数依据，实际电脑代理和 SSH 隧道仍须由用户终端确认；首页连通后若文件下载失败，继续保留该次错误以检查重定向下载端点。
 
 ## 3. 解压与审计
 

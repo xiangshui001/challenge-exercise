@@ -35,3 +35,9 @@ python scripts/on_gpu.py --help
 新增回归使用合成 1014 val + 1000 test 图和五描述：默认 1000 验证数量会拒绝，显式声明 1014 后审计通过、分组为 507/507；改写审计数量或声明会拒绝。完整流程成功选择、确认、冻结，并保持正式测试 T2I/I2T 查询数为 5000/1000。旧 1000/1000 合成流程仍通过。
 
 另实际读取作者 `caption_datasets.zip` 内的 JSON：val/test=1014/1000 图、5070/5000 描述；评测图像和描述 ID 唯一，每图恰有五条非空描述，`sentids` 顺序一致，图片路径为平铺文件名。该检查只验证元数据，真实镜像图片仍待服务器下载与解码审计；下载命令见 [12](12_DATA_PREPARATION.md)。本批没有下载图片或模型、启动 GPU 模型推理或调用收费 API。
+
+## 2026-10-11｜服务器复验与下载状态
+
+用户最新终端记录确认已切换 `fix/flickr30k-validation-count`：**26 tests，41.807s，OK**；新增 1014/1000 回归和 sklearn 交叉核对均执行通过。`caption_datasets.zip` 的 curl 下载完成，约 35MiB。
+
+图片尚未下载成功：`hf download` 在 `huggingface.co:443` 的 HEAD 请求中报告 `[Errno 101] Network is unreachable`。后续 `LocalEntryNotFoundError` 表示联网失败且本地没有该文件，不能据此判定数据文件不存在。下一步复用电脑 HTTP/混合代理的 SSH 反向转发，在单条下载命令中设置代理并使用普通 HTTP 下载；步骤见 [12 的代理恢复段落](12_DATA_PREPARATION.md#21-hugging-face-直连失败时复用电脑代理)。尚未取得代理连通或图片解码审计成功证据。
