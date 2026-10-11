@@ -2,7 +2,7 @@
 
 ## 任务边界
 
-只做实验五：语义匹配准确率评估与优化。不要为此补做其他五个实验。不要增加 Web 前后端、Faiss/Milvus、服务压测、TensorRT、微服务或分布式训练。单张 A100，显存容量未知；模型 API 可用，但预算和供应商需由执行者配置。
+只做实验五：语义匹配准确率评估与优化。不要为此补做其他五个实验。不要增加 Web 前后端、Faiss/Milvus、服务压测、TensorRT、微服务或分布式训练。用户 2026-10-11 快照为四张约 80GB A100，启动前重新检查占用；优先让独立模型进程各用单卡，不引入分布式训练。模型 API 可用，但预算和供应商需由执行者配置。
 
 ## 必读顺序
 
@@ -10,7 +10,7 @@ README → docs/00_SCOPE_AND_STATUS.md → docs/03_EXPERIMENT_PROTOCOL.md → do
 
 ## 当前代码状态
 
-已有 exp5 基础版 CLI，CPU 人工指标与合成完整流程已测试；真实数据与 GPU 模型尚未运行。实际命令见 docs/10_RUNNING_BASELINE.md，CPU 证据见 docs/11_CPU_VALIDATION.md。configs/experiment5.plan.yaml 仍是设计草案，不由 CLI 执行；研究扩展模块仍为规划。继续保持先 CPU 检查再 GPU 小试的顺序，不把代码写好当作真实实验完成。
+已有 exp5 基础版 CLI，CPU 人工指标与合成完整流程已测试；用户服务器依赖和四卡 BF16 小矩阵检查通过，真实图片审计与 GPU 模型尚未运行。作者划分 JSON 已核对为 val=1014、test=1000，使用它时显式传 --expected-val-images 1014，不删图凑数。实际命令见 docs/10_RUNNING_BASELINE.md 和 docs/12_DATA_PREPARATION.md，CPU 证据见 docs/11_CPU_VALIDATION.md。configs/experiment5.plan.yaml 仍是设计草案，不由 CLI 执行；研究扩展模块仍为规划。继续保持先 CPU 检查再 GPU 模型小试的顺序，不把代码写好当作真实实验完成。
 
 ## 研究纪律
 

@@ -11,18 +11,20 @@ from exp5.io import read_json, write_json
 from exp5.models import require_gpu, text_options
 
 
-def fixture(root, count=2):
+def fixture(root, count=2, *, val_count=None):
     image_root = root / "pictures"
     image_root.mkdir()
     images = []
-    for split, base in (("val", 0), ("test", count)):
-        for i in range(count):
+    base = 0
+    for split, size in (("val", count if val_count is None else val_count), ("test", count)):
+        for i in range(size):
             idx = base + i
             name = f"{idx:04}.png"
             Image.new("RGB", (4, 4), (idx % 256, idx // 256, 10)).save(image_root / name)
             sentences = [{"sentid": idx * 5 + j, "raw": f"An image {idx}, description {j}"} for j in range(5)]
             images.append({"imgid": idx, "filename": name, "split": split, "sentences": sentences,
                            "sentids": [s["sentid"] for s in sentences]})
+        base += size
     annotation = root / "dataset.json"
     write_json(annotation, {"dataset": "flickr30k", "images": images})
     return annotation, image_root
@@ -47,6 +49,32 @@ class DataCacheTests(unittest.TestCase):
         self.assertEqual(self.groups, validation_groups(self.images))
         with self.assertRaises(ValueError):
             validate(self.images, self.captions, standard=True)
+
+    def test_original_validation_count_requires_explicit_declaration(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            annotation, pictures = fixture(root, count=1000, val_count=1014)
+            with self.assertRaisesRegex(ValueError, "1000 val"):
+                prepare(annotation, pictures, root / "wrong-count", "synthetic-original-count")
+            data = root / "correct-count"
+            prepare(annotation, pictures, data, "synthetic-original-count", expected_val_images=1014)
+            images, captions, groups, audit = load_data(data, verify_files=True)
+            self.assertEqual(len(images), 2014)
+            self.assertEqual(len(captions), 10070)
+            self.assertEqual(audit["checks"]["images_per_split"], {"val": 1014, "test": 1000})
+            self.assertEqual(audit["checks"]["captions_per_split"], {"val": 5070, "test": 5000})
+            self.assertEqual(len(groups["val_tune"]), 507)
+            self.assertEqual(len(groups["val_confirm"]), 507)
+            self.assertEqual(audit["source"]["expected_images_per_split"], {"val": 1014, "test": 1000})
+            audit["checks"]["images_per_split"]["val"] = 1000
+            write_json(data / "data_audit.json", audit)
+            with self.assertRaisesRegex(ValueError, "Recorded data counts"):
+                load_data(data)
+            audit["checks"]["images_per_split"]["val"] = 1014
+            audit["source"]["expected_images_per_split"]["val"] = 1000
+            write_json(data / "data_audit.json", audit)
+            with self.assertRaises(ValueError):
+                load_data(data)
 
     def test_duplicate_id_cross_split_missing_empty(self):
         with self.assertRaises(ValueError):

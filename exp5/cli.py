@@ -12,6 +12,8 @@ def parser():
     prep.add_argument("--image-root", required=True)
     prep.add_argument("--source-revision", required=True)
     prep.add_argument("--out", required=True)
+    prep.add_argument("--expected-val-images", type=int, choices=(1000, 1014), default=1000,
+                      help="Declared validation count; use 1014 for the author's original archive")
     prep.add_argument("--small", action="store_true", help="Nonstandard test fixture only; cannot freeze")
     enc = sub.add_parser("encode", help="Explicit model inference; offline unless --allow-download")
     enc.add_argument("--data", required=True)
@@ -49,7 +51,8 @@ def main(argv=None):
     from . import data, experiment
     try:
         if args.command == "prepare":
-            result = data.prepare(args.annotations, args.image_root, args.out, args.source_revision, small=args.small)
+            result = data.prepare(args.annotations, args.image_root, args.out, args.source_revision,
+                                  small=args.small, expected_val_images=args.expected_val_images)
         elif args.command == "encode":
             from .models import encode
             result = encode(args.data, args.out, args.method, args.revision, args.split,
