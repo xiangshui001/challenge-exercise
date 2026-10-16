@@ -34,6 +34,9 @@ python -m exp5 baseline-evaluate --help
 
 ```bash
 cd /workspace/challenge-exp5/repo-baseline
+# P2 真实 pilot 发现 AutoProcessor 仍可能对 main/tokenizer_config.json 发起 HEAD。
+# 权重已被 P1 和 pilot 从本机缓存成功加载，后续固定 revision 全部离线。
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 MAIN=/workspace/challenge-exp5/repo
 DATA="$MAIN/data/local/manifests-20261016-084017"
 REV=7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed
@@ -52,6 +55,9 @@ python -m exp5 pilot-evaluate --data "$DATA" --cache "$PILOT" \
 
 ```bash
 cd /workspace/challenge-exp5/repo-baseline
+# P2 真实 pilot 发现 AutoProcessor 仍可能对 main/tokenizer_config.json 发起 HEAD。
+# 权重已被 P1 和 pilot 从本机缓存成功加载，后续固定 revision 全部离线。
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 MAIN=/workspace/challenge-exp5/repo
 DATA="$MAIN/data/local/manifests-20261016-084017"
 REV=7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed
@@ -66,6 +72,10 @@ cat "$RUN/metrics.csv"
 ```
 
 完整指标是 **5,070 文本查询、1,014 图像图库** 的 T2I，以及 **1,014 图像查询、5,070 描述图库** 的 I2T。输出 `S0.t2i.queries.jsonl`、`S0.i2t.queries.jsonl`、双向 bootstrap、`metrics.csv` 和 `run_record.json`。不要把该验证结果当独立测试成绩，也不要把查询图库减到少数图片来宣称达到 R@10≥85%。
+
+## 真实 P2 pilot 验收记录（2026-10-16）
+
+服务器 `repo-baseline`（commit `65e1d38`）已完成 34/34 CPU 测试；20 图 / 100 描述、GPU 2、FP32 的真实 S0 编码输出 `status=encoded`，并成功运行 `pilot-evaluate`：T2I R@1=0.95、R@10=1，I2T R@1=1、R@10=1，**仅是缩小候选库的 pilot_only 结果**。缓存 `cache/S0-pilot-20261016-132449`，评测 `runs/S0-pilot-eval-20261016`。模型编码耗时 1.22 秒（不含加载/联网重试），CUDA allocated 峰值 897,119,744 B，截断 0。下一步是全部验证集，尚无正式性能数据。
 
 ## 当前支持边界
 
