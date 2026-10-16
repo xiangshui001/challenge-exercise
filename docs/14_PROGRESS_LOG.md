@@ -11,10 +11,11 @@
 | 2026-09-30 | P1 小试代码 | 基于工作分支 364fcf5 接入原生 SigLIP-base 封装、短小试、固定模型 SHA、参数名与成本输出；CPU 检查见 [15](15_SIGLIP_SMOKE.md) | 真实权重小试待用户服务器运行；合成图片结果不能算检索成绩 |
 | 2026-10-01 | 模型下载 | 用户服务器直连 huggingface.co 返回 Network is unreachable；通过 HF-Mirror 成功下载 SigLIP-base 的 7 个文件，model.safetensors 约 813 MB，revision `7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed`，保存于默认 HF 缓存对应 snapshots 目录 | 已下载不等于加载验证；下一步显式使用该 SHA、local_files_only 和所选 GPU 运行短小试。外部聊天提供的独立 test_siglip.py 尚无执行日志，不计为已完成 |
 | 2026-10-16 | P1 真实模型小试 | 用户服务器输出 `runs/p1-smoke-20261016/smoke.json`：`status=smoke_passed`，固定 `google/siglip-base-patch16-224@7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed`，代码 `9348b443`；单张 A100-SXM4-80GB（物理索引 2，进程内 cuda:0）FP32 推理完成。输入 1 张合成红色方块及 2 条文本；输出 1×768/2×768，`cosine(red)=0.109220 > cosine(blue)=0.040971`；参数 203,155,970；推理墙钟 2.158 s（含预处理与传输），GPU 峰值 allocated 829,237,760 B、reserved 926,941,184 B；CPU 阶段模型加载记录 407.845 s | **P1 已通过（接口验收）**；不代表真实 Flickr30K 基线或训练完成。原始完整日志、参数名与依赖锁留服务器 `runs/`，不提交仓库。下一步审计真实 Flickr30K；PR #4 数据数量修复尚未合并，不能直接用当前分支默认 1000 val 模式审计原作者 1014 val |
+| 2026-10-16 | P2 数据解压与抽样定位 | 用户服务器输出：作者 `caption_datasets.zip` 已解压，Karpathy JSON 分组 `train=29000, val=1014, test=1000`；`flickr30k-images.zip` 经 HF 镜像下载并已解压。ZIP 列出 63,566 个图片后缀条目（包括 `__MACOSX` 元数据条目，不能当作真实图片数）。分别抽查 train/val/test 各一张，实际文件均位于 `data/local/raw/flickr30k-images/` | **仅下载、解压和三图路径抽查成功**；全部 2,014 张验证/测试图片尚未运行审计，训练集 29,000 张也尚未审计。接下来在 PR #4 的 1014-val 修复代码中运行 `prepare`，保留原训练分支与已有 P1 日志 |
 
 ## 下一节点
 
-P1 真实 SigLIP-base 小试已由服务器日志确认通过。下一步确认 Flickr30K 图片压缩包的实际下载/解压状态，并使用 PR #4 的 1014 val 修复进行真实数据审计；随后将 SigLIP-base 接入未微调基线评估。训练 Dataset、微调循环和 checkpoint 评估仍未实现。
+P1 真实 SigLIP-base 小试已由服务器日志确认通过。Flickr30K 的作者 JSON 与图片压缩包已下载解压，训练/验证/测试各抽查一张路径成功。下一步在 PR #4 修复代码中对 1014-val/1000-test 做完整真实图片审计，再接入 SigLIP-base 未微调基线评估。训练 Dataset、微调循环和 checkpoint 评估仍未实现。
 
 ## 后续每次记录
 
