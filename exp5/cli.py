@@ -12,11 +12,13 @@ def parser():
     prep.add_argument("--image-root", required=True)
     prep.add_argument("--source-revision", required=True)
     prep.add_argument("--out", required=True)
+    prep.add_argument("--expected-val-images", type=int, choices=(1000, 1014), default=1000,
+                      help="Declared validation count; use 1014 for the author's original archive")
     prep.add_argument("--small", action="store_true", help="Nonstandard test fixture only; cannot freeze")
     enc = sub.add_parser("encode", help="Explicit model inference; offline unless --allow-download")
     enc.add_argument("--data", required=True)
     enc.add_argument("--out", required=True)
-    enc.add_argument("--method", choices=("B0", "B1"), required=True)
+    enc.add_argument("--method", choices=("B0", "B1", "S0"), required=True)
     enc.add_argument("--revision", required=True, help="Immutable Hugging Face 40-character commit SHA")
     enc.add_argument("--split", choices=("val", "test"), required=True)
     enc.add_argument("--device", choices=("cuda:0", "cpu"), default="cuda:0")
@@ -30,6 +32,10 @@ def parser():
     pilot.add_argument("--data", required=True)
     pilot.add_argument("--cache", required=True)
     pilot.add_argument("--out", required=True)
+    baseline = sub.add_parser("baseline-evaluate", help="Complete S0 validation metrics, no test/freeze")
+    baseline.add_argument("--data", required=True)
+    baseline.add_argument("--cache", required=True)
+    baseline.add_argument("--out", required=True)
     selection = sub.add_parser("select", help="Tune on val_tune, confirm once, freeze")
     final = sub.add_parser("test", help="Evaluate independent test under frozen config")
     for cmd in (selection, final):
@@ -49,7 +55,8 @@ def main(argv=None):
     from . import data, experiment
     try:
         if args.command == "prepare":
-            result = data.prepare(args.annotations, args.image_root, args.out, args.source_revision, small=args.small)
+            result = data.prepare(args.annotations, args.image_root, args.out, args.source_revision,
+                                  small=args.small, expected_val_images=args.expected_val_images)
         elif args.command == "encode":
             from .models import encode
             result = encode(args.data, args.out, args.method, args.revision, args.split,
@@ -58,6 +65,8 @@ def main(argv=None):
                             allow_download=args.allow_download, frozen=args.frozen)
         elif args.command == "pilot-evaluate":
             result = experiment.pilot_evaluate(args.data, args.cache, args.out)
+        elif args.command == "baseline-evaluate":
+            result = experiment.baseline_evaluate(args.data, args.cache, args.out)
         elif args.command == "select":
             result = experiment.select(args.data, args.b0, args.b1, args.out, fusion=args.fusion)
         elif args.command == "test":
