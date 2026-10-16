@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "challenge-exp5"
 version = "0.1.0"
-description = "Offline Flickr30K retrieval evaluation, experiment five"
+description = "Flickr30K retrieval evaluation and introductory SigLIP finetuning, experiment five"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.24,<3", "Pillow>=10,<13"]
 
@@ -17,4 +17,4 @@ test = ["scikit-learn>=1.3,<2"]
 exp5 = "exp5.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["exp5*"]
+include = ["exp5*", "models*"]

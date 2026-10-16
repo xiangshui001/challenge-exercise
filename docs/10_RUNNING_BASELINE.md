@@ -1,5 +1,7 @@
 # 10｜基础版 CLI 与 A100 小试
 
+当前主路线为 [12](12_TRAINING_ROADMAP.md) 的 SigLIP-base 微调。本文命令仅对应已实现的原 CLIP/SigLIP 2 CLI，保留参考；B1 不是 SigLIP-base，新模型/训练入口尚未实现。
+
 实现了 Issue #1 的基础评测代码，CPU 合成测试已通过。**真实 Flickr30K、CLIP/SigLIP 2 和 A100 尚未运行**。以下是交互式执行步骤；安装或导入不会自动启动任务。每次使用新的输出目录，程序拒绝覆盖旧运行。
 
 ## 1. 获取与安装

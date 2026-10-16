@@ -7,7 +7,12 @@
 
 # 原始数据、模型、缓存、未经审查的运行与 API 日志
 data/local/
-models/
+# 代码目录可跟踪，下载权重/模型缓存仍忽略。
+/models/*
+!/models/README.md
+!/models/*.py
+/checkpoints/*
+!/checkpoints/README.md
 cache/
 runs/
 private_sources/
