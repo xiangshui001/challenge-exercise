@@ -138,6 +138,10 @@ def select(data, b0, b1, output, *, fusion=False):
     # Confirmation is reported once. No retuning/fallback based on its score.
     record = environment()
     lock = {"protocol": PROTOCOL, "data_sha256": audit["data_sha256"],
+            "dataset_sizes": {"images_per_split": audit["checks"]["images_per_split"],
+                              "captions_per_split": audit["checks"]["captions_per_split"],
+                              "expected_images_per_split": audit["source"].get(
+                                  "expected_images_per_split", {"val": 1000, "test": 1000})},
             "models": {m: model_identity(c[2]) for m, c in zip(("B0", "B1"), caches)},
             "validation_cache_sha256": {m: file_hash(Path(p) / "metadata.json")
                                         for m, p in zip(("B0", "B1"), (b0, b1))},
@@ -194,6 +198,42 @@ def pilot_evaluate(data, cache_path, output):
                "cache_metadata_sha256": file_hash(Path(cache_path) / "metadata.json"),
                "record": environment(), "metrics": table})
     return {"stage": "pilot_only", "metrics": table}
+
+
+
+def baseline_evaluate(data, cache_path, output):
+    """Evaluate one complete S0 validation cache; do not touch test or freeze."""
+    cache = load_cache(cache_path, data)
+    meta = cache[2]
+    if meta["method"] != "S0" or meta["split"] != "val" or not meta["standard_protocol"]:
+        raise ValueError("S0 baseline requires a full, standard validation cache")
+    _, _, _, audit = load_data(data)
+    if meta["data_sha256"] != audit["data_sha256"]:
+        raise ValueError("Baseline and audited data differ")
+    record = environment()
+    if meta["code_sha256"] != record["code_sha256"]:
+        raise ValueError("Source code changed since encoding; use its original version")
+    out = new_directory(output)
+    table = []
+    for direction in ("t2i", "i2t"):
+        rows = predictions(cache, direction)
+        name = f"S0.{direction}"
+        write_jsonl(out / f"{name}.queries.jsonl", rows)
+        write_json(out / f"{name}.bootstrap.json", bootstrap(rows))
+        table.append({"method": "S0", "direction": direction, **summarize(rows)})
+    write_csv(out / "metrics.csv", table)
+    write_json(out / "run_record.json", {
+        "stage": "full_validation_baseline",
+        "standard_protocol": True,
+        "model": model_identity(meta),
+        "data_sha256": audit["data_sha256"],
+        "cache_metadata_sha256": file_hash(Path(cache_path) / "metadata.json"),
+        "record": record,
+        "metrics": table,
+        "test_untouched": True,
+    })
+    return {"status": "full_validation_baseline", "metrics": table}
+
 
 
 def recompute(prediction_file):

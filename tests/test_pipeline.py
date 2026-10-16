@@ -42,6 +42,28 @@ def synthetic_cache(root, data, method, split, *, frozen=None, pilot_images=None
 
 
 class PipelineTests(unittest.TestCase):
+    def test_original_validation_size_freezes_and_keeps_1000_image_test(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            annotation, pictures = fixture(root, count=1000, val_count=1014)
+            data = root / "manifests"
+            prepare(annotation, pictures, data, "SYNTHETIC 1014/1000 regression", expected_val_images=1014)
+            b0 = synthetic_cache(root, data, "B0", "val")
+            b1 = synthetic_cache(root, data, "B1", "val")
+            validation = root / "validation"
+            select(data, b0, b1, validation)
+            frozen = validation / "frozen.json"
+            lock = load_frozen(frozen)
+            self.assertEqual(lock["dataset_sizes"]["images_per_split"], {"val": 1014, "test": 1000})
+            self.assertEqual(lock["confirmation"]["t2i"]["query_count"], 2535)
+            self.assertEqual(lock["confirmation"]["i2t"]["query_count"], 507)
+            t0 = synthetic_cache(root, data, "B0", "test", frozen=frozen)
+            t1 = synthetic_cache(root, data, "B1", "test", frozen=frozen)
+            out = root / "final"
+            final_test(data, t0, t1, frozen, out)
+            for row in read_json(out / "run_record.json")["metrics"]:
+                self.assertEqual(row["query_count"], 5000 if row["direction"] == "t2i" else 1000)
+
     def test_full_synthetic_validation_freeze_test_recompute(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

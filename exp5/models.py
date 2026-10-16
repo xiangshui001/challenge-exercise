@@ -14,16 +14,17 @@ from .data import load_data, split_rows
 from .io import digest, environment, new_directory, read_json, write_json
 
 MODEL_IDS = {"B0": "openai/clip-vit-base-patch16",
-             "B1": "google/siglip2-so400m-patch14-384"}
+             "B1": "google/siglip2-so400m-patch14-384",
+             "S0": "google/siglip-base-patch16-224"}
 
 
 def text_options(method, texts):
-    if method == "B1":
+    if method in ("B1", "S0"):
         return [t.lower() for t in texts], {"padding": "max_length", "max_length": 64,
                                             "truncation": True}
     if method == "B0":
         return texts, {"padding": True, "max_length": 77, "truncation": True}
-    raise ValueError("Only B0/CLIP and B1/SigLIP2 are supported")
+    raise ValueError("Only B0/CLIP, B1/SigLIP2 and S0/SigLIP-base are supported")
 
 
 def require_gpu(torch, device):
@@ -84,7 +85,7 @@ def encode(data_directory, output, method, revision, split, *, device="cuda:0",
                           "image_processor": processor.image_processor.to_dict(),
                           "tokenizer_class": type(processor.tokenizer).__name__,
                           "text": text_options(method, [""])[1],
-                          "lowercase": method == "B1", "image_fast": False}
+                          "lowercase": method in ("B1", "S0"), "image_fast": False}
         meta = {"method": method, "model_id": MODEL_IDS[method], "revision": resolved,
                 "dtype": dtype, "processor": processor_info, "packages": record["packages"],
                 "code_sha256": record["code_sha256"], "data_sha256": audit["data_sha256"],
