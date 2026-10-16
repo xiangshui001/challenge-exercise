@@ -14,10 +14,11 @@
 | 2026-10-16 | P2 数据解压与抽样定位 | 用户服务器输出：作者 `caption_datasets.zip` 已解压，Karpathy JSON 分组 `train=29000, val=1014, test=1000`；`flickr30k-images.zip` 经 HF 镜像下载并已解压。ZIP 列出 63,566 个图片后缀条目（包括 `__MACOSX` 元数据条目，不能当作真实图片数）。分别抽查 train/val/test 各一张，实际文件均位于 `data/local/raw/flickr30k-images/` | **仅下载、解压和三图路径抽查成功**；全部 2,014 张验证/测试图片尚未运行审计，训练集 29,000 张也尚未审计。接下来在 PR #4 的 1014-val 修复代码中运行 `prepare`，保留原训练分支与已有 P1 日志 |
 | 2026-10-16 | P2 真实数据审计通过 | 用户服务器 `/workspace/challenge-exp5/repo-audit` (`9f4d080`) 调用 `exp5 prepare --expected-val-images 1014`，输出 `data/local/manifests-20261016-084017/data_audit.json` 的 `status=passed`、`standard_protocol=true`；val=1,014 图/5,070 描述，test=1,000 图/5,000 描述，跨两集合无字节重复图片、4 组重复文本；审计数据指纹 `d148fa170c3cc68f37deee629d8abef4ef2340171a578b4907184d5d7675f290` | **P2 评测数据验收通过**；训练集 29,000 图尚未全审计。新分支 `feature/siglip-base-val-baseline` 已移植 1014-val 修复并加入 S0 编码和独立验证评估；**代码及真实 S0 验证成绩仍待服务器测试**，不将其视为已运行 |
 | 2026-10-16 | P2 集成分支服务器 CPU 验证 | 用户在服务器 worktree `/workspace/challenge-exp5/repo-baseline` 检出 commit `65e1d38`，在 `challenge-exp5` 环境执行 `python -m unittest discover -s tests -v`；实际结果 **Ran 34 tests in 52.899s / OK**。覆盖 1014-val 原始计数、数据缓存/审计、评价统计、历史合成冻结流程、S0 独立身份和命令行，以及 P1 小试接口测试。原始日志 `runs/s0-cpu-tests.log` 留在服务器 | **34/34 CPU 测试通过**；尚未在真实 Flickr30K 上运行 S0 GPU pilot 或全量验证，不得将 CPU 测试当真实检索指标。下一步先确认可共享 GPU，再做 20 图 100 描述 pilot |
+| 2026-10-16 | P2 真实图片 S0 GPU pilot | 用户服务器 `repo-baseline` 运行 S0 20 图、100 描述、FP32、image batch=8/text batch=32，物理 GPU 2（UUID `GPU-2816e224-f998-2a27-045c-66cbcf4a9aaa`）。编码 `status=encoded`，缓存 `cache/S0-pilot-20261016-132449`，eval `runs/S0-pilot-eval-20261016`；编码时间 1.220 s（不含模型加载/网络重试），峰值 allocated 897,119,744 B、reserved 1,054,867,456 B、截断数 0。受限候选库内 T2I 100 查询 R@1=0.95/R@5=1/R@10=1/NDCG@10=0.981546；I2T 20 查询 R@1=1/R@5=1/R@10=1/NDCG@10=0.980045。运行时出现 huggingface.co 的 HEAD 请求重试，但随后成功离线缓存权重加载和编码 | **真实图文推理及 pilot-evaluate 通过**；`pilot_only`、缩小图库，不是官方 Flickr30K 分数或 85% 达标证据。下一步设置 `HF_HUB_OFFLINE=1` 避免联网 HEAD，运行全量 1014 图/5070 文本验证集；当前 test 未运行 |
 
 ## 下一节点
 
-P1 真实 SigLIP-base 小试已由服务器日志确认通过。Flickr30K 原作者标注及图片已就位，1014-val/1000-test 正式审计已通过，指纹如上。新集成分支加入 S0 SigLIP-base 编码/完整验证指标入口，下一步在服务器运行 CPU 测试、20 图小试和全量验证评估，实测后方可填入 Recall。训练 Dataset、微调循环和 checkpoint 评估仍未实现。
+P1 真实 SigLIP-base 小试已由服务器日志确认通过。Flickr30K 原作者标注及图片已就位，1014-val/1000-test 正式审计已通过，指纹如上。新集成分支服务器 CPU 34/34 测试通过，真实 S0 20 图/100 文本 GPU pilot 已通过。下一步运行完整验证集 S0 特征编码和双向指标，真正的标准 Recall 尚未产生。训练 Dataset、微调循环和 checkpoint 评估仍未实现。
 
 ## 后续每次记录
 
