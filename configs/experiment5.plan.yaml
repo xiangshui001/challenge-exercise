@@ -10,10 +10,11 @@ project:
   deploy_service: false
   ann_index: false
 hardware:
-  gpu_count: 1
+  observed_at: '2026-10-11'
+  gpu_count: 4
   gpu_family: A100
-  gpu_memory_gb: null
-  driver: null
+  gpu_memory_gb: 80  # 每卡标称容量；启动前检查实际可用显存。
+  driver: '570.211.01'
   inference_dtype_start: bfloat16
   cached_feature_dtype: float32
 data:
@@ -22,15 +23,15 @@ data:
   language: en
   source_path: null
   source_revision: null
-  expected_val_images: 1000
+  expected_val_images: 1014  # 作者原始 dataset_flickr30k.json；CLI 需显式声明。
   expected_test_images: 1000
   captions_per_image: 5
   separate_caption_queries: true
   validate_ids_and_files: true
   validation_subgroups:
     split_by: image_id
-    tune_images: 500
-    confirm_images: 500
+    tune_images: 507
+    confirm_images: 507
     seed: 2026
     keep_full_validation_gallery: true
 models:

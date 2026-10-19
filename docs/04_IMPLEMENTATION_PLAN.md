@@ -1,6 +1,6 @@
 # 04｜实施指引：从方案到可运行实验
 
-本节保留原实施方案；表中的独立脚本名仍是规划。当前实际实现为 exp5 包的 CLI，使用[基础版运行说明](10_RUNNING_BASELINE.md)中的命令，CPU 证据见[验证记录](11_CPU_VALIDATION.md)。真实模型与用户 A100 尚未验证。实施前阅读[评测协议](03_EXPERIMENT_PROTOCOL.md)。
+本节保留原实施方案；表中的独立脚本名仍是规划。当前实际实现为 exp5 包的 CLI，使用[基础版运行说明](10_RUNNING_BASELINE.md)中的命令，CPU 证据见[验证记录](11_CPU_VALIDATION.md)。用户服务器依赖和四卡 BF16 小矩阵检查通过，真实模型尚未验证。原始划分下载与审计见[数据准备](12_DATA_PREPARATION.md)，实施前阅读[评测协议](03_EXPERIMENT_PROTOCOL.md)。
 
 ## 1. 环境策略
 
