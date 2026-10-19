@@ -10,7 +10,7 @@ README → docs/00_SCOPE_AND_STATUS.md → docs/03_EXPERIMENT_PROTOCOL.md → do
 
 ## 当前代码状态
 
-已有 exp5 基础版 CLI，CPU 人工指标与合成完整流程已测试；用户服务器依赖和四卡 BF16 小矩阵检查通过，真实图片审计与 GPU 模型尚未运行。作者划分 JSON 已核对为 val=1014、test=1000，使用它时显式传 --expected-val-images 1014，不删图凑数。实际命令见 docs/10_RUNNING_BASELINE.md 和 docs/12_DATA_PREPARATION.md，CPU 证据见 docs/11_CPU_VALIDATION.md。configs/experiment5.plan.yaml 仍是设计草案，不由 CLI 执行；研究扩展模块仍为规划。继续保持先 CPU 检查再 GPU 模型小试的顺序，不把代码写好当作真实实验完成。
+已有 exp5 基础版 CLI，CPU 人工指标与合成完整流程已测试；用户服务器依赖和四卡 BF16 小矩阵检查通过。2026-10-19 真实图片审计通过：val=1014/5070、test=1000/5000 图/描述，图片内容重复组为空，4 组重复描述按原始标注保留；GPU 模型尚未运行。作者包需显式传 --expected-val-images 1014，不删图凑数。最新快照 GPU 0/3 已有较多显存占用，GPU 1/2 近空闲，小试前重新检查。实际命令见 docs/10_RUNNING_BASELINE.md 和 docs/12_DATA_PREPARATION.md，验证证据见 docs/11_CPU_VALIDATION.md。configs/experiment5.plan.yaml 仍是设计草案，不由 CLI 执行；研究扩展模块仍为规划。继续保持先 CPU 检查再 GPU 模型小试的顺序，不把代码写好当作真实实验完成。
 
 ## 研究纪律
 

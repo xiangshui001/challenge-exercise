@@ -4,6 +4,8 @@
 
 用户 2026-10-11 上传的终端记录确认：仓库已克隆至 `/workspace/challenge-exp5/repo`；独立 `challenge-exp5` 环境为 torch 2.8.0+cu126、torchvision 0.23.0+cu126、transformers 4.57.3、huggingface_hub 0.36.2；`pip check` 通过，四张约 80GB A100 的 BF16 小矩阵检查均通过。最新记录确认修复分支的 26 项 CPU 测试通过（41.807s），划分压缩包下载完成；图片下载因 Hugging Face 连接不可达而失败。这不是 CLIP/SigLIP 2 模型验收或真实检索成绩。
 
+**2026-10-19 更新**：图片下载已通过代理恢复，真实数据审计 `passed`、`standard_protocol=true`，图像 val/test=1014/1000，描述=5070/5000；图片内容重复组为空，4 组重复描述按原始标注保留。下面的网络排障保留为恢复步骤；当前下一步是 [20 图模型小试](10_RUNNING_BASELINE.md)。
+
 ## 数据数量更正
 
 2026-10-11 实际读取[作者下载包](https://cs.stanford.edu/people/karpathy/deepimagesent/caption_datasets.zip)（36,745,453 字节）内 `dataset_flickr30k.json`，计数如下：
@@ -106,4 +108,4 @@ python -m exp5 prepare \
 
 ## 本批验收边界
 
-本批 CPU **26 项测试通过**，覆盖旧 1000/1000 模式及 1014/1000 模式的审计、冻结和测试，证据见 [11](11_CPU_VALIDATION.md)。真实图片尚待用户下载与审计；源码测试不替代该验收。数据、压缩包、依赖锁和原始运行记录均保留在本地忽略目录，公开 PR 只包含代码、测试及必要的小型说明。
+本批 CPU **26 项测试通过**，覆盖旧 1000/1000 模式及 1014/1000 模式的审计、冻结和测试；2026-10-19 用户真实图片审计也已通过，证据见 [11](11_CPU_VALIDATION.md)。真实模型加载和 GPU 检索仍待小试验收。数据、压缩包、依赖锁和原始运行记录均保留在本地忽略目录，公开 PR 只包含代码、测试及必要的小型说明。

@@ -41,3 +41,11 @@ python scripts/on_gpu.py --help
 用户最新终端记录确认已切换 `fix/flickr30k-validation-count`：**26 tests，41.807s，OK**；新增 1014/1000 回归和 sklearn 交叉核对均执行通过。`caption_datasets.zip` 的 curl 下载完成，约 35MiB。
 
 图片尚未下载成功：`hf download` 在 `huggingface.co:443` 的 HEAD 请求中报告 `[Errno 101] Network is unreachable`。后续 `LocalEntryNotFoundError` 表示联网失败且本地没有该文件，不能据此判定数据文件不存在。下一步复用电脑 HTTP/混合代理的 SSH 反向转发，在单条下载命令中设置代理并使用普通 HTTP 下载；步骤见 [12 的代理恢复段落](12_DATA_PREPARATION.md#21-hugging-face-直连失败时复用电脑代理)。尚未取得代理连通或图片解码审计成功证据。
+
+## 2026-10-19｜真实图片审计通过
+
+用户通过代理取得图片包，切换并更新修复分支后执行 `prepare --expected-val-images 1014`。实际输出 `status=passed`、`standard_protocol=true`，图像 val/test=1014/1000，描述=5070/5000；图片内容重复组为空，重复描述文本组为 4。图片解码、ID、每图五描述、正例对应及跨划分图片字节检查通过，重复描述按原始标注保留。
+
+实际数据审计环境：Python 3.11.17、NumPy 2.4.6、Pillow 12.3.0、torch 2.8.0+cu126、transformers 4.57.3、sentencepiece 0.2.2、protobuf 6.33.6。最新 GPU 快照中 0/3 已有较多显存占用，1/2 各约 10MiB。
+
+下一步为两个模型各 20 图/100 描述小试，运行命令见 [10](10_RUNNING_BASELINE.md)。截至本条证据，真实模型加载、GPU 编码、pilot 指标和正式检索成绩仍未产生。
