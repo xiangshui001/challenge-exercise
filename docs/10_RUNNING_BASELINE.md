@@ -5,14 +5,14 @@
 ## 1. 获取与安装
 
 ```bash
-git clone https://github.com/xiangshui001/challenge-exercise.git
+git clone --branch fix/flickr30k-validation-count https://github.com/xiangshui001/challenge-exercise.git
 cd challenge-exercise
 python -m pip install -e '.[test]'
 python -m unittest discover -s tests -v
 python -m exp5 --help
 ```
 
-基础代码已在 `main`，不再要求切换旧功能分支。建议使用独立 Python 3.11 环境。CPU 路径只需 NumPy/Pillow；模型命令才导入 torch/transformers。用户 2026-10-11 提供的终端记录已确认下面依赖安装、`pip check`、原有 24 项测试及四卡 BF16 小矩阵检查通过；真实模型适配仍待验收：
+本批运行使用 `fix/flickr30k-validation-count`，其中包含 `--expected-val-images` 参数；修复合并后也可从 `main` 运行。建议使用独立 Python 3.11 环境。CPU 路径只需 NumPy/Pillow；模型命令才导入 torch/transformers。用户 2026-10-11 提供的终端记录已确认下面依赖安装、`pip check`、原有 24 项测试及四卡 BF16 小矩阵检查通过；真实模型适配仍待验收：
 
 ```bash
 python -m pip install torch==2.8.0 torchvision==0.23.0 \
