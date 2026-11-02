@@ -1,65 +1,38 @@
 # challenge-exercise
 
-## 实验五：图文语义匹配评估与优化
+## 当前主线：M0｜先验证视觉语言模型的语义关系问题是否成立
 
-**拟定题目：预训练视觉语言模型驱动的图文语义匹配评估与预算约束重排优化。**
+**研究问题**：模型是否会系统性混淆“同义改写、方向性蕴含、冲突、视觉证据不足和义项歧义”？辞书中的义项与有类型的关系能否提供超过普通释义文本的独立帮助？
 
-本仓库只服务于实验五，不开展实验一、二、三、四、六。当前包含**方案包与基础版 CLI**：数据审计、CLIP/SigLIP 2 编码适配、双向指标、可选 RRF、验证选择/冻结/独立测试与统计分析。CPU 合成测试已通过；用户服务器依赖与四卡 BF16 小矩阵检查通过，真实模型检索尚未运行，不包含真实模型成绩，也没有调用付费 API。用户 2026-10-11 快照为四张约 80GB A100，实际可用容量以启动时占用为准。
+**本阶段不训练新模型，不预设实验结果，不采集或生成新图片。** 先复用公开基准、现成模型和人工核验，得到能够复算的问题诊断报告。A/B 级论文是长期目标，不是本轮成果承诺。
 
-### 开始运行基础版
+- **[M0任务与验收](docs/18_M0_TASKS.md)**：Astra/Codex 当前的执行入口，四阶段及停止条件
+- **[M0实验协议](docs/17_M0_PROBLEM_VALIDATION.md)**：数据、指标、对照、语义干预、泄漏风险
+- **[M0文献与数据入口](docs/19_M0_SOURCES.md)**：应优先使用的官方来源
+- **[AGENTS.md](AGENTS.md)**：仓库协作约定
 
-```bash
-python -m pip install -e '.[test]'
-python -m unittest discover -s tests -v
-python -m exp5 --help
-```
+### 现有资产与状态（2026-11-02 核对）
 
-服务器流程见 [基础版运行说明](docs/10_RUNNING_BASELINE.md)，当前下载和审计步骤见 [数据准备](docs/12_DATA_PREPARATION.md)，验证证据见 [CPU 测试记录](docs/11_CPU_VALIDATION.md)。作者原始 JSON 的验证集为 1014 图，测试集为 1000 图；使用原始包需显式传 `--expected-val-images 1014`。模型命令默认离线，不因安装/导入/提交自动启动任务。
+- main 保留原实验五基础 CLI、CPU 测试与指标代码；**PR #4 已合并**，修复 Flickr30K 原始验证集 1014 图 / 5070 描述的审计，正式 test 为 1000 图 / 5000 描述。
+- **PR #3**：SigLIP-base 训练框架与接口小试，尚未合并；与 PR #4 存在合并冲突。
+- **PR #5（草稿）**：依赖 PR #3，包含 SigLIP-base S0 的真实服务器试验记录：2026-10-16 在 1014 图 / 5070 文本的完整 **验证集** T2I R@10=0.958383、R@1=0.756016。**这不是独立 test，且原始大文件/逐查询预测保存在服务器上；不能冒充最终结果。** 该 PR 暂不强行合并。
+- 原开题重排路线与之后的 SigLIP-base 微调探索均保留为**历史和可复用资产**。当前 M0 优先于微调、Qwen 重排和全新双塔训练。任何路线切换应说明理由与证据。
 
-### 建议路线
+### M0 的最低交付
 
-```text
-Flickr30K 固定验证集 / 测试集
-       ↓
-CLIP 基线 → SigLIP 2 强基线 → 双向 Recall / NDCG / 错误分析
-                               ↓ 可选研究扩展
-                 Top-50 候选 → Qwen3-VL 重排
-                               ↓
-                 全量重排 vs 困难查询选择性重排
-                               ↓
-                 质量—计算量对比 + 改写鲁棒性诊断
-```
+1. 复核 SugarCrepe++、SNLI-VE/e-SNLI-VE、Visual-WSD，Winoground 可作补充；固定探索性样本清单和人工标注规则。
+2. 完成至少一个现成双编码器基线，力争增加一个独立强模型对照；保存逐样本分数、输入身份和错误类型。
+3. 在同一批固定样本上，比较 **无知识 / 等信息量普通释义 / 带类型的义项关系**，配合移除图片、替换图片或打乱关系的控制；先不训练。
+4. 写出 **有证据支持的问题、哪些没有证实、下一步应该训练什么**，包括负结果。
 
-**基础版先完成“模型评估—错误分析—优化—复测”；研究版再回答“能否只给部分查询分配昂贵的图文重排计算”。** 不默认训练模型，不建向量数据库，不做前后端和部署。达到 85% 是待实测目标，不是预先填入的结论。
+严禁把不同基准的数值硬平均，禁止根据模型输出来回改测试样本或标注。无结果位置保持“未运行”，不能填预测成绩。
 
-### 阅读顺序
+### 历史资料
 
-| 文档 | 用途 |
-|---|---|
-| [00 范围、依据与当前状态](docs/00_SCOPE_AND_STATUS.md) | 区分材料要求、用户约束、研究建议和未完成事项 |
-| [01 近期论文与方案取舍](docs/01_LITERATURE_REVIEW.md) | 五篇 2025–2026 顶会论文与两项技术报告如何影响设计 |
-| [02 课程实验开题报告](docs/02_PROJECT_PROPOSAL.md) | 可直接修改姓名、日期等信息的完整开题正文 |
-| [03 实验与评测协议](docs/03_EXPERIMENT_PROTOCOL.md) | 数据划分、指标、方法定义、消融、统计分析 |
-| [04 实施指引](docs/04_IMPLEMENTATION_PLAN.md) | 环境、数据准备、模块接口、运行顺序和排障 |
-| [05 日程与资源预算](docs/05_TIMELINE_AND_BUDGET.md) | 基础版与研究版里程碑、工时估计和停止条件 |
-| [06 错误分析与 API 使用](docs/06_ERROR_ANALYSIS_AND_API.md) | 人工复核、改写诊断、API 成本与数据保护 |
-| [07 风险与决策记录](docs/07_RISKS_AND_DECISIONS.md) | 数据泄漏、指标误读、重排失败及应对 |
-| [08 结题报告与答辩模板](docs/08_REPORT_AND_DEFENSE_TEMPLATE.md) | 结果表、证据清单、答辩提纲 |
-| [09 后续实现交接](docs/09_HANDOFF.md) | 给本地开发者或交互式编码助手的任务边界 |
-| [12 服务器数据准备](docs/12_DATA_PREPARATION.md) | 已确认环境、原始划分数量、下载及审计命令 |
-| [来源与官方入口](references/SOURCES.md) | 论文发表状态、官方代码、模型与数据链接 |
-| [BibTeX](references/references.bib) | 文献管理与报告引用 |
+- [原课程实验开题报告](docs/02_PROJECT_PROPOSAL.md)、[检索评测协议](docs/03_EXPERIMENT_PROTOCOL.md)、[基础版运行说明](docs/10_RUNNING_BASELINE.md)、[Flickr30K 服务器数据准备](docs/12_DATA_PREPARATION.md)。
+- [旧版研究与顶会文献](docs/01_LITERATURE_REVIEW.md)、[原任务交接](docs/09_HANDOFF.md)、[参考资料](references/SOURCES.md)。
+- [PR #3](https://github.com/xiangshui001/challenge-exercise/pull/3) · [PR #4 已合并](https://github.com/xiangshui001/challenge-exercise/pull/4) · [PR #5 待整合](https://github.com/xiangshui001/challenge-exercise/pull/5)。
 
-### 配置与记录
+### 安全与复现
 
-[实验计划 YAML](configs/experiment5.plan.yaml) 仍是设计配置，不由基础版 CLI 执行；实际参数见 `python -m exp5 --help` 与[运行说明](docs/10_RUNNING_BASELINE.md)。`templates/` 中提供 [运行记录](templates/run_record.json)、[汇总指标](templates/metrics.csv)、[逐查询结果](templates/query_results.csv)、[错误复核](templates/error_review.csv)、[消融记录](templates/ablation.csv)。空值表示待实测，不能解释为 0 分或已完成。
-
-### 本次调研的关键区别
-
-LamRA 为 CVPR 2025；MM-Embed、VLM2Vec 为 ICLR 2025；WISER、PinPoint 为 CVPR 2026。SigLIP 2 和 Qwen3-VL-Embedding/Reranker 在本方案中按技术报告引用，不冒称已核实的顶会论文。WISER、PinPoint 的原任务是组合图像检索，本项目仅借鉴其计算分配和诊断思路，不照搬任务或成绩。详见[文献调研](docs/01_LITERATURE_REVIEW.md)。
-
-### 状态与公开范围
-
-研究整理与首批代码日期：2026-09-30；真实数据验收更新：2026-10-19。文档中的方法改进均为待验证假设。CPU 人工样例/合成流程已通过；用户服务器真实图片下载、解码与数据审计已通过，val/test=1014/1000 图、5070/5000 描述。用户四卡 BF16 检查通过；没有训练、没有运行真实模型推理、没有真实模型 Recall/NDCG 成绩，也没有配置自动执行任务。
-
-仓库为公开仓库，仅上传本次生成的方案、来源链接、配置草案和空白模板。原课程 PDF、论文全文、Flickr 图像、模型权重、API 密钥和未审查的原始 API 输出不在上传范围内。数据与上游代码分别遵守各自使用条件。
+仓库公开：不提交图像数据、受限原文、模型权重、API 密钥、未审查的大型原始日志。记录数据授权、划分、模型 revision、完整样本 ID、随机种子、依赖、命令、设备、费用/时间。数据缺失或不可访问时要报告缺口，不绕开权限或偷偷换数据。
