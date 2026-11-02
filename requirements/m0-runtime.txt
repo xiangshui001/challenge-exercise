@@ -1,0 +1,12 @@
+# Actual inference versions; install torch/torchvision from the CUDA 12.4 index first.
+torch==2.6.0
+torchvision==0.21.0
+transformers==4.57.3
+numpy==1.26.4
+Pillow==12.0.0
+nltk==3.9.2
+sentencepiece==0.2.2
+protobuf==7.36.2
+tokenizers==0.22.2
+huggingface-hub==0.36.2
+safetensors==0.8.0

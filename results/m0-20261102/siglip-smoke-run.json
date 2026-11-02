@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-11-02T05:05:00.070862+00:00",
+  "gpu_uuid": "GPU-9f23f91f-325e-3159-203f-e7473cfa20bc",
+  "manifest_sha256": "9a2452230030e0851bbdbca480d49d0cca3c5190e600fd5efd43823b797aad98",
+  "code_sha256": {
+    "__init__.py": "3136f720257d260929e0f9074ec82e342edb5336b00f4e8d7a82107977b1512f",
+    "audit.py": "a4a0f651067bb62769e4b4dfebc3d20033d06ca40969f13d8f5e3fa33f7cc2f1",
+    "download.py": "d9bc713acc0a09b8a4acfa7aa7ed9c8ae00c2e934519691d15a05d39ecbf919e",
+    "knowledge.py": "e01a23939ccde8993507a100e64ddd37175e6b233c75dcc96def3b08504b2d7f",
+    "metrics.py": "eca8b3ab863b3d075c0880f0f260b528d23e648beb060882fbb5044721aa3a68",
+    "prepare.py": "c3ebebeaff39fa7916e15b748393f7dc2eedf139cd35838eb8de67a22a1c3d78",
+    "run_dual.py": "467aca86dfaead8a8c4d3cc2a2738f3acdbc5b90aa58c605cabc882b0b1579fa",
+    "run_joint.py": "edafce42a697420603461100c151b01404338c8a6d73b6722b668bc9c839694a",
+    "summarize.py": "62b59d46f1f6c08d771405e60d2df0927ee1047109d7ffc66762c0642b16d9dd"
+  },
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.3",
+    "numpy": "1.26.4",
+    "Pillow": "12.0.0"
+  },
+  "model_files": {
+    "README.md": "86c231c4a7bf0ee2435295413ad5c7cf567c9426f00b79711ce8eda884b7a8d3",
+    "config.json": "cd85b3d28829722820bcb89a2cfbb4160e55fd359249a3044da724166a8d9688",
+    "model.safetensors": "2c63cb7d1f2e95ba501893cbb8faeb4ea9a3af295498d35097126228659c2af8",
+    "preprocessor_config.json": "d11ccb80f15d358a11bdb070e92e2d889005874b7db15823d5f10d9b2533b14a",
+    "special_tokens_map.json": "2b6a1ff67a27e0df9ac0c7d93250fc0d87431c7b366b3d5669217104f9088a26",
+    "spiece.model": "1e5036bed065526c3c212dfbe288752391797c4bb1a284aa18c9a0b23fcaf8ec",
+    "tokenizer.json": "c6e405cb7c670d56636a9402c81023a55bc6c3c53d89cf02b92f5c5005bfe920",
+    "tokenizer_config.json": "d6423dae508cc3a129d22ea443841c111832a1a73125b8f25ea8736951698bcb"
+  },
+  "model_id": "google/siglip-base-patch16-224",
+  "revision": "7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed",
+  "dtype": "float32",
+  "split": "exploration",
+  "model_load_seconds": 1.6863512843847275,
+  "processor": {
+    "_processor_class": "SiglipProcessor",
+    "image_processor_type": "SiglipImageProcessor",
+    "do_resize": true,
+    "size": {
+      "height": 224,
+      "width": 224
+    },
+    "resample": 3,
+    "do_rescale": true,
+    "rescale_factor": 0.00392156862745098,
+    "do_normalize": true,
+    "image_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "do_convert_rgb": null
+  },
+  "text_max_length": 64,
+  "text_padding": "max_length",
+  "lowercase": false,
+  "zero_paid_api_calls": true,
+  "inference_wall_seconds": 1.5696564950048923,
+  "peak_allocated_bytes": 896923136,
+  "n_registered": 20,
+  "n_valid": 20,
+  "missing_images": {},
+  "exclusions_sha256": "a3dde1f8df57100abd873c93fe7f2e98c2ffe903735bd8f71751ecc35d115177"
+}

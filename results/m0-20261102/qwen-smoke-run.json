@@ -1,0 +1,55 @@
+{
+  "created_utc": "2026-11-02T05:13:37.050439+00:00",
+  "gpu_uuid": "GPU-9495eeab-9b4c-07d6-3f53-263c6d1bbedf",
+  "manifest_sha256": "9a2452230030e0851bbdbca480d49d0cca3c5190e600fd5efd43823b797aad98",
+  "code_sha256": {
+    "__init__.py": "3136f720257d260929e0f9074ec82e342edb5336b00f4e8d7a82107977b1512f",
+    "audit.py": "a4a0f651067bb62769e4b4dfebc3d20033d06ca40969f13d8f5e3fa33f7cc2f1",
+    "download.py": "d9bc713acc0a09b8a4acfa7aa7ed9c8ae00c2e934519691d15a05d39ecbf919e",
+    "knowledge.py": "e01a23939ccde8993507a100e64ddd37175e6b233c75dcc96def3b08504b2d7f",
+    "metrics.py": "eca8b3ab863b3d075c0880f0f260b528d23e648beb060882fbb5044721aa3a68",
+    "prepare.py": "c3ebebeaff39fa7916e15b748393f7dc2eedf139cd35838eb8de67a22a1c3d78",
+    "run_dual.py": "467aca86dfaead8a8c4d3cc2a2738f3acdbc5b90aa58c605cabc882b0b1579fa",
+    "run_joint.py": "edafce42a697420603461100c151b01404338c8a6d73b6722b668bc9c839694a",
+    "summarize.py": "62b59d46f1f6c08d771405e60d2df0927ee1047109d7ffc66762c0642b16d9dd"
+  },
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.3",
+    "numpy": "1.26.4",
+    "Pillow": "12.0.0"
+  },
+  "model_files": {
+    "README.md": "0b6da5a154b923da4dc66e416140c9b7f235f9b08fbbcc27fd9df7b586e3150d",
+    "chat_template.json": "ad60d90252ed0b0705ba14e2d0ad0fec0beac1ea955642b54059b36052d8bc96",
+    "config.json": "7ed3eed5be6924cc800e8a5e53fc405c1aab1aaf36bad65c33403b36c56827f5",
+    "generation_config.json": "533f191cc257b7de37a4fccd0a7a1706d75e1aa660f93efaa54e5a2a9f9aace9",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "model-00001-of-00002.safetensors": "41a8895c164b4d32bae6b302f4603fcbc1797f32dafa45c7e9bcda23c6755df8",
+    "model-00002-of-00002.safetensors": "365531ff8752420e89dee707b79d021fb2d6e25abafe486f080555a4fe6972e4",
+    "model.safetensors.index.json": "c7dd78a4c6bea60b51332f1baf37b8f8124ecab2c35395a29a29825bf2619768",
+    "preprocessor_config.json": "f2058c716eef96ccaed1cc1e2d0c08306b62586d535b28d9d08e691b2fab7ca0",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "4abd3520120e266da84c0864fee064d1fb10806f02225911a47253dd38dc5f56",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "model_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+  "dtype": "bfloat16",
+  "split": "exploration",
+  "max_new_tokens": 16,
+  "do_sample": false,
+  "max_pixels": 262144,
+  "min_pixels": 200704,
+  "wordnet_version": "3.0",
+  "knowledge_sha256": "966ae43cc80c4835808d1bcc20f20c2b9e5dd6fbfdc409514ad4604f09ebf8c9",
+  "wordnet_zip_sha256": "cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59",
+  "model_load_seconds": 10.6103759072721,
+  "arms": [
+    "K0"
+  ],
+  "zero_paid_api_calls": true,
+  "inference_wall_seconds": 4.8626749739050865,
+  "peak_allocated_bytes": 7698438144,
+  "n_registered": 20
+}

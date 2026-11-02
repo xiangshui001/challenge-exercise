@@ -1,0 +1,25 @@
+{
+  "python": "3.11.15",
+  "system": "Linux",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "torchvision": "0.21.0+cu124",
+    "transformers": "4.57.3",
+    "numpy": "1.26.4",
+    "Pillow": "12.0.0",
+    "nltk": "3.9.2",
+    "sentencepiece": "0.2.2",
+    "protobuf": "7.36.2",
+    "tokenizers": "0.22.2",
+    "huggingface-hub": "0.36.2",
+    "safetensors": "0.8.0",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.17.1"
+  },
+  "cuda": "12.4",
+  "cudnn": 90100,
+  "gpu_info": [
+    "4, NVIDIA A800 80GB PCIe, GPU-9f23f91f-325e-3159-203f-e7473cfa20bc, 550.90.07",
+    "5, NVIDIA A800-SXM4-80GB, GPU-9495eeab-9b4c-07d6-3f53-263c6d1bbedf, 550.90.07"
+  ]
+}
