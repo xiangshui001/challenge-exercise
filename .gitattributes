@@ -3,5 +3,6 @@ m0/*.py text eol=lf
 tests/test_m0*.py text eol=lf
 results/m0-20261102/*.json text eol=lf
 results/m0-20261102/*.jsonl text eol=lf
+results/m0-20261102/*.txt text eol=lf
 # Preserve the exact pre-inference exclusion bytes recorded by both dual runs.
 results/m0-20261102/exclusions.json -text
