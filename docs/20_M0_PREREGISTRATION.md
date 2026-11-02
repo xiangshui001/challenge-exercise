@@ -12,7 +12,7 @@ Sources: scpp c083bbf039a5ca215acaf25e7ee736d2ea6f3864; e-ViL 94f17f5c189573c9d1
 
 Frozen SigLIP-base-patch16-224 at 7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed; independent CLIP ViT-B/32 at 3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268. Raw unprompted captions; native processor; FP32 cosine scores, no head/calibration. Qwen2.5-VL-3B-Instruct at 66285546d2b821cf421d4f5eb2576359d3770cd3 for three-way visual entailment, BF16 greedy generation, maximum 16 new tokens and 262144 image pixels. One fixed prompt, no outcome-dependent revision. These are accessible frozen baselines, not a claim of frontier model coverage.
 
-Only assigned physical GPUs 4/5, resolve UUID before CUDA startup; no multi-GPU auto placement. First 20 exploration units per applicable model smoke test. Reuse the identical smoke scores in exploration, no counted repeats. Budget: at most 2 dual encoders + 1 3B joint model; <12 GB new weights, <8 GB source images, <1500 joint generations, zero paid API calls. Stop and report unavailable sources rather than invent results.
+Only assigned physical GPUs 4/5, resolve UUID before CUDA startup; no multi-GPU auto placement. First 20 exploration units per applicable model smoke test. Smoke is an implementation check, excluded from the final aggregate; its repeated computation is counted in run costs. No tuning from smoke scores. Budget: at most 2 dual encoders + 1 3B joint model; <12 GB new weights, <8 GB source images, <1500 joint generations, zero paid API calls. Stop and report unavailable sources rather than invent results.
 
 ## Metrics, controls, and knowledge
 
@@ -29,3 +29,7 @@ Arms: K0 no knowledge, K1 prose, K2 typed triples, Kshuffle identical K2 facts w
 Freeze official gold. Prepare blinded review queue and inspect image/caption cases as an AI-assisted single review, clearly distinguished from human review. No fabricated human agreement; human review remains pending unless performed by people. Record annotation ambiguities without editing official labels. Review disagreements and a deterministic sample of successes to avoid treating every model error as clean evidence.
 
 H1: ranking failures establish benchmark-specific instability, semantic explanation requires review. H2: swapped relation failures suggest compositional difficulty, not proof of all directional entailment defects. H3 needs valid visual three-way results, especially neutral cases; cosine scores cannot answer H3. H4 remains unsupported if K2 fails to beat equal-fact prose or if noise/confounds dominate. Do not train a new module merely because one small point estimate improves.
+
+## Pre-inference amendment: image-byte audit
+
+Before the first model inference, the downloaded VWSD bytes exposed two duplicate candidate pairs despite different filenames: units 58/331 (cross split), and 48/167 (both exploration). Quarantine all four units from primary scoring, retain their original IDs and candidate lists, and do not replace them. A separate `exclusions.json` records this deterministic data-only exclusion, included in run provenance. Effective VWSD is 21 exploration + 15 confirmation. Exact duplicates are checked; perceptual near-duplicates and pretraining overlap remain unknown. The smoke-accounting wording above was clarified before inference to count repeated execution cost and avoid counting smoke twice in metrics.
