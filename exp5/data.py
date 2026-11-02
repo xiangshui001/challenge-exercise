@@ -9,7 +9,9 @@ from .io import (digest, environment, file_hash, new_directory, read_json,
                  read_jsonl, write_json, write_jsonl)
 
 
-def validate(images, captions, *, standard=True):
+def validate(images, captions, *, standard=True, expected_val_images=1000):
+    if type(expected_val_images) is not int or expected_val_images not in {1000, 1014}:
+        raise ValueError("Expected validation images must be explicitly 1000 or 1014")
     if not images or not captions:
         raise ValueError("Empty image/caption manifest")
     image_ids = [r["image_id"] for r in images]
@@ -32,8 +34,10 @@ def validate(images, captions, *, standard=True):
     sizes = Counter(r["split"] for r in images)
     if set(sizes) != {"val", "test"}:
         raise ValueError("Both val and test splits are required")
-    if standard and sizes != {"val": 1000, "test": 1000}:
-        raise ValueError(f"Standard protocol requires 1000 val + 1000 test images, got {dict(sizes)}")
+    expected = {"val": expected_val_images, "test": 1000}
+    if standard and sizes != expected:
+        raise ValueError(f"Declared protocol requires {expected_val_images} val + 1000 test images, "
+                         f"got {dict(sizes)}; never truncate samples to satisfy the count")
     hashes = defaultdict(list)
     for r in images:
         hashes[r["sha256"]].append(r)
@@ -67,7 +71,10 @@ def fingerprint(images, captions, groups, source):
                    "validation_groups": groups, "source": source})
 
 
-def prepare(annotation, image_root, output, source_revision, *, small=False):
+def prepare(annotation, image_root, output, source_revision, *, small=False,
+            expected_val_images=1000):
+    if type(expected_val_images) is not int or expected_val_images not in {1000, 1014}:
+        raise ValueError("Expected validation images must be explicitly 1000 or 1014")
     if not source_revision or not source_revision.strip():
         raise ValueError("An explicit dataset source/version description is required")
     out = new_directory(output)
@@ -75,7 +82,8 @@ def prepare(annotation, image_root, output, source_revision, *, small=False):
     try:
         source = {"annotation_sha256": file_hash(annotation),
                   "source_revision": source_revision,
-                  "id_rule": "str(imgid); str(sentid), fallback image_id:caption_index"}
+                  "id_rule": "str(imgid); str(sentid), fallback image_id:caption_index",
+                  "expected_images_per_split": {"val": expected_val_images, "test": 1000}}
         raw = read_json(annotation)
         if raw.get("dataset", "flickr30k").lower() != "flickr30k":
             raise ValueError("Expected Flickr30K Karpathy annotation")
@@ -100,7 +108,8 @@ def prepare(annotation, image_root, output, source_revision, *, small=False):
                                  "text": sentence["raw"], "split": row["split"]})
         images.sort(key=lambda r: r["image_id"])
         captions.sort(key=lambda r: r["caption_id"])
-        checks = validate(images, captions, standard=not small)
+        checks = validate(images, captions, standard=not small,
+                          expected_val_images=expected_val_images)
         groups = validation_groups(images)
         audit = {"status": "passed", "standard_protocol": not small,
                  "source": source, "checks": checks,
@@ -124,7 +133,13 @@ def load_data(directory, *, verify_files=False):
     images = read_jsonl(directory / "images.jsonl")
     captions = read_jsonl(directory / "captions.jsonl")
     groups = read_json(directory / "validation_groups.json")
-    validate(images, captions, standard=audit["standard_protocol"])
+    expected = audit["source"].get("expected_images_per_split", {"val": 1000, "test": 1000})
+    if not isinstance(expected, dict) or set(expected) != {"val", "test"} or expected["test"] != 1000:
+        raise ValueError("Invalid declared image counts in data source record")
+    checks = validate(images, captions, standard=audit["standard_protocol"],
+                      expected_val_images=expected["val"])
+    if checks != audit["checks"]:
+        raise ValueError("Recorded data counts/checks differ from the manifests")
     if groups != validation_groups(images):
         raise ValueError("Validation group mapping was changed")
     if fingerprint(images, captions, groups, audit["source"]) != audit["data_sha256"]:

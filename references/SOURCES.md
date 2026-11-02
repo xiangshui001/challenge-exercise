@@ -1,6 +1,6 @@
 # 来源登记与官方入口
 
-核验日期：2026-09-30。这里只登记直接用于方案的来源，不声称穷尽近期文献。会议归属优先依据官方 proceedings/CVF 页面；方法补充参考作者 arXiv；工程用法参考官方仓库、模型卡和文档。网页当前默认分支可能更新，实际运行时仍需固定模型及源码 revision。
+论文核验日期：2026-09-30；数据源补充核验：2026-10-11。这里只登记直接用于方案的来源，不声称穷尽近期文献。会议归属优先依据官方 proceedings/CVF 页面；方法补充参考作者 arXiv；工程用法参考官方仓库、模型卡和文档。网页当前默认分支可能更新，实际运行时仍需固定模型及源码 revision。
 
 原课程材料：戴波，《跨模态检索实验设计与实现——从理论算法到工程落地的完整实践路径》，封面 2026 年 4 月，22 页，用户提供。实验五见第 14 页，指标汇总见第 21 页，预训练模型拓展见第 17 页。原 PDF 不在公开仓库转载。
 
@@ -95,9 +95,11 @@ Mingxin Li et al. **Qwen3-VL-Embedding and Qwen3-VL-Reranker: A Unified Framewor
 <a id="d2"></a>
 ## D2｜Karpathy 图像描述项目与划分入口
 
-[作者项目页：Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/deepimagesent/)
+[作者项目页：Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/deepimagesent/) · [作者划分与描述下载包](https://cs.stanford.edu/people/karpathy/deepimagesent/caption_datasets.zip)
 
 用途：取得既有图文对应与划分资料，避免自行随机划分后仍称标准评测。实际落地以下载文件、样本 ID 和审计结果为准。
+
+2026-10-11 实际读取下载包内 `dataset_flickr30k.json`：train=29000、val=1014、test=1000 图；val/test 每图五描述，共 5070/5000 条。此前 1000 验证图的计划已更正，保留全部原始验证样本；正式测试仍为 1000 图。计数核对不替代真实图片审计，具体步骤见 [数据准备](../docs/12_DATA_PREPARATION.md)。
 
 <a id="d3"></a>
 ## D3｜Flickr30K 下载镜像（便利来源，非原始作者来源）

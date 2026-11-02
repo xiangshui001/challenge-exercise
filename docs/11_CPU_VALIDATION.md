@@ -22,6 +22,30 @@ python scripts/on_gpu.py --help
 | 完整流程 | 合成 1000 val + 1000 test 图、每图五描述；审计→选择→确认→冻结→测试→复算 |
 | 运行约束 | 小样本无法冻结、无 freeze 拒绝测试编码、模型和配置篡改失败、单卡显式选择 |
 
-完整流程使用测试生成的小图和圆周特征，保存在 TemporaryDirectory 并自动清理，没有将合成指标写入 results。**这些不是 CLIP/SigLIP 2 成绩**。真实 processor 加载、特征接口、BF16/SDPA 和服务器 CUDA 兼容性仍未测试。
+完整流程使用测试生成的小图和圆周特征，保存在 TemporaryDirectory 并自动清理，没有将合成指标写入 results。**这些不是 CLIP/SigLIP 2 成绩**。当次验证未测试真实 processor 加载、特征接口、BF16/SDPA 和服务器 CUDA 兼容性。
 
 服务器剩余验收：真实数据审计、两模型 20 图/100 描述小试、实际锁文件/显存、全量验证/冻结、独立测试、人工错误分析与报告。Issue #1 仍未完成，PR 不自动合并。
+
+## 2026-10-11｜原始验证规模修复
+
+用户上传的服务器终端记录确认：原有 **24 tests，24.263s，OK**；`pip check` 通过，四张 A100 的 BF16 小矩阵检查通过。服务器依赖为 torch 2.8.0+cu126、torchvision 0.23.0+cu126、transformers 4.57.3。这些检查不等于真实 CLIP/SigLIP 2 模型验收。
+
+助手 CPU 环境在本批修改后实际运行同一测试命令：**26 tests，19.816s，OK**，sklearn 交叉核对未跳过；`python -m exp5 prepare --help` 和 `git diff --check` 通过。
+
+新增回归使用合成 1014 val + 1000 test 图和五描述：默认 1000 验证数量会拒绝，显式声明 1014 后审计通过、分组为 507/507；改写审计数量或声明会拒绝。完整流程成功选择、确认、冻结，并保持正式测试 T2I/I2T 查询数为 5000/1000。旧 1000/1000 合成流程仍通过。
+
+另实际读取作者 `caption_datasets.zip` 内的 JSON：val/test=1014/1000 图、5070/5000 描述；评测图像和描述 ID 唯一，每图恰有五条非空描述，`sentids` 顺序一致，图片路径为平铺文件名。该检查只验证元数据，真实镜像图片仍待服务器下载与解码审计；下载命令见 [12](12_DATA_PREPARATION.md)。本批没有下载图片或模型、启动 GPU 模型推理或调用收费 API。
+
+## 2026-10-11｜服务器复验与下载状态
+
+用户最新终端记录确认已切换 `fix/flickr30k-validation-count`：**26 tests，41.807s，OK**；新增 1014/1000 回归和 sklearn 交叉核对均执行通过。`caption_datasets.zip` 的 curl 下载完成，约 35MiB。
+
+图片尚未下载成功：`hf download` 在 `huggingface.co:443` 的 HEAD 请求中报告 `[Errno 101] Network is unreachable`。后续 `LocalEntryNotFoundError` 表示联网失败且本地没有该文件，不能据此判定数据文件不存在。下一步复用电脑 HTTP/混合代理的 SSH 反向转发，在单条下载命令中设置代理并使用普通 HTTP 下载；步骤见 [12 的代理恢复段落](12_DATA_PREPARATION.md#21-hugging-face-直连失败时复用电脑代理)。尚未取得代理连通或图片解码审计成功证据。
+
+## 2026-10-19｜真实图片审计通过
+
+用户通过代理取得图片包，切换并更新修复分支后执行 `prepare --expected-val-images 1014`。实际输出 `status=passed`、`standard_protocol=true`，图像 val/test=1014/1000，描述=5070/5000；图片内容重复组为空，重复描述文本组为 4。图片解码、ID、每图五描述、正例对应及跨划分图片字节检查通过，重复描述按原始标注保留。
+
+实际数据审计环境：Python 3.11.17、NumPy 2.4.6、Pillow 12.3.0、torch 2.8.0+cu126、transformers 4.57.3、sentencepiece 0.2.2、protobuf 6.33.6。最新 GPU 快照中 0/3 已有较多显存占用，1/2 各约 10MiB。
+
+下一步为两个模型各 20 图/100 描述小试，运行命令见 [10](10_RUNNING_BASELINE.md)。截至本条证据，真实模型加载、GPU 编码、pilot 指标和正式检索成绩仍未产生。

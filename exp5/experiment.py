@@ -138,6 +138,10 @@ def select(data, b0, b1, output, *, fusion=False):
     # Confirmation is reported once. No retuning/fallback based on its score.
     record = environment()
     lock = {"protocol": PROTOCOL, "data_sha256": audit["data_sha256"],
+            "dataset_sizes": {"images_per_split": audit["checks"]["images_per_split"],
+                              "captions_per_split": audit["checks"]["captions_per_split"],
+                              "expected_images_per_split": audit["source"].get(
+                                  "expected_images_per_split", {"val": 1000, "test": 1000})},
             "models": {m: model_identity(c[2]) for m, c in zip(("B0", "B1"), caches)},
             "validation_cache_sha256": {m: file_hash(Path(p) / "metadata.json")
                                         for m, p in zip(("B0", "B1"), (b0, b1))},
