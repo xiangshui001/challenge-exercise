@@ -1,0 +1,11 @@
+{
+  "checked_prompts": 840,
+  "units": 120,
+  "distinct_K2_corrupted_prompts": 120,
+  "identical_K2_corrupted_predictions": 120,
+  "zero_sense_units": 0,
+  "zero_edge_units": 0,
+  "private_knowledge_sha256": "315258766b895d1782e061c4cc68fe99c111639903088b8a7ca1971f4573b0ad",
+  "retrieval_relevance": "not human validated; coverage is not correctness",
+  "knowledge_information_control": "same sense IDs, definitions, lemmas, edge endpoints and direction in K1/K2; rendering differs"
+}

@@ -16,7 +16,7 @@ def sha(path):
 
 
 def save(path, value):
-    Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False)+'\n', encoding='utf-8')
+    Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False)+'\n', encoding='utf-8',newline='\n')
 
 
 def sample_strata(strata, n, exploration, rng):
@@ -43,9 +43,10 @@ def prepare(scpp, esnli, vwsd, out):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=False)
     rng = random.Random(2026)
-    sources, strata = {}, {}
+    sources, normalized_sources, strata = {}, {}, {}
     for p in sorted(Path(scpp).glob('*.json')):
         sources[p.name] = sha(p)
+        normalized_sources[p.name]=hashlib.sha256(p.read_text(encoding='utf-8').encode()).hexdigest()
         strata[p.stem] = [dict(sample_id=f'scpp/{p.stem}/{r["id"]}', benchmark='scpp',
             category=p.stem, images=[f'coco/{r["filename"]}'],
             texts=[r['caption'],r['caption2'],r['negative_caption']], gold=[0,1],
@@ -53,6 +54,7 @@ def prepare(scpp, esnli, vwsd, out):
             for r in json.loads(p.read_text(encoding='utf-8'))]
     rows = sample_strata(strata,24,14,rng)
     sources['esnlive_test.csv'] = sha(esnli)
+    normalized_sources['esnlive_test.csv']=hashlib.sha256(Path(esnli).read_text(encoding='utf-8').encode()).hexdigest()
     strata = {k:[] for k in ('contradiction','entailment','neutral')}
     with Path(esnli).open(encoding='utf-8',newline='') as f:
         for r in csv.DictReader(f):
@@ -62,6 +64,7 @@ def prepare(scpp, esnli, vwsd, out):
     rows += sample_strata(strata,40,24,rng)
     qp, gp = [Path(vwsd)/x for x in ('en.test.data.v1.1.txt','en.test.gold.v1.1.txt')]
     sources[qp.name],sources[gp.name] = sha(qp),sha(gp)
+    for p in (qp,gp):normalized_sources[p.name]=hashlib.sha256(p.read_text(encoding='utf-8').encode()).hexdigest()
     queries,golds = qp.read_text().splitlines(),gp.read_text().splitlines()
     if len(queries)!=len(golds): raise ValueError('VWSD length mismatch')
     pool=[]
@@ -81,15 +84,16 @@ def prepare(scpp, esnli, vwsd, out):
         if len(chosen)==40: break
     if len(chosen)!=40: raise ValueError('Insufficient VWSD disjoint units')
     rows += chosen
-    (out/'manifest.private.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in rows),encoding='utf-8')
+    (out/'manifest.private.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in rows),encoding='utf-8',newline='\n')
     public=[]
     for r in rows:
         p={k:v for k,v in r.items() if k not in ('texts','target')}
         p['text_sha256']=[hashlib.sha256(t.encode()).hexdigest() for t in r['texts']]
         public.append(p)
-    (out/'manifest.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in public),encoding='utf-8')
+    (out/'manifest.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in public),encoding='utf-8',newline='\n')
     save(out/'freeze.json',dict(seed=2026,manifest_sha256=sha(out/'manifest.private.jsonl'),
         public_manifest_sha256=sha(out/'manifest.jsonl'),source_sha256=sources,
+        normalized_source_sha256=normalized_sources,
         units=len(rows),note='Frozen before image acquisition and model inference; missing files stay missing.'))
 
 

@@ -22,10 +22,14 @@ def audit(manifest,images):
             files[name]=dict(sha256=h,bytes=p.stat().st_size,size=shape)
             seen.setdefault(h,[]).append((r['sample_id'],r['split'],name))
     duplicates={h:v for h,v in seen.items() if len({x[0] for x in v})>1}
+    ep=Path(manifest).with_name('exclusions.json')
+    excluded=json.loads(ep.read_text()) if ep.exists() else {}
+    active_duplicates={h:v for h,v in duplicates.items() if len({x[0] for x in v if x[0] not in excluded})>1}
     return dict(manifest_sha256=sha(manifest),counts=counts,files=files,missing=missing,
         byte_duplicate_units=duplicates,cross_split_duplicate_groups=sum(len({x[1] for x in v})>1 for v in duplicates.values()),
+        exclusions=excluded,active_byte_duplicate_groups=len(active_duplicates),
         pretraining_contamination='unknown',perceptual_duplicates='not audited',
-        status='passed' if not missing and not duplicates else 'needs_review')
+        status=('passed_with_quarantine' if excluded else 'passed') if not missing and not active_duplicates else 'needs_review')
 
 
 if __name__=='__main__':

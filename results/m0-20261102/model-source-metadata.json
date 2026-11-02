@@ -1,0 +1,70 @@
+[
+  {
+    "repo": "google/siglip-base-patch16-224",
+    "revision": "7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed",
+    "files": [
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "b5e2d7feb2f7cf3a5f4a2c52b0ba036e8283df3b",
+        "size": 812672320,
+        "lfs": {
+          "sha256": "2c63cb7d1f2e95ba501893cbb8faeb4ea9a3af295498d35097126228659c2af8",
+          "size": 812672320,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "pytorch_model.bin",
+        "blobId": "c9ba94b3e23aac8b6bc63544255750bf9421c8e8",
+        "size": 812762989,
+        "lfs": {
+          "sha256": "eb93f7f526b0a1b0e5f0612630f142bc5b6c05d329edff70478ff0a83e2bcd6e",
+          "size": 812762989,
+          "pointerSize": 134
+        }
+      }
+    ]
+  },
+  {
+    "repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "files": [
+      {
+        "rfilename": "model-00001-of-00002.safetensors",
+        "blobId": "dd4783960cb71fbd0619490ca3a79c0206fd0d0f",
+        "size": 3982649232,
+        "lfs": {
+          "sha256": "41a8895c164b4d32bae6b302f4603fcbc1797f32dafa45c7e9bcda23c6755df8",
+          "size": 3982649232,
+          "pointerSize": 135
+        }
+      },
+      {
+        "rfilename": "model-00002-of-00002.safetensors",
+        "blobId": "44271c4ddd0b2097992bf4be145d368042329861",
+        "size": 3526688744,
+        "lfs": {
+          "sha256": "365531ff8752420e89dee707b79d021fb2d6e25abafe486f080555a4fe6972e4",
+          "size": 3526688744,
+          "pointerSize": 135
+        }
+      }
+    ]
+  },
+  {
+    "repo": "openai/clip-vit-base-patch32",
+    "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+    "files": [
+      {
+        "rfilename": "pytorch_model.bin",
+        "blobId": "c0c935a331cf52e21ce35cee6b9aaa411635bb7a",
+        "size": 605247071,
+        "lfs": {
+          "sha256": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f",
+          "size": 605247071,
+          "pointerSize": 134
+        }
+      }
+    ]
+  }
+]

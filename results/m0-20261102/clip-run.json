@@ -1,0 +1,76 @@
+{
+  "created_utc": "2026-11-02T05:16:51.209612+00:00",
+  "gpu_uuid": "GPU-9f23f91f-325e-3159-203f-e7473cfa20bc",
+  "manifest_sha256": "9a2452230030e0851bbdbca480d49d0cca3c5190e600fd5efd43823b797aad98",
+  "code_sha256": {
+    "__init__.py": "3136f720257d260929e0f9074ec82e342edb5336b00f4e8d7a82107977b1512f",
+    "audit.py": "a4a0f651067bb62769e4b4dfebc3d20033d06ca40969f13d8f5e3fa33f7cc2f1",
+    "download.py": "d9bc713acc0a09b8a4acfa7aa7ed9c8ae00c2e934519691d15a05d39ecbf919e",
+    "knowledge.py": "e01a23939ccde8993507a100e64ddd37175e6b233c75dcc96def3b08504b2d7f",
+    "metrics.py": "eca8b3ab863b3d075c0880f0f260b528d23e648beb060882fbb5044721aa3a68",
+    "prepare.py": "c3ebebeaff39fa7916e15b748393f7dc2eedf139cd35838eb8de67a22a1c3d78",
+    "run_dual.py": "467aca86dfaead8a8c4d3cc2a2738f3acdbc5b90aa58c605cabc882b0b1579fa",
+    "run_joint.py": "edafce42a697420603461100c151b01404338c8a6d73b6722b668bc9c839694a",
+    "summarize.py": "62b59d46f1f6c08d771405e60d2df0927ee1047109d7ffc66762c0642b16d9dd"
+  },
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.3",
+    "numpy": "1.26.4",
+    "Pillow": "12.0.0"
+  },
+  "model_files": {
+    "README.md": "8f0e8c678e0afe5f384f3bf8a6694c1cb53c41e52f86277967b6c5354cb0f9f4",
+    "config.json": "b575ef3c36f2a057fa19e221650105052d61cc9c1a972ec15019c6261ec98770",
+    "merges.txt": "f526393189112391ce6f9795d4695f704121ce452c3aad1f5335cc41337eba85",
+    "preprocessor_config.json": "910e70b3956ac9879ebc90b22fb3bc8a75b6a0677814500101a4c072bd7857bd",
+    "pytorch_model.bin": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f",
+    "special_tokens_map.json": "f8c0d6c39aee3f8431078ef6646567b0aba7f2246e9c54b8b99d55c22b707cbf",
+    "tokenizer.json": "b556ac8c99757ffb677208af34bc8c6721572114111a6e0aaf5fa69ff0b8d842",
+    "tokenizer_config.json": "34b7336e4bee12e0a9730eaf5189f582ef3c3eea5027f65730e5717256755aad",
+    "vocab.json": "5047b556ce86ccaf6aa22b3ffccfc52d391ea4accdab9c2f2407da5b742d4363"
+  },
+  "model_id": "openai/clip-vit-base-patch32",
+  "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+  "dtype": "float32",
+  "split": "all",
+  "model_load_seconds": 6.368483789265156,
+  "processor": {
+    "_processor_class": null,
+    "do_resize": true,
+    "size": {
+      "shortest_edge": 224
+    },
+    "resample": 3,
+    "do_center_crop": true,
+    "crop_size": {
+      "height": 224,
+      "width": 224
+    },
+    "do_rescale": true,
+    "rescale_factor": 0.00392156862745098,
+    "do_normalize": true,
+    "image_mean": [
+      0.48145466,
+      0.4578275,
+      0.40821073
+    ],
+    "image_std": [
+      0.26862954,
+      0.26130258,
+      0.27577711
+    ],
+    "do_convert_rgb": true,
+    "image_processor_type": "CLIPImageProcessor"
+  },
+  "text_max_length": 77,
+  "text_padding": true,
+  "lowercase": false,
+  "zero_paid_api_calls": true,
+  "inference_wall_seconds": 24.940298575907946,
+  "peak_allocated_bytes": 645747200,
+  "n_registered": 160,
+  "n_valid": 156,
+  "missing_images": {},
+  "exclusions_sha256": "a3dde1f8df57100abd873c93fe7f2e98c2ffe903735bd8f71751ecc35d115177"
+}

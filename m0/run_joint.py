@@ -45,6 +45,7 @@ def run(a):
     meta.update(model_id='Qwen/Qwen2.5-VL-3B-Instruct',revision='66285546d2b821cf421d4f5eb2576359d3770cd3',
         dtype='bfloat16',split=a.split,max_new_tokens=16,do_sample=False,max_pixels=262144,
         min_pixels=256*28*28,wordnet_version=wn.get_version(),knowledge_sha256=sha(out/'knowledge.private.json'),
+        wordnet_zip_sha256=sha(Path(a.wordnet)/'corpora/wordnet.zip'),
         model_load_seconds=time.perf_counter()-start,arms=list(a.arms),zero_paid_api_calls=True)
     start=time.perf_counter();torch.cuda.reset_peak_memory_stats()
     # Append only; an incomplete run is never silently summarized as complete.
