@@ -1,0 +1,409 @@
+{
+  "counts": {
+    "vwsd_items": 4,
+    "vwsd_match": 3,
+    "esnli_items": 13,
+    "esnli_match": 10,
+    "scpp_items": 15,
+    "scpp_negative_F": 8,
+    "scpp_match": 7,
+    "scpp_negative_uncertain": 5,
+    "scpp_negative_partial": 1,
+    "scpp_negative_T": 1
+  },
+  "cases": [
+    {
+      "id": "R01",
+      "sample_id": "vwsd/en/146",
+      "benchmark": "vwsd",
+      "ai_original_order": 4,
+      "gold": 4,
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R02",
+      "sample_id": "esnli/1806580620.jpg#1r5c",
+      "benchmark": "esnli",
+      "ai_original_order": "contradiction",
+      "gold": "contradiction",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R03",
+      "sample_id": "scpp/replace_rel/775",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R04",
+      "sample_id": "esnli/313385842.jpg#4r1n",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "neutral",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R05",
+      "sample_id": "scpp/swap_att/324",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R06",
+      "sample_id": "scpp/replace_att/363",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "uncertain"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R07",
+      "sample_id": "scpp/replace_rel/1164",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R08",
+      "sample_id": "scpp/replace_att/504",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "uncertain"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R09",
+      "sample_id": "scpp/replace_att/172",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "uncertain",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R10",
+      "sample_id": "esnli/4472750626.jpg#2r1n",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "neutral",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R11",
+      "sample_id": "scpp/swap_obj/114",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "uncertain"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R12",
+      "sample_id": "esnli/6315352509.jpg#1r1c",
+      "benchmark": "esnli",
+      "ai_original_order": "contradiction",
+      "gold": "contradiction",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R13",
+      "sample_id": "scpp/replace_rel/959",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R14",
+      "sample_id": "scpp/swap_att/36",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "partial"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R15",
+      "sample_id": "esnli/3218861747.jpg#2r1n",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "neutral",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R16",
+      "sample_id": "vwsd/en/247",
+      "benchmark": "vwsd",
+      "ai_original_order": 4,
+      "gold": 4,
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R17",
+      "sample_id": "scpp/replace_rel/1402",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "T"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R18",
+      "sample_id": "esnli/2113592981.jpg#1r1n",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "neutral",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R19",
+      "sample_id": "scpp/swap_obj/116",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R20",
+      "sample_id": "esnli/3362592729.jpg#0r1c",
+      "benchmark": "esnli",
+      "ai_original_order": "contradiction",
+      "gold": "contradiction",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R21",
+      "sample_id": "esnli/2602279427.jpg#2r1n",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "neutral",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R22",
+      "sample_id": "scpp/swap_att/228",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R23",
+      "sample_id": "vwsd/en/64",
+      "benchmark": "vwsd",
+      "ai_original_order": 6,
+      "gold": 3,
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R24",
+      "sample_id": "esnli/2511798599.jpg#0r4e",
+      "benchmark": "esnli",
+      "ai_original_order": "entailment",
+      "gold": "entailment",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R25",
+      "sample_id": "scpp/replace_obj/63",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "uncertain"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R26",
+      "sample_id": "esnli/116409198.jpg#4r1e",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "entailment",
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R27",
+      "sample_id": "esnli/2629784415.jpg#4r1e",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "entailment",
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R28",
+      "sample_id": "vwsd/en/35",
+      "benchmark": "vwsd",
+      "ai_original_order": 2,
+      "gold": 2,
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R29",
+      "sample_id": "esnli/104285082.jpg#1r2c",
+      "benchmark": "esnli",
+      "ai_original_order": "neutral",
+      "gold": "contradiction",
+      "match": false,
+      "human_review": null
+    },
+    {
+      "id": "R30",
+      "sample_id": "scpp/swap_att/182",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "F"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R31",
+      "sample_id": "esnli/3726551176.jpg#4r1e",
+      "benchmark": "esnli",
+      "ai_original_order": "entailment",
+      "gold": "entailment",
+      "match": true,
+      "human_review": null
+    },
+    {
+      "id": "R32",
+      "sample_id": "scpp/swap_obj/146",
+      "benchmark": "scpp",
+      "ai_original_order": [
+        "T",
+        "T",
+        "uncertain"
+      ],
+      "gold": [
+        0,
+        1
+      ],
+      "match": false,
+      "human_review": null
+    }
+  ]
+}
