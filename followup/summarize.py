@@ -80,7 +80,7 @@ def summarize(root):
                 groups[row["category"]].append(v)
             scores[model]={k:{m:rate([v[m] for v in vs]) for m in ("itt","xor","both_wrong")} for k,vs in groups.items()}
             continue
-        by={a:{r["sample_id"]:r for r in rows if r["arm"]==a} for a in arms}
+        by={a:{r["sample_id"]:r for r in rows if r["arm"]==a} for a in sorted(arms)}
         ids=sorted(ids)
         if bench=="clevr":
             stats={}
