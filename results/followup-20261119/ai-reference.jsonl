@@ -1,0 +1,32 @@
+{"id":"R01","sample_id":"vwsd/en/146","text_order":[0],"image_order":[3,2,4,7,8,6,1,5,0,9],"answer":"2","confidence":"high","evidence":"橙白风向袋水平伸展在杆上，直接对应指示风向的 sock。","human_review":null}
+{"id":"R02","sample_id":"esnli/1806580620.jpg#1r5c","text_order":[0],"image_order":[0],"answer":"contradiction","confidence":"high","evidence":"可见太阳镜、露齿笑容；皱眉和眼罩均与外观不符。","human_review":null}
+{"id":"R03","sample_id":"scpp/replace_rel/775","text_order":[1,2,0],"image_order":[0],"answer":"T,F,T","confidence":"high","evidence":"天花板轨道上的射灯照亮橱柜，两个亮灯描述等义。","human_review":null}
+{"id":"R04","sample_id":"esnli/313385842.jpg#4r1n","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"high","evidence":"人群和纸箱支持仓库场景，看不到购物、付款或挑货。","human_review":null}
+{"id":"R05","sample_id":"scpp/swap_att/324","text_order":[2,0,1],"image_order":[0],"answer":"F,T,T","confidence":"high","evidence":"绿的是帐篷。摩托车停在树前；末句附加的空间表述没有改变可见事实。","human_review":null}
+{"id":"R06","sample_id":"scpp/replace_att/363","text_order":[1,0,2],"image_order":[0],"answer":"T,T,uncertain","confidence":"medium","evidence":"熊在巨大的编织状座椅上。条带光泽像金属，单张图对塑料与金属的材质区分有限。","human_review":null}
+{"id":"R07","sample_id":"scpp/replace_rel/1164","text_order":[1,0,2],"image_order":[0],"answer":"T,T,F","confidence":"high","evidence":"杂物散落在地面，前两种表达都支持；beside the floor 不符合该位置。","human_review":null}
+{"id":"R08","sample_id":"scpp/replace_att/504","text_order":[1,0,2],"image_order":[0],"answer":"T,T,uncertain","confidence":"medium","evidence":"白色上下门冰箱在厨房边角，设计简洁。plain 与 fancy 的分界主观。","human_review":null}
+{"id":"R09","sample_id":"scpp/replace_att/172","text_order":[1,0,2],"image_order":[0],"answer":"uncertain,T,F","confidence":"medium","evidence":"床边有深色柜，白色柜缺乏支持。第一句语法上把 adjacent 接到 bedroom，未明确床与柜的关系。","human_review":null}
+{"id":"R10","sample_id":"esnli/4472750626.jpg#2r1n","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"high","evidence":"可见行人在街边，目的地没有图像证据。","human_review":null}
+{"id":"R11","sample_id":"scpp/swap_obj/114","text_order":[2,0,1],"image_order":[0],"answer":"uncertain,T,T","confidence":"high","evidence":"三明治在盘上、罐头在盘旁；首句修饰范围含混，容易误读为三明治在盘旁。","human_review":null}
+{"id":"R12","sample_id":"esnli/6315352509.jpg#1r1c","text_order":[0],"image_order":[0],"answer":"contradiction","confidence":"medium","evidence":"车在赛道上与背景墙近乎平行，车身完整、与墙分开。图中这一刻未见撞墙。","human_review":null}
+{"id":"R13","sample_id":"scpp/replace_rel/959","text_order":[0,1,2],"image_order":[0],"answer":"T,T,F","confidence":"high","evidence":"箱子在坐着的玩具熊后方；第一和第二句互为方向改写。","human_review":null}
+{"id":"R14","sample_id":"scpp/swap_att/36","text_order":[2,0,1],"image_order":[0],"answer":"partial,T,T","confidence":"medium","evidence":"建筑粉红，伞有多种颜色，其中也有粉色，建筑还有多色饰边；第一句抓到局部颜色。","human_review":null}
+{"id":"R15","sample_id":"esnli/3218861747.jpg#2r1n","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"high","evidence":"能看见滑板动作和围观人群，比赛备战目的未显现。","human_review":null}
+{"id":"R16","sample_id":"vwsd/en/247","text_order":[0],"image_order":[5,7,6,9,4,0,3,1,2,8],"answer":"4","confidence":"high","evidence":"十幅图中 4 为船艇，符合 sea 对 cutter 的消歧。","human_review":null}
+{"id":"R17","sample_id":"scpp/replace_rel/1402","text_order":[0,1,2],"image_order":[0],"answer":"T,T,T","confidence":"high","evidence":"两只手分别接触头部和颈背，摸头和摸身体可同时成立。","human_review":null}
+{"id":"R18","sample_id":"esnli/2113592981.jpg#1r1n","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"medium","evidence":"跳起伸手的姿态与快乐相容，无法从这个瞬间确认内心状态或身份。","human_review":null}
+{"id":"R19","sample_id":"scpp/swap_obj/116","text_order":[2,1,0],"image_order":[0],"answer":"F,T,T","confidence":"high","evidence":"骷髅和交叉骨在白色杯壁，刀刃没有这一图案。","human_review":null}
+{"id":"R20","sample_id":"esnli/3362592729.jpg#0r1c","text_order":[0],"image_order":[0],"answer":"contradiction","confidence":"high","evidence":"两位表演者穿黑色衣裤，手中抛接的道具为白色；服装颜色提供直接反证。","human_review":null}
+{"id":"R21","sample_id":"esnli/2602279427.jpg#2r1n","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"medium","evidence":"可见黄围裙和街头摊位，没看到正在坐下的孩子，也无法由画面判断亲属关系或正在烹饪。","human_review":null}
+{"id":"R22","sample_id":"scpp/swap_att/228","text_order":[2,1,0],"image_order":[0],"answer":"F,T,T","confidence":"high","evidence":"前景人穿黑色上衣，提黑包、举白色伞；后两句颜色绑定一致。","human_review":null}
+{"id":"R23","sample_id":"vwsd/en/64","text_order":[0],"image_order":[9,3,5,7,2,6,8,0,4,1],"answer":"5","confidence":"medium","evidence":"5 的瓶身标签似含 NIPPON SAK…，对应酒饮；1 也有小酒杯外形，单看杯子不足以识别酒种。","human_review":null}
+{"id":"R24","sample_id":"esnli/2511798599.jpg#0r4e","text_order":[0],"image_order":[0],"answer":"entailment","confidence":"high","evidence":"户外两人共用扩音器，一人正对其手持话筒讲话。","human_review":null}
+{"id":"R25","sample_id":"scpp/replace_obj/63","text_order":[2,0,1],"image_order":[0],"answer":"uncertain,T,T","confidence":"high","evidence":"Wii Fit 标识和游戏设备标明展位。更大的场馆是否为博物馆无法仅由此确认。","human_review":null}
+{"id":"R26","sample_id":"esnli/116409198.jpg#4r1e","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"medium","evidence":"雪中前景人物手里似有食物和器具，低头操作，图中看不清入口动作；宽松日常描述可把备餐也叫作在吃。","human_review":null}
+{"id":"R27","sample_id":"esnli/2629784415.jpg#4r1e","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"medium","evidence":"有参观者面向展品，足以支持观看艺术品，对享受的主观判断较弱。","human_review":null}
+{"id":"R28","sample_id":"vwsd/en/35","text_order":[0],"image_order":[9,6,7,5,2,4,3,1,8,0],"answer":"4","confidence":"high","evidence":"候选 4 是安装在座杆上的自行车鞍座。","human_review":null}
+{"id":"R29","sample_id":"esnli/104285082.jpg#1r2c","text_order":[0],"image_order":[0],"answer":"neutral","confidence":"medium","evidence":"前景有人拿木管乐器，旁边有人握细棒；画面没有清楚显示一位女性正演奏，局部遮挡。","human_review":null}
+{"id":"R30","sample_id":"scpp/swap_att/182","text_order":[0,2,1],"image_order":[0],"answer":"T,F,T","confidence":"high","evidence":"马桶瓷体白色，座圈和上盖黑色。两处颜色互换会出错。","human_review":null}
+{"id":"R31","sample_id":"esnli/3726551176.jpg#4r1e","text_order":[0],"image_order":[0],"answer":"entailment","confidence":"high","evidence":"人物站在路边立柱告示牌旁。","human_review":null}
+{"id":"R32","sample_id":"scpp/swap_obj/146","text_order":[1,0,2],"image_order":[0],"answer":"T,T,uncertain","confidence":"medium","evidence":"校车朝左前方行驶，同一路向前方可见数车，前两句成立；后方道路延伸出画面，其他车是否在后方未充分显示。","human_review":null}
