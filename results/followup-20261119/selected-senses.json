@@ -1,0 +1,48 @@
+{
+  "R02": [
+    "woman.n.01"
+  ],
+  "R04": [
+    "shopping.n.01",
+    "warehouse.n.01"
+  ],
+  "R10": [
+    "woman.n.01",
+    "walk.n.01"
+  ],
+  "R12": [
+    "car.n.01",
+    "crash.n.02"
+  ],
+  "R15": [
+    "skateboarder.n.01"
+  ],
+  "R18": [
+    "woman.n.01"
+  ],
+  "R20": [
+    "woman.n.01"
+  ],
+  "R21": [
+    "woman.n.01",
+    "cooking.n.01"
+  ],
+  "R24": [
+    "man.n.01",
+    "speaking.n.01"
+  ],
+  "R26": [
+    "man.n.01",
+    "eating.n.01"
+  ],
+  "R27": [
+    "art.n.01"
+  ],
+  "R29": [
+    "woman.n.01",
+    "playing.n.01"
+  ],
+  "R31": [
+    "poster.n.01"
+  ]
+}

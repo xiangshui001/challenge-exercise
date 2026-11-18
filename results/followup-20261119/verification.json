@@ -1,0 +1,33 @@
+{
+  "summary_sha256_both_platforms": "16cf54141b3c864ec9ef7409cb52f7899aab6b3c124cd1c269958736e99e96cf",
+  "identical_prediction_sha256": {
+    "clip-natural": "84aade26b105ab19bbe46c422342ee0c04f3733c8ea6d22484d689b57bc01746",
+    "qwen-natural": "cda331315e0a11a3a21ce93b8ffbff65356403f32e31fedd68bb5535b973b9bd",
+    "qwen-reference": "2193966498b7584d93aae19f372597d9dbe026f14e58a7e56aa58e45df11f5d4",
+    "qwen-spatial": "5716e4db542dc37b546e174095e34a0ef0ae21763b4db2aa38d53db90adbcd5d",
+    "siglip-natural": "465ab0faa87baad85dc8307563018f46c468bdd18af44203a266838088276e76"
+  },
+  "registered_unique_images": 780,
+  "duplicate_bytes": 0,
+  "invalid_qwen_outputs": 0,
+  "clevr_labels_verified_by_3d_projection": 200,
+  "rebuilt_qwen_prompts": {
+    "natural": 540,
+    "spatial": 400,
+    "reference": 52
+  },
+  "models_used_one_gpu": true,
+  "gpu_index": 0,
+  "compute_process_released": true,
+  "review_queue": 32,
+  "review_images": 68,
+  "human_judgments": 0,
+  "old_vs_new_reference_predictions_unchanged": 52,
+  "public_metadata": "GPU UUID replaced by its SHA256",
+  "local_blind_form": "32 navigation items and first image rendered in Chromium; all 68 files present",
+  "cpu_tests": {
+    "passed": 39,
+    "skipped": 1,
+    "reason": "optional scikit-learn oracle unavailable on local Windows Python"
+  }
+}

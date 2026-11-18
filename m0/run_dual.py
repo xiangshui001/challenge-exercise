@@ -32,8 +32,8 @@ def metadata(model_dir,manifest,gpu):
         model_files={p.name:sha(p) for p in sorted(Path(model_dir).iterdir()) if p.is_file() and not p.name.endswith('.part')})
 
 
-def run(a):
-    gpu=select_gpu(a.gpu)
+def run(a, gpu_selector=select_gpu):
+    gpu=gpu_selector(a.gpu)
     import numpy as np
     import torch
     from PIL import Image

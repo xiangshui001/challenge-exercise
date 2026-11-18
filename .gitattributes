@@ -6,3 +6,5 @@ results/m0-20261102/*.jsonl text eol=lf
 results/m0-20261102/*.txt text eol=lf
 # Preserve the exact pre-inference exclusion bytes recorded by both dual runs.
 results/m0-20261102/exclusions.json -text
+followup/*.py text eol=lf
+results/followup-20261119/** text eol=lf
