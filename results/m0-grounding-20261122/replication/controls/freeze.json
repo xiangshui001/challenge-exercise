@@ -1,0 +1,35 @@
+{
+  "seed": 20261122,
+  "n": 200,
+  "categories": {
+    "swap_obj": 40,
+    "swap_att": 40,
+    "replace_att": 40,
+    "replace_rel": 40,
+    "replace_obj": 40
+  },
+  "source_commit": "c083bbf039a5ca215acaf25e7ee736d2ea6f3864",
+  "source_blobs": {
+    "swap_obj": "8e9c3f66a2c2d3369146dec5324b1926b2fc1d40",
+    "swap_att": "61ea987bbac7d8c99e6a88f3c1028609fbea6c73",
+    "replace_att": "be89e623f6fd54d015f6a437ba9a34ffa39cc465",
+    "replace_rel": "69d447e3fcb33817b866bd5688741f42bad7c26a",
+    "replace_obj": "3b62823c003659737a68c3d78cfe721c57b44f5f"
+  },
+  "old_coco": 620,
+  "nov19_coco": 500,
+  "skips": [
+    {
+      "name": "coco/000000287347.jpg",
+      "id": 2,
+      "category": "swap_obj",
+      "reason": "missing_or_identical_captions"
+    }
+  ],
+  "old_dedup": "COCO id + SHA256 + 63-bit grayscale DCT hash Hamming <=4",
+  "manifest_sha256": "bf6b28b65b44d24cac6d6fc6572d110c1c5c6d4c788ab396680f404db814f07b",
+  "prepare_sha256": "42a7c79f72995b060d929d02fc45fa15f75403f0a3a6a28cf38c916d71422a0f",
+  "date_utc": "2026-11-22T10:22:35.272524+00:00",
+  "wrong": "3 fixed distinct same-category cyclic derangements, each image used once per arm",
+  "protocol_sha256": "735ba4f1638a63a42183b26cae40b7b9abba2092184d4bdf7b083bc128ea9763"
+}

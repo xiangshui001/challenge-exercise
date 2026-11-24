@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>图文盲评手册</title>
+<style>
+:root{--ink:#1d2925;--muted:#52645b;--line:#cdd8d0;--accent:#205c49;--pale:#e4efe8;--paper:#f3f5ef;--white:#fff;--radius:14px}
+*{box-sizing:border-box}html{background:var(--paper);color:var(--ink);font-family:"Source Sans 3","Microsoft YaHei UI","PingFang SC",system-ui,sans-serif}body{max-width:1480px;margin:0 auto;padding:24px clamp(14px,3.4vw,58px) 60px}button,select,input,textarea{font:inherit;color:inherit}button,summary{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #b87724;outline-offset:3px}button{border:1px solid var(--line);background:var(--white);border-radius:9px;padding:8px 12px;font-size:.88rem;font-weight:600}button:hover:not(:disabled){border-color:var(--accent);background:#f1f6f2}button:disabled{opacity:.48;cursor:default}.primary{color:white;background:var(--accent);border-color:var(--accent)}.primary:hover:not(:disabled){background:#184c3c;color:white}.plain{border-color:transparent;background:transparent;color:var(--accent)}.panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:15px}.top h1{font-family:"Source Sans 3","Microsoft YaHei UI",system-ui,sans-serif;font-size:clamp(1.7rem,3vw,2.55rem);letter-spacing:-.04em;line-height:1.1;margin:0}.actions,.row,.nav,.tabbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.hint{color:var(--muted);font-size:.87rem;line-height:1.65;margin:0}.statusline{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:10px}.statusline span{display:inline-block}.meter{height:6px;overflow:hidden;border-radius:9px;background:#d9e2da}.meter div{height:100%;width:0;background:var(--accent);transition:width .15s}.instructions,.navigator{margin:13px 0 0;padding:0 14px}.instructions summary,.navigator summary{padding:11px 0;font-size:.9rem;font-weight:650}.instructions p{margin:0 0 10px;font-size:.9rem;line-height:1.65}.navigator .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:5px;padding:0 0 12px}.navigator button{padding:6px 2px;font-size:.8rem}.navigator button[data-fill="some"]{border-style:dashed;color:var(--accent)}.navigator button[data-fill="all"]{background:var(--pale);color:var(--accent)}.navigator button[aria-current="step"]{outline:2px solid var(--accent);outline-offset:-2px}.questionbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:20px 0 10px}.questionbar h2{margin:0;font-size:1.24rem}.layout{display:grid;grid-template-columns:minmax(290px,.94fr) minmax(365px,1.06fr);align-items:start;gap:16px}.media{position:sticky;top:12px;overflow:hidden}.media-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 15px}.media-head strong{font-size:.94rem}.frame{width:100%;height:clamp(260px,55vh,660px);background:#17231e;display:flex;border:0;border-radius:0;padding:0;align-items:center;justify-content:center;cursor:zoom-in}.frame:hover:not(:disabled){background:#17231e;border-color:transparent}.frame img{width:100%;height:100%;object-fit:contain}.reader{padding:17px;min-width:0}.tabbar{background:var(--paper);border-radius:10px;padding:4px;display:grid;grid-template-columns:1fr 1fr}.tabbar button{border:0;background:transparent;color:var(--muted);border-radius:7px;padding:9px 3px}.tabbar button[aria-pressed="true"]{background:var(--white);color:var(--accent);box-shadow:0 1px 4px #233f3026}.stephint{margin:11px 0 12px}.card{border-top:1px solid var(--line);padding:12px 0 10px}.captionline{display:flex;align-items:baseline;gap:8px;margin:0 0 7px}.letter{font-size:.75rem;flex:0 0 23px;text-align:center;border:1px solid var(--line);background:var(--paper);border-radius:5px;font-weight:700;line-height:1.5;color:var(--accent)}.caption{font-family:"Source Sans 3",Arial,sans-serif;font-size:1.04rem;line-height:1.38;overflow-wrap:anywhere}.choices{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0 1px}.choice{display:inline-block;position:relative;cursor:pointer}.choice input{position:absolute;opacity:0;width:1px;height:1px}.choice span{display:block;border:1px solid var(--line);border-radius:7px;padding:6px 8px;font-size:.83rem;line-height:1.3}.choice:hover span{border-color:var(--accent)}.choice input:checked+span{background:var(--pale);color:#163e31;border-color:var(--accent);box-shadow:inset 0 0 0 .5px var(--accent);font-weight:650}.choice input:focus-visible+span{outline:3px solid #b87724;outline-offset:1px}.prompttitle{display:flex;align-items:center;justify-content:space-between;gap:6px}.clear{font-weight:400;font-size:.74rem;padding:3px 4px;white-space:nowrap;margin-left:auto}.pairhead{font-size:.78rem;color:var(--muted);font-weight:600;margin:0 0 5px}.notes{margin-top:6px;border-top:1px solid var(--line);padding-top:10px}.notes summary{font-size:.85rem;color:var(--muted)}textarea{width:100%;margin-top:8px;min-height:62px;padding:9px 10px;border:1px solid var(--line);border-radius:7px;resize:vertical}.bottom{margin-top:12px;display:flex;justify-content:flex-end;gap:8px;align-items:center}.tools{margin-top:16px;padding:12px 15px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}.tools label{font-size:.85rem}.tools input[type=text]{width:120px;padding:6px;border:1px solid var(--line);border-radius:5px;margin-left:5px}.notice{min-height:1.2em;margin-top:7px;color:var(--accent);font-size:.85rem}.warn{color:#965522!important}.viewer{width:min(98vw,1600px);max-width:98vw;max-height:98vh;padding:0;border:0;border-radius:12px;background:#141b18;color:white}.viewer::backdrop{background:#0d1711d9}.viewer .vbar{display:flex;justify-content:space-between;align-items:center;padding:7px 12px}.viewer button{color:#18392c}.viewer .bigwrap{overflow:auto;max-height:84vh;text-align:center}.viewer img{display:block;width:100%;height:80vh;object-fit:contain;margin:auto;background:#131c17}.viewer .natural img{width:auto;height:auto;max-width:none;min-width:95%;object-fit:contain}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:810px){body{padding:14px 12px 35px}.layout{grid-template-columns:1fr}.media{position:static}.frame{height:clamp(210px,40vh,450px)}.reader{padding:12px}.questionbar{margin-top:14px}.top{align-items:flex-start}.top h1{margin:4px 0}.nav{gap:4px}.nav button{font-size:.8rem;padding:6px 8px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.viewer .natural img{width:max(145%,1050px);height:auto;min-width:0}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>图文盲评手册</h1>
+  <div class="actions"><button id="restore" type="button">导入续评</button><button class="primary" id="export" type="button">导出答卷 JSON</button><input id="file" type="file" accept=".json,application/json" hidden></div>
+</header>
+<div class="statusline"><strong id="total"></strong><span class="hint" id="saveStatus" role="status"></span></div>
+<div class="meter" aria-hidden="true"><div id="fill"></div></div>
+<details class="panel instructions"><summary>评阅说明与选项释义</summary>
+<p>每张图有三条英文描述。先分别判断图片为每句提供了什么证据，再比较三对句子的文字含义。每行独立作答，可以重复选择同一选项，也可以暂时留空。已作答的行可以清除重选。</p>
+<p><strong>看图判断</strong>　图中有足够可见线索能证实整句，选「支持」。图中有线索直接反驳句中至少一项陈述，选「冲突」。句意清楚但图片无法证明或反驳，选「证据不足」。若句子本身存在多种合理解读，且解读会改变判断，选「文字含糊」。</p>
+<p><strong>比较句意</strong>　忽略本图，想象其他场景也可能成立。两句在同样情况下总是同真同假，选「等义」。前句一旦成立后句就必然成立，而反过来未必，选相应的单向蕴含。若两句无法同时成立，选「相互冲突」。若有可能同真，但两句互不保证对方成立，选「可同真，互不蕴含」。读不准时可选「无法判断」。</p>
+<p>答卷仅保存在当前浏览器。移动页面、换浏览器或使用无痕模式可能影响续评。每次离开前导出 JSON；回来后用「导入续评」恢复。导出的文件也可直接用于提交评阅结果。</p></details>
+<details class="panel navigator"><summary id="mapTitle">题号导航</summary><div class="grid" id="navGrid" aria-label="选择题号"></div></details>
+<main>
+<section class="questionbar"><h2 id="question"></h2><div class="nav"><button id="prev" type="button">上一张</button><button id="skip" type="button">跳到下一张</button><button id="missing" type="button">下一张未评完</button></div></section>
+<div class="layout">
+  <section class="panel media"><div class="media-head"><strong>观察图片</strong><button id="zoom" type="button" class="plain">放大查看 ↗</button></div><button type="button" id="imgBtn" class="frame" aria-label="放大当前图片"><img id="photo" alt="当前题目的图片"></button></section>
+  <section class="panel reader"><div class="tabbar" aria-label="评阅步骤"><button type="button" id="visualTab">看图判断</button><button type="button" id="pairTab">比较句意</button></div><p class="hint stephint" id="stepHint"></p><div id="cards"></div>
+    <details class="notes" id="noteBox"><summary>补充观察（选填）</summary><label class="sr" for="note">本图备注</label><textarea id="note" maxlength="4000" placeholder="例如：哪个细节可见、哪处措辞有两种解读。"></textarea></details>
+    <div class="bottom"><button id="forward" type="button" class="primary"></button></div></section>
+</div>
+</main>
+<footer class="panel tools"><label>评阅者代号（选填）<input id="reviewer" type="text" maxlength="60" autocomplete="off"></label><button type="button" id="csv" class="plain">另存表格 CSV</button></footer>
+<p class="notice" id="notice" role="status"></p>
+<dialog id="viewer" class="viewer"><div class="vbar"><strong id="vTitle">查看图片</strong><div><button id="magnify" type="button">放大细节</button> <button id="closeView" type="button">关闭</button></div></div><div class="bigwrap" id="bigwrap"><img id="big" alt="当前图片放大视图"></div></dialog>
+<script>
+"use strict";
+const ITEMS=__FORM_DATA__;
+const FORM_ID="review-d0d3fcbd9fe7071b";
+const VERSION=1;
+const LABELS=["A","B","C"];
+const PAIRS=[[0,1],[0,2],[1,2]];
+const VIS=[["support","支持"],["conflict","冲突"],["insufficient","证据不足"],["ambiguous","文字含糊"]];
+const REL=["equivalent","first_entails_second","second_entails_first","contradictory","compatible_neither_entails","uncertain"];
+const $=id=>document.getElementById(id);
+const ids=new Set(ITEMS.map(item=>item.id));
+const key="image-caption-review.v1."+FORM_ID;
+const fresh=()=>({visual:["","",""],pairs:["","",""],note:""});
+let responses=new Map(),index=0,stage=0,reviewer="",storageOK=true,restoreWarning="";
+function entry(id){if(!responses.has(id)) responses.set(id,fresh());return responses.get(id)}
+function count(ans){return ans ? ans.visual.filter(Boolean).length+ans.pairs.filter(Boolean).length : 0}
+function makeState(){return {schema_version:VERSION,form_id:FORM_ID,reviewer,index,stage,answers:ITEMS.map(item=>({id:item.id,...(responses.get(item.id)||fresh())}))}}
+function validated(raw){
+  if(!raw||raw.form_id!==FORM_ID||raw.schema_version!==VERSION) throw Error("答卷编号或版本不匹配，请选择从这份手册导出的 JSON。");
+  if(typeof raw.reviewer!=="string"||raw.reviewer.length>60||!Number.isInteger(raw.index)||raw.index<0||raw.index>=ITEMS.length||![0,1].includes(raw.stage)) throw Error("答卷中的评阅信息无效。");
+  if(!Array.isArray(raw.answers)||raw.answers.length!==ITEMS.length) throw Error("答卷题目数量不符。");
+  const checked=new Map();
+  function validArray(arr,allowed){return Array.isArray(arr)&&arr.length===3&&arr.every(v=>typeof v==="string"&&(v===""||allowed.includes(v)))}
+  for(const a of raw.answers){
+    if(!a||!ids.has(a.id)||checked.has(a.id)||!validArray(a.visual,VIS.map(v=>v[0]))||!validArray(a.pairs,REL)||typeof a.note!=="string"||a.note.length>4000) throw Error("答卷含缺失题号、重复题号或无效选项。");
+    checked.set(a.id,{visual:[...a.visual],pairs:[...a.pairs],note:a.note});
+  }
+  return {answers:checked,index:raw.index,stage:raw.stage,reviewer:raw.reviewer};
+}
+function install(s){responses=s.answers;index=s.index;stage=s.stage;reviewer=s.reviewer}
+function save(){try{localStorage.setItem(key,JSON.stringify(makeState()));storageOK=true;restoreWarning=""}catch(_){storageOK=false}showSave()}
+function showSave(){const s=$("saveStatus");s.textContent=restoreWarning||(!storageOK?"浏览器保存不可用，请导出 JSON 续评。":"进度会保存在此浏览器，离开前请导出 JSON。");s.classList.toggle("warn",!storageOK||!!restoreWarning)}
+function notify(msg){$("notice").textContent=msg}
+function progress(){
+  let complete=0,answered=0;
+  ITEMS.forEach((item,i)=>{const n=count(responses.get(item.id));answered+=n;if(n===6)complete++;const b=$("navGrid").children[i];b.dataset.fill=n===6?"all":n?"some":"none";b.title="第 "+(i+1)+" 张，已评 "+n+"/6";b.setAttribute("aria-label",b.title);if(i===index)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current");});
+  $("total").textContent="已评完 "+complete+" / "+ITEMS.length+" 张 · 已选 "+answered+" / "+(6*ITEMS.length)+" 项";
+  $("fill").style.width=(answered/(6*ITEMS.length)*100)+"%";
+  const a=responses.get(ITEMS[index].id)||fresh();$("question").textContent="第 "+(index+1)+" / "+ITEMS.length+" 张";$("visualTab").textContent="看图判断　"+a.visual.filter(Boolean).length+"/3";$("pairTab").textContent="比较句意　"+a.pairs.filter(Boolean).length+"/3";
+  $("mapTitle").textContent="题号导航 · 当前第 "+(index+1)+" 张";
+}
+function caption(i){const p=document.createElement("p");p.className="captionline";const l=document.createElement("span");l.className="letter";l.textContent=LABELS[i];const t=document.createElement("span");t.className="caption";t.lang="en";t.textContent=ITEMS[index].texts[i];p.append(l,t);return p}
+function renderCard(i){
+  const type=stage?"pairs":"visual",keyName=type+"-"+i,ans=entry(ITEMS[index].id),card=document.createElement("div");card.className="card";
+  const h=document.createElement("div");h.className="prompttitle";
+  const tag=document.createElement("span");tag.className="pairhead";
+  let opts;
+  if(stage){const [p,q]=PAIRS[i],a=LABELS[p],b=LABELS[q];tag.textContent="比较 "+a+" 与 "+b;opts=REL.map((k,n)=>[k,["等义","仅 "+a+" 蕴含 "+b,"仅 "+b+" 蕴含 "+a,"相互冲突","可同真，互不蕴含","无法判断"][n]])}
+  else{tag.textContent="判断 "+LABELS[i];opts=VIS}
+  const clear=document.createElement("button");clear.type="button";clear.className="plain clear";clear.textContent="清除";clear.setAttribute("aria-label","清除"+tag.textContent+"的选择");clear.disabled=!ans[type][i];h.append(tag,clear);card.append(h);
+  for(const n of stage?PAIRS[i]:[i]) card.append(caption(n));
+  const choices=document.createElement("div");choices.className="choices";choices.setAttribute("role","radiogroup");choices.setAttribute("aria-label",tag.textContent);
+  for(const [value,label] of opts){const wrapper=document.createElement("label"),radio=document.createElement("input"),span=document.createElement("span");wrapper.className="choice";radio.type="radio";radio.name=keyName;radio.value=value;radio.checked=ans[type][i]===value;span.textContent=label;wrapper.append(radio,span);choices.append(wrapper);
+    radio.addEventListener("change",()=>{ans[type][i]=value;clear.disabled=false;save();progress()});}
+  clear.addEventListener("click",()=>{ans[type][i]="";for(const radio of choices.querySelectorAll("input"))radio.checked=false;clear.disabled=true;save();progress()});
+  card.append(choices);return card;
+}
+function render(){
+  const item=ITEMS[index];if($("photo").getAttribute("src")!==item.img)$("photo").src=item.img;
+  $("viewer").removeAttribute("data-zoom");$("prev").disabled=index===0;$("skip").disabled=index===ITEMS.length-1;
+  $("visualTab").setAttribute("aria-pressed",String(stage===0));$("pairTab").setAttribute("aria-pressed",String(stage===1));
+  $("stepHint").textContent=stage?"只看句子的含义，比较它们在可能场景中是否总是同真同假。":"逐句看图，判断图片能否证实或反驳整句。选择「冲突」需要可见反证。";
+  $("cards").replaceChildren(...[0,1,2].map(renderCard));$("note").value=entry(item.id).note;$("reviewer").value=reviewer;
+  $("forward").textContent=stage===0?"继续比较句意 →":(index===ITEMS.length-1?"查看未完成题目":"下一张图 →");progress();showSave();
+}
+function goto(i,part,scroll=true){index=i;stage=part;$("noteBox").open=false;notify("");save();render();if(scroll&&window.scrollY>120)document.querySelector(".questionbar").scrollIntoView({block:"start"})}
+function missing(){for(let step=1;step<=ITEMS.length;step++){const n=(index+step)%ITEMS.length,a=responses.get(ITEMS[n].id)||fresh();if(count(a)<6){goto(n,a.visual.some(v=>!v)?0:1);return}}notify("所有图片的六项判断均已完成，可以导出答卷。");$("export").focus()}
+function download(data,mime,suffix){const a=document.createElement("a"),url=URL.createObjectURL(new Blob([data],{type:mime}));a.href=url;const stamp=new Date().toISOString().replace(/[:.]/g,"-"),safe=reviewer.replace(/[^\p{L}\p{N}_-]/gu,"_").slice(0,40);a.download="图文盲评-"+(safe?safe+"-":"")+stamp+"."+suffix;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
+function exportJSON(){const state=makeState();state.exported_utc=new Date().toISOString();download(JSON.stringify(state,null,2),"application/json;charset=utf-8","json");notify("答卷已生成。请保留下载的 JSON 文件。")}
+function csvCell(s){let v=String(s);if(/^[\s]*[=+@-]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'}
+function exportCSV(){const rows=[["form_id","reviewer","item_id","visual_A","visual_B","visual_C","pair_AB","pair_AC","pair_BC","note"]];for(const a of makeState().answers)rows.push([FORM_ID,reviewer,a.id,...a.visual,...a.pairs,a.note]);download("\uFEFF"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n"),"text/csv;charset=utf-8","csv");notify("CSV 表格已生成。恢复进度请使用 JSON 答卷。")}
+function zoom(){const wrap=$("bigwrap");wrap.classList.remove("natural");$("magnify").textContent="放大细节";$("vTitle").textContent="第 "+(index+1)+" 张";$("big").src=ITEMS[index].img;$("viewer").showModal()}
+for(let n=0;n<ITEMS.length;n++){const b=document.createElement("button");b.type="button";b.textContent=n+1;b.addEventListener("click",()=>goto(n,0));$("navGrid").append(b)}
+try{const old=localStorage.getItem(key);if(old){try{install(validated(JSON.parse(old)))}catch(_){restoreWarning="之前的本地记录无法读取，请导入已导出的 JSON。"}}}catch(_){storageOK=false}
+$("visualTab").onclick=()=>goto(index,0,false);$("pairTab").onclick=()=>goto(index,1,false);$("prev").onclick=()=>goto(index-1,0);$("skip").onclick=()=>goto(index+1,0);$("missing").onclick=missing;
+$("forward").onclick=()=>{if(!stage){goto(index,1,false);if(window.scrollY>120)document.querySelector(".reader").scrollIntoView({block:"start"})}else if(index<ITEMS.length-1)goto(index+1,0);else missing()};
+$("note").oninput=()=>{entry(ITEMS[index].id).note=$("note").value;save()};$("reviewer").oninput=()=>{reviewer=$("reviewer").value;save()};
+$("export").onclick=exportJSON;$("csv").onclick=exportCSV;$("restore").onclick=()=>$("file").click();
+$("file").onchange=async()=>{const f=$("file").files[0];if(!f)return;try{if(f.size>8*1024*1024)throw Error("所选文件过大。");const s=validated(JSON.parse(await f.text()));const hasWork=reviewer||[...responses.values()].some(a=>count(a)||a.note);if(hasWork&&!window.confirm("导入会用文件内的答卷取代当前浏览器中的记录。已导出的文件会保留。继续导入？"))return;install(s);save();render();notify("已恢复此答卷。")}catch(e){window.alert("导入失败。"+(e instanceof SyntaxError?"文件不是有效的 JSON。":e.message))}finally{$("file").value=""}};
+$("imgBtn").onclick=zoom;$("zoom").onclick=zoom;$("magnify").onclick=()=>{const active=$("bigwrap").classList.toggle("natural");$("magnify").textContent=active?"适应窗口":"放大细节"};$("closeView").onclick=()=>$("viewer").close();$("viewer").onclick=e=>{if(e.target===$("viewer"))$("viewer").close()};$("viewer").addEventListener("close",()=>$("big").removeAttribute("src"));
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,2419 @@
+{
+  "case_count": 150,
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261122,
+  "prediction_sha256": {
+    "qwen": "61bca011269a779afb011296e1816a7c65bcc724faf0fda89f163f8074a5396d",
+    "siglip": "623321a885b3b84b2bc4aed8736f8a7ffd82181ccea4912eb0955e07a7b0d792",
+    "clip": "259c8f5f60efb94d1afc3a0d4d110fbb7951f7bcfb2d1d8679c95596bfaa6786"
+  },
+  "manifest_sha256": "6eae4adf4a617ad9004eb04cfb0248e8eba42cc678a79e211c228876fdb674db",
+  "protocol_sha256": "b027e5c2f344ddacc24490f7631cf91f50b8c96817fd3e02ac077617814fb387",
+  "similarities_sha256": "9ced60054a68b29ec5fb7f6df956e616e32ce64a635fc726b6b5ea3f8eb03a34",
+  "similarities": {
+    "arms": {
+      "wrong1": {
+        "n": 150,
+        "mean": 0.49456057369709017,
+        "median": 0.4877304136753082
+      },
+      "wrong2": {
+        "n": 150,
+        "mean": 0.4941601002216339,
+        "median": 0.49031075835227966
+      },
+      "wrong3": {
+        "n": 150,
+        "mean": 0.49769983808199564,
+        "median": 0.48907193541526794
+      },
+      "near": {
+        "n": 150,
+        "mean": 0.6166508676608403,
+        "median": 0.6067027747631073
+      },
+      "far": {
+        "n": 150,
+        "mean": 0.42095381597677867,
+        "median": 0.4245900511741638
+      }
+    },
+    "near_minus_far": {
+      "mean": 0.19569705168406168,
+      "stratified_image_bootstrap_ci95": [
+        0.18212248448034127,
+        0.20963864706953367
+      ]
+    },
+    "near_above_far": 150,
+    "near_equal_far": 0,
+    "n": 150
+  },
+  "qwen_comparisons": {
+    "minus_no_image": {
+      "base": {
+        "images": 150,
+        "contests": 300,
+        "both_won": 138,
+        "one_won": 11,
+        "neither_won": 1,
+        "pair_wins": 287,
+        "pair_ties": 0
+      },
+      "comparison": {
+        "images": 150,
+        "contests": 300,
+        "both_won": 132,
+        "one_won": 12,
+        "neither_won": 6,
+        "pair_wins": 276,
+        "pair_ties": 0
+      },
+      "comparison_only_images": 1,
+      "base_only_images": 7,
+      "image_delta_proportion": {
+        "mean": -0.04,
+        "stratified_image_bootstrap_ci95": [
+          -0.08,
+          -0.006666666666666667
+        ]
+      },
+      "mcnemar_exact_two_sided": 0.0703125,
+      "comparison_only_pairs": 1,
+      "base_only_pairs": 12,
+      "pair_delta_proportion": {
+        "mean": -0.03666666666666667,
+        "stratified_image_bootstrap_ci95": [
+          -0.06333333333333334,
+          -0.013333333333333334
+        ]
+      },
+      "per_category": {
+        "replace_att": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 2,
+            "neither_won": 0,
+            "pair_wins": 58,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 27,
+            "one_won": 2,
+            "neither_won": 1,
+            "pair_wins": 56,
+            "pair_ties": 0
+          },
+          "repaired_images": 1,
+          "regressed_images": 2
+        },
+        "replace_obj": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 29,
+            "one_won": 1,
+            "neither_won": 0,
+            "pair_wins": 59,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 29,
+            "one_won": 1,
+            "neither_won": 0,
+            "pair_wins": 59,
+            "pair_ties": 0
+          },
+          "repaired_images": 0,
+          "regressed_images": 0
+        },
+        "replace_rel": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 2,
+            "neither_won": 0,
+            "pair_wins": 58,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 1,
+            "neither_won": 1,
+            "pair_wins": 57,
+            "pair_ties": 0
+          },
+          "repaired_images": 0,
+          "regressed_images": 0
+        },
+        "swap_att": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 2,
+            "neither_won": 0,
+            "pair_wins": 58,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 27,
+            "one_won": 2,
+            "neither_won": 1,
+            "pair_wins": 56,
+            "pair_ties": 0
+          },
+          "repaired_images": 0,
+          "regressed_images": 1
+        },
+        "swap_obj": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 25,
+            "one_won": 4,
+            "neither_won": 1,
+            "pair_wins": 54,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 21,
+            "one_won": 6,
+            "neither_won": 3,
+            "pair_wins": 48,
+            "pair_ties": 0
+          },
+          "repaired_images": 0,
+          "regressed_images": 4
+        }
+      }
+    },
+    "minus_three_random_mean": {
+      "base": {
+        "images": 150,
+        "contests": 300,
+        "both_won": 138,
+        "one_won": 11,
+        "neither_won": 1,
+        "pair_wins": 287,
+        "pair_ties": 0
+      },
+      "comparison": {
+        "images": 150,
+        "contests": 300,
+        "both_won": 134,
+        "one_won": 14,
+        "neither_won": 2,
+        "pair_wins": 282,
+        "pair_ties": 0
+      },
+      "comparison_only_images": 3,
+      "base_only_images": 7,
+      "image_delta_proportion": {
+        "mean": -0.02666666666666667,
+        "stratified_image_bootstrap_ci95": [
+          -0.06666666666666667,
+          0.013333333333333334
+        ]
+      },
+      "mcnemar_exact_two_sided": 0.34375,
+      "comparison_only_pairs": 3,
+      "base_only_pairs": 8,
+      "pair_delta_proportion": {
+        "mean": -0.016666666666666666,
+        "stratified_image_bootstrap_ci95": [
+          -0.03666666666666667,
+          0.0033333333333333335
+        ]
+      },
+      "per_category": {
+        "replace_att": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 2,
+            "neither_won": 0,
+            "pair_wins": 58,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 27,
+            "one_won": 3,
+            "neither_won": 0,
+            "pair_wins": 57,
+            "pair_ties": 0
+          },
+          "repaired_images": 1,
+          "regressed_images": 2
+        },
+        "replace_obj": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 29,
+            "one_won": 1,
+            "neither_won": 0,
+            "pair_wins": 59,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 29,
+            "one_won": 1,
+            "neither_won": 0,
+            "pair_wins": 59,
+            "pair_ties": 0
+          },
+          "repaired_images": 0,
+          "regressed_images": 0
+        },
+        "replace_rel": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 2,
+            "neither_won": 0,
+            "pair_wins": 58,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 2,
+            "neither_won": 0,
+            "pair_wins": 58,
+            "pair_ties": 0
+          },
+          "repaired_images": 1,
+          "regressed_images": 1
+        },
+        "swap_att": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 28,
+            "one_won": 2,
+            "neither_won": 0,
+            "pair_wins": 58,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 25,
+            "one_won": 4,
+            "neither_won": 1,
+            "pair_wins": 54,
+            "pair_ties": 0
+          },
+          "repaired_images": 0,
+          "regressed_images": 3
+        },
+        "swap_obj": {
+          "base": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 25,
+            "one_won": 4,
+            "neither_won": 1,
+            "pair_wins": 54,
+            "pair_ties": 0
+          },
+          "corrected": {
+            "images": 30,
+            "contests": 60,
+            "both_won": 25,
+            "one_won": 4,
+            "neither_won": 1,
+            "pair_wins": 54,
+            "pair_ties": 0
+          },
+          "repaired_images": 1,
+          "regressed_images": 1
+        }
+      }
+    }
+  },
+  "primary_superiority_criterion_met": false,
+  "models": {
+    "qwen": {
+      "arms": {
+        "original": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 138,
+          "one_won": 11,
+          "neither_won": 1,
+          "pair_wins": 287,
+          "pair_ties": 0
+        },
+        "wrong1": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 47,
+          "one_won": 57,
+          "neither_won": 46,
+          "pair_wins": 151,
+          "pair_ties": 0
+        },
+        "wrong2": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 60,
+          "one_won": 44,
+          "neither_won": 46,
+          "pair_wins": 164,
+          "pair_ties": 0
+        },
+        "wrong3": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 54,
+          "one_won": 47,
+          "neither_won": 49,
+          "pair_wins": 155,
+          "pair_ties": 0
+        },
+        "near": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 59,
+          "one_won": 55,
+          "neither_won": 36,
+          "pair_wins": 173,
+          "pair_ties": 0
+        },
+        "far": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 56,
+          "one_won": 52,
+          "neither_won": 42,
+          "pair_wins": 164,
+          "pair_ties": 0
+        },
+        "text": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 61,
+          "one_won": 43,
+          "neither_won": 46,
+          "pair_wins": 165,
+          "pair_ties": 0
+        }
+      },
+      "direct_original_minus_random": {
+        "observations": 900,
+        "larger": 840,
+        "ties": 0,
+        "median": 3.2714176177978516,
+        "mean": 3.3512294769287108,
+        "pair_majority": 281,
+        "n_pairs": 300,
+        "image_both_majority": 132,
+        "n_images": 150
+      },
+      "near_minus_far_rank": {
+        "base": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 56,
+          "one_won": 52,
+          "neither_won": 42,
+          "pair_wins": 164,
+          "pair_ties": 0
+        },
+        "comparison": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 59,
+          "one_won": 55,
+          "neither_won": 36,
+          "pair_wins": 173,
+          "pair_ties": 0
+        },
+        "comparison_only_images": 33,
+        "base_only_images": 30,
+        "image_delta_proportion": {
+          "mean": 0.02,
+          "stratified_image_bootstrap_ci95": [
+            -0.08666666666666667,
+            0.12666666666666668
+          ]
+        },
+        "mcnemar_exact_two_sided": 0.8013064925040662,
+        "comparison_only_pairs": 65,
+        "base_only_pairs": 56,
+        "pair_delta_proportion": {
+          "mean": 0.03,
+          "stratified_image_bootstrap_ci95": [
+            -0.05,
+            0.11
+          ]
+        }
+      },
+      "wrong_and_text_vs_original_rank": {
+        "wrong1": {
+          "original_failed": 13,
+          "still_failed": 6,
+          "switched_from_failed_to_win": 7,
+          "switched_from_win_to_failed": 143,
+          "both_win": 144
+        },
+        "wrong2": {
+          "original_failed": 13,
+          "still_failed": 6,
+          "switched_from_failed_to_win": 7,
+          "switched_from_win_to_failed": 130,
+          "both_win": 157
+        },
+        "wrong3": {
+          "original_failed": 13,
+          "still_failed": 7,
+          "switched_from_failed_to_win": 6,
+          "switched_from_win_to_failed": 138,
+          "both_win": 149
+        },
+        "near": {
+          "original_failed": 13,
+          "still_failed": 5,
+          "switched_from_failed_to_win": 8,
+          "switched_from_win_to_failed": 122,
+          "both_win": 165
+        },
+        "far": {
+          "original_failed": 13,
+          "still_failed": 6,
+          "switched_from_failed_to_win": 7,
+          "switched_from_win_to_failed": 130,
+          "both_win": 157
+        },
+        "text": {
+          "original_failed": 13,
+          "still_failed": 6,
+          "switched_from_failed_to_win": 7,
+          "switched_from_win_to_failed": 129,
+          "both_win": 158
+        }
+      },
+      "categories": {
+        "replace_att": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 28,
+              "one_won": 2,
+              "neither_won": 0,
+              "pair_wins": 58,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 7,
+              "one_won": 9,
+              "neither_won": 14,
+              "pair_wins": 23,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 10,
+              "neither_won": 11,
+              "pair_wins": 28,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 11,
+              "neither_won": 11,
+              "pair_wins": 27,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 11,
+              "neither_won": 7,
+              "pair_wins": 35,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 12,
+              "neither_won": 7,
+              "pair_wins": 34,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 16,
+              "one_won": 7,
+              "neither_won": 7,
+              "pair_wins": 39,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 171,
+            "ties": 0,
+            "median": 3.427248954772949,
+            "mean": 3.5066391203138565,
+            "pair_majority": 57,
+            "n_pairs": 60,
+            "image_both_majority": 27,
+            "n_images": 30
+          },
+          "near_yes": {
+            "all_candidates": {
+              "yes": 0,
+              "no": 90,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          },
+          "far_yes": {
+            "all_candidates": {
+              "yes": 0,
+              "no": 90,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          }
+        },
+        "replace_obj": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 29,
+              "one_won": 1,
+              "neither_won": 0,
+              "pair_wins": 59,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 10,
+              "neither_won": 12,
+              "pair_wins": 26,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 18,
+              "one_won": 4,
+              "neither_won": 8,
+              "pair_wins": 40,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 14,
+              "one_won": 10,
+              "neither_won": 6,
+              "pair_wins": 38,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 8,
+              "neither_won": 9,
+              "pair_wins": 34,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 11,
+              "neither_won": 8,
+              "pair_wins": 33,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 10,
+              "one_won": 9,
+              "neither_won": 11,
+              "pair_wins": 29,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 175,
+            "ties": 0,
+            "median": 5.430440902709961,
+            "mean": 5.1075131098429365,
+            "pair_majority": 58,
+            "n_pairs": 60,
+            "image_both_majority": 28,
+            "n_images": 30
+          },
+          "near_yes": {
+            "all_candidates": {
+              "yes": 1,
+              "no": 89,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 1,
+              "no": 29,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          },
+          "far_yes": {
+            "all_candidates": {
+              "yes": 0,
+              "no": 90,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          }
+        },
+        "replace_rel": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 28,
+              "one_won": 2,
+              "neither_won": 0,
+              "pair_wins": 58,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 11,
+              "neither_won": 7,
+              "pair_wins": 35,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 10,
+              "one_won": 11,
+              "neither_won": 9,
+              "pair_wins": 31,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 9,
+              "neither_won": 12,
+              "pair_wins": 27,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 12,
+              "neither_won": 6,
+              "pair_wins": 36,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 8,
+              "neither_won": 11,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 9,
+              "neither_won": 12,
+              "pair_wins": 27,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 171,
+            "ties": 0,
+            "median": 2.9385080337524414,
+            "mean": 3.01783840391371,
+            "pair_majority": 57,
+            "n_pairs": 60,
+            "image_both_majority": 27,
+            "n_images": 30
+          },
+          "near_yes": {
+            "all_candidates": {
+              "yes": 4,
+              "no": 86,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 4,
+              "no": 56,
+              "tie": 0,
+              "n": 60
+            }
+          },
+          "far_yes": {
+            "all_candidates": {
+              "yes": 0,
+              "no": 90,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          }
+        },
+        "swap_att": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 28,
+              "one_won": 2,
+              "neither_won": 0,
+              "pair_wins": 58,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 13,
+              "neither_won": 5,
+              "pair_wins": 37,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 13,
+              "neither_won": 5,
+              "pair_wins": 37,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 15,
+              "one_won": 6,
+              "neither_won": 9,
+              "pair_wins": 36,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 12,
+              "neither_won": 5,
+              "pair_wins": 38,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 11,
+              "neither_won": 7,
+              "pair_wins": 35,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 10,
+              "neither_won": 7,
+              "pair_wins": 36,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 166,
+            "ties": 0,
+            "median": 2.7454538345336914,
+            "mean": 3.2837153646681045,
+            "pair_majority": 57,
+            "n_pairs": 60,
+            "image_both_majority": 27,
+            "n_images": 30
+          },
+          "near_yes": {
+            "all_candidates": {
+              "yes": 4,
+              "no": 86,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 1,
+              "no": 29,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 3,
+              "no": 57,
+              "tie": 0,
+              "n": 60
+            }
+          },
+          "far_yes": {
+            "all_candidates": {
+              "yes": 0,
+              "no": 90,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          }
+        },
+        "swap_obj": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 25,
+              "one_won": 4,
+              "neither_won": 1,
+              "pair_wins": 54,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 14,
+              "neither_won": 8,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 6,
+              "neither_won": 13,
+              "pair_wins": 28,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 11,
+              "neither_won": 11,
+              "pair_wins": 27,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 12,
+              "neither_won": 9,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 10,
+              "neither_won": 9,
+              "pair_wins": 32,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 8,
+              "neither_won": 9,
+              "pair_wins": 34,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 157,
+            "ties": 0,
+            "median": 1.4268465042114258,
+            "mean": 1.840441385904948,
+            "pair_majority": 52,
+            "n_pairs": 60,
+            "image_both_majority": 23,
+            "n_images": 30
+          },
+          "near_yes": {
+            "all_candidates": {
+              "yes": 0,
+              "no": 90,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          },
+          "far_yes": {
+            "all_candidates": {
+              "yes": 0,
+              "no": 90,
+              "tie": 0,
+              "n": 90
+            },
+            "foil": {
+              "yes": 0,
+              "no": 30,
+              "tie": 0,
+              "n": 30
+            },
+            "references": {
+              "yes": 0,
+              "no": 60,
+              "tie": 0,
+              "n": 60
+            }
+          }
+        }
+      },
+      "random_majority": {
+        "original_failed": 13,
+        "same_fail_random_majority": 6,
+        "same_fail_majority_and_text": 3
+      },
+      "absolute_yes": {
+        "original": {
+          "all_candidates": {
+            "yes": 304,
+            "no": 146,
+            "tie": 0,
+            "n": 450
+          },
+          "foil": {
+            "yes": 42,
+            "no": 108,
+            "tie": 0,
+            "n": 150
+          },
+          "references": {
+            "yes": 262,
+            "no": 38,
+            "tie": 0,
+            "n": 300
+          }
+        },
+        "wrong1": {
+          "all_candidates": {
+            "yes": 0,
+            "no": 450,
+            "tie": 0,
+            "n": 450
+          },
+          "foil": {
+            "yes": 0,
+            "no": 150,
+            "tie": 0,
+            "n": 150
+          },
+          "references": {
+            "yes": 0,
+            "no": 300,
+            "tie": 0,
+            "n": 300
+          }
+        },
+        "wrong2": {
+          "all_candidates": {
+            "yes": 2,
+            "no": 448,
+            "tie": 0,
+            "n": 450
+          },
+          "foil": {
+            "yes": 0,
+            "no": 150,
+            "tie": 0,
+            "n": 150
+          },
+          "references": {
+            "yes": 2,
+            "no": 298,
+            "tie": 0,
+            "n": 300
+          }
+        },
+        "wrong3": {
+          "all_candidates": {
+            "yes": 0,
+            "no": 450,
+            "tie": 0,
+            "n": 450
+          },
+          "foil": {
+            "yes": 0,
+            "no": 150,
+            "tie": 0,
+            "n": 150
+          },
+          "references": {
+            "yes": 0,
+            "no": 300,
+            "tie": 0,
+            "n": 300
+          }
+        },
+        "near": {
+          "all_candidates": {
+            "yes": 9,
+            "no": 441,
+            "tie": 0,
+            "n": 450
+          },
+          "foil": {
+            "yes": 2,
+            "no": 148,
+            "tie": 0,
+            "n": 150
+          },
+          "references": {
+            "yes": 7,
+            "no": 293,
+            "tie": 0,
+            "n": 300
+          }
+        },
+        "far": {
+          "all_candidates": {
+            "yes": 0,
+            "no": 450,
+            "tie": 0,
+            "n": 450
+          },
+          "foil": {
+            "yes": 0,
+            "no": 150,
+            "tie": 0,
+            "n": 150
+          },
+          "references": {
+            "yes": 0,
+            "no": 300,
+            "tie": 0,
+            "n": 300
+          }
+        },
+        "text": {
+          "all_candidates": {
+            "yes": 287,
+            "no": 163,
+            "tie": 0,
+            "n": 450
+          },
+          "foil": {
+            "yes": 92,
+            "no": 58,
+            "tie": 0,
+            "n": 150
+          },
+          "references": {
+            "yes": 195,
+            "no": 105,
+            "tie": 0,
+            "n": 300
+          }
+        }
+      },
+      "near_minus_far_yes": {
+        "all_candidates": {
+          "n": 450,
+          "near_yes": 9,
+          "far_yes": 0,
+          "near_only": 9,
+          "far_only": 0,
+          "delta_proportion": {
+            "mean": 0.02,
+            "stratified_image_bootstrap_ci95": [
+              0.0044444444444444444,
+              0.04
+            ]
+          }
+        },
+        "foil": {
+          "n": 150,
+          "near_yes": 2,
+          "far_yes": 0,
+          "near_only": 2,
+          "far_only": 0,
+          "delta_proportion": {
+            "mean": 0.013333333333333334,
+            "stratified_image_bootstrap_ci95": [
+              0.0,
+              0.03333333333333333
+            ]
+          }
+        },
+        "references": {
+          "n": 300,
+          "near_yes": 7,
+          "far_yes": 0,
+          "near_only": 7,
+          "far_only": 0,
+          "delta_proportion": {
+            "mean": 0.023333333333333334,
+            "stratified_image_bootstrap_ci95": [
+              0.006666666666666667,
+              0.04666666666666667
+            ]
+          }
+        }
+      }
+    },
+    "siglip": {
+      "arms": {
+        "original": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 96,
+          "one_won": 32,
+          "neither_won": 22,
+          "pair_wins": 224,
+          "pair_ties": 0
+        },
+        "wrong1": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 48,
+          "one_won": 43,
+          "neither_won": 59,
+          "pair_wins": 139,
+          "pair_ties": 0
+        },
+        "wrong2": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 41,
+          "one_won": 51,
+          "neither_won": 58,
+          "pair_wins": 133,
+          "pair_ties": 0
+        },
+        "wrong3": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 57,
+          "one_won": 42,
+          "neither_won": 51,
+          "pair_wins": 156,
+          "pair_ties": 0
+        },
+        "near": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 61,
+          "one_won": 47,
+          "neither_won": 42,
+          "pair_wins": 169,
+          "pair_ties": 0
+        },
+        "far": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 42,
+          "one_won": 55,
+          "neither_won": 53,
+          "pair_wins": 139,
+          "pair_ties": 0
+        },
+        "text": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 80,
+          "one_won": 46,
+          "neither_won": 24,
+          "pair_wins": 206,
+          "pair_ties": 0
+        }
+      },
+      "direct_original_minus_random": {
+        "observations": 900,
+        "larger": 604,
+        "ties": 0,
+        "median": 0.011690589133650064,
+        "mean": 0.018857927319930037,
+        "pair_majority": 206,
+        "n_pairs": 300,
+        "image_both_majority": 82,
+        "n_images": 150
+      },
+      "near_minus_far_rank": {
+        "base": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 42,
+          "one_won": 55,
+          "neither_won": 53,
+          "pair_wins": 139,
+          "pair_ties": 0
+        },
+        "comparison": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 61,
+          "one_won": 47,
+          "neither_won": 42,
+          "pair_wins": 169,
+          "pair_ties": 0
+        },
+        "comparison_only_images": 40,
+        "base_only_images": 21,
+        "image_delta_proportion": {
+          "mean": 0.12666666666666668,
+          "stratified_image_bootstrap_ci95": [
+            0.02666666666666667,
+            0.22666666666666666
+          ]
+        },
+        "mcnemar_exact_two_sided": 0.020414713799634897,
+        "comparison_only_pairs": 72,
+        "base_only_pairs": 42,
+        "pair_delta_proportion": {
+          "mean": 0.1,
+          "stratified_image_bootstrap_ci95": [
+            0.023333333333333334,
+            0.17666666666666667
+          ]
+        }
+      },
+      "wrong_and_text_vs_original_rank": {
+        "wrong1": {
+          "original_failed": 76,
+          "still_failed": 47,
+          "switched_from_failed_to_win": 29,
+          "switched_from_win_to_failed": 114,
+          "both_win": 110
+        },
+        "wrong2": {
+          "original_failed": 76,
+          "still_failed": 47,
+          "switched_from_failed_to_win": 29,
+          "switched_from_win_to_failed": 120,
+          "both_win": 104
+        },
+        "wrong3": {
+          "original_failed": 76,
+          "still_failed": 43,
+          "switched_from_failed_to_win": 33,
+          "switched_from_win_to_failed": 101,
+          "both_win": 123
+        },
+        "near": {
+          "original_failed": 76,
+          "still_failed": 42,
+          "switched_from_failed_to_win": 34,
+          "switched_from_win_to_failed": 89,
+          "both_win": 135
+        },
+        "far": {
+          "original_failed": 76,
+          "still_failed": 40,
+          "switched_from_failed_to_win": 36,
+          "switched_from_win_to_failed": 121,
+          "both_win": 103
+        },
+        "text": {
+          "original_failed": 76,
+          "still_failed": 37,
+          "switched_from_failed_to_win": 39,
+          "switched_from_win_to_failed": 57,
+          "both_win": 167
+        }
+      },
+      "categories": {
+        "replace_att": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 23,
+              "one_won": 4,
+              "neither_won": 3,
+              "pair_wins": 50,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 7,
+              "one_won": 8,
+              "neither_won": 15,
+              "pair_wins": 22,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 7,
+              "one_won": 10,
+              "neither_won": 13,
+              "pair_wins": 24,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 6,
+              "neither_won": 13,
+              "pair_wins": 28,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 14,
+              "one_won": 6,
+              "neither_won": 10,
+              "pair_wins": 34,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 7,
+              "one_won": 6,
+              "neither_won": 17,
+              "pair_wins": 20,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 20,
+              "one_won": 10,
+              "neither_won": 0,
+              "pair_wins": 50,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 138,
+            "ties": 0,
+            "median": 0.02088690549135208,
+            "mean": 0.021846994718847174,
+            "pair_majority": 46,
+            "n_pairs": 60,
+            "image_both_majority": 20,
+            "n_images": 30
+          }
+        },
+        "replace_obj": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 28,
+              "one_won": 1,
+              "neither_won": 1,
+              "pair_wins": 57,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 4,
+              "neither_won": 14,
+              "pair_wins": 28,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 10,
+              "one_won": 9,
+              "neither_won": 11,
+              "pair_wins": 29,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 16,
+              "one_won": 4,
+              "neither_won": 10,
+              "pair_wins": 36,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 14,
+              "one_won": 8,
+              "neither_won": 8,
+              "pair_wins": 36,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 9,
+              "neither_won": 12,
+              "pair_wins": 27,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 28,
+              "one_won": 2,
+              "neither_won": 0,
+              "pair_wins": 58,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 150,
+            "ties": 0,
+            "median": 0.04241316020488739,
+            "mean": 0.0477919912030403,
+            "pair_majority": 52,
+            "n_pairs": 60,
+            "image_both_majority": 24,
+            "n_images": 30
+          }
+        },
+        "replace_rel": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 18,
+              "one_won": 5,
+              "neither_won": 7,
+              "pair_wins": 41,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 8,
+              "neither_won": 11,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 6,
+              "one_won": 9,
+              "neither_won": 15,
+              "pair_wins": 21,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 5,
+              "neither_won": 12,
+              "pair_wins": 31,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 8,
+              "neither_won": 10,
+              "pair_wins": 32,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 10,
+              "neither_won": 7,
+              "pair_wins": 36,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 14,
+              "one_won": 12,
+              "neither_won": 4,
+              "pair_wins": 40,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 105,
+            "ties": 0,
+            "median": 0.00537748821079731,
+            "mean": 0.015407864439637504,
+            "pair_majority": 36,
+            "n_pairs": 60,
+            "image_both_majority": 14,
+            "n_images": 30
+          }
+        },
+        "swap_att": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 15,
+              "one_won": 8,
+              "neither_won": 7,
+              "pair_wins": 38,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 11,
+              "neither_won": 10,
+              "pair_wins": 29,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 12,
+              "neither_won": 9,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 14,
+              "neither_won": 8,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 11,
+              "neither_won": 6,
+              "pair_wins": 37,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 12,
+              "neither_won": 9,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 13,
+              "neither_won": 6,
+              "pair_wins": 35,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 105,
+            "ties": 0,
+            "median": 0.004548369906842709,
+            "mean": 0.00607239091122109,
+            "pair_majority": 35,
+            "n_pairs": 60,
+            "image_both_majority": 11,
+            "n_images": 30
+          }
+        },
+        "swap_obj": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 14,
+              "neither_won": 4,
+              "pair_wins": 38,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 12,
+              "neither_won": 9,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 11,
+              "neither_won": 10,
+              "pair_wins": 29,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 9,
+              "one_won": 13,
+              "neither_won": 8,
+              "pair_wins": 31,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 14,
+              "neither_won": 8,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 4,
+              "one_won": 18,
+              "neither_won": 8,
+              "pair_wins": 26,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 7,
+              "one_won": 9,
+              "neither_won": 14,
+              "pair_wins": 23,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 106,
+            "ties": 0,
+            "median": 0.0035507269203662872,
+            "mean": 0.0031703953269041248,
+            "pair_majority": 37,
+            "n_pairs": 60,
+            "image_both_majority": 13,
+            "n_images": 30
+          }
+        }
+      },
+      "random_majority": {
+        "original_failed": 76,
+        "same_fail_random_majority": 50,
+        "same_fail_majority_and_text": 21
+      }
+    },
+    "clip": {
+      "arms": {
+        "original": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 98,
+          "one_won": 34,
+          "neither_won": 18,
+          "pair_wins": 230,
+          "pair_ties": 0
+        },
+        "wrong1": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 50,
+          "one_won": 53,
+          "neither_won": 47,
+          "pair_wins": 153,
+          "pair_ties": 0
+        },
+        "wrong2": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 55,
+          "one_won": 56,
+          "neither_won": 39,
+          "pair_wins": 166,
+          "pair_ties": 0
+        },
+        "wrong3": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 59,
+          "one_won": 46,
+          "neither_won": 45,
+          "pair_wins": 164,
+          "pair_ties": 0
+        },
+        "near": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 69,
+          "one_won": 41,
+          "neither_won": 40,
+          "pair_wins": 179,
+          "pair_ties": 0
+        },
+        "far": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 53,
+          "one_won": 48,
+          "neither_won": 49,
+          "pair_wins": 154,
+          "pair_ties": 0
+        },
+        "text": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 83,
+          "one_won": 45,
+          "neither_won": 22,
+          "pair_wins": 211,
+          "pair_ties": 0
+        }
+      },
+      "direct_original_minus_random": {
+        "observations": 900,
+        "larger": 583,
+        "ties": 0,
+        "median": 0.008991818875074387,
+        "mean": 0.012265860347284212,
+        "pair_majority": 201,
+        "n_pairs": 300,
+        "image_both_majority": 76,
+        "n_images": 150
+      },
+      "near_minus_far_rank": {
+        "base": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 53,
+          "one_won": 48,
+          "neither_won": 49,
+          "pair_wins": 154,
+          "pair_ties": 0
+        },
+        "comparison": {
+          "images": 150,
+          "contests": 300,
+          "both_won": 69,
+          "one_won": 41,
+          "neither_won": 40,
+          "pair_wins": 179,
+          "pair_ties": 0
+        },
+        "comparison_only_images": 39,
+        "base_only_images": 23,
+        "image_delta_proportion": {
+          "mean": 0.10666666666666667,
+          "stratified_image_bootstrap_ci95": [
+            0.006666666666666667,
+            0.20666666666666667
+          ]
+        },
+        "mcnemar_exact_two_sided": 0.05589722669971113,
+        "comparison_only_pairs": 72,
+        "base_only_pairs": 47,
+        "pair_delta_proportion": {
+          "mean": 0.08333333333333333,
+          "stratified_image_bootstrap_ci95": [
+            -0.0033333333333333335,
+            0.16666666666666666
+          ]
+        }
+      },
+      "wrong_and_text_vs_original_rank": {
+        "wrong1": {
+          "original_failed": 70,
+          "still_failed": 36,
+          "switched_from_failed_to_win": 34,
+          "switched_from_win_to_failed": 111,
+          "both_win": 119
+        },
+        "wrong2": {
+          "original_failed": 70,
+          "still_failed": 29,
+          "switched_from_failed_to_win": 41,
+          "switched_from_win_to_failed": 105,
+          "both_win": 125
+        },
+        "wrong3": {
+          "original_failed": 70,
+          "still_failed": 31,
+          "switched_from_failed_to_win": 39,
+          "switched_from_win_to_failed": 105,
+          "both_win": 125
+        },
+        "near": {
+          "original_failed": 70,
+          "still_failed": 34,
+          "switched_from_failed_to_win": 36,
+          "switched_from_win_to_failed": 87,
+          "both_win": 143
+        },
+        "far": {
+          "original_failed": 70,
+          "still_failed": 30,
+          "switched_from_failed_to_win": 40,
+          "switched_from_win_to_failed": 116,
+          "both_win": 114
+        },
+        "text": {
+          "original_failed": 70,
+          "still_failed": 34,
+          "switched_from_failed_to_win": 36,
+          "switched_from_win_to_failed": 55,
+          "both_win": 175
+        }
+      },
+      "categories": {
+        "replace_att": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 21,
+              "one_won": 5,
+              "neither_won": 4,
+              "pair_wins": 47,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 5,
+              "one_won": 11,
+              "neither_won": 14,
+              "pair_wins": 21,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 14,
+              "neither_won": 8,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 9,
+              "neither_won": 9,
+              "pair_wins": 33,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 10,
+              "neither_won": 8,
+              "pair_wins": 34,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 6,
+              "one_won": 10,
+              "neither_won": 14,
+              "pair_wins": 22,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 19,
+              "one_won": 10,
+              "neither_won": 1,
+              "pair_wins": 48,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 120,
+            "ties": 0,
+            "median": 0.010855421423912048,
+            "mean": 0.013875989967750179,
+            "pair_majority": 42,
+            "n_pairs": 60,
+            "image_both_majority": 16,
+            "n_images": 30
+          }
+        },
+        "replace_obj": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 28,
+              "one_won": 0,
+              "neither_won": 2,
+              "pair_wins": 56,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 10,
+              "one_won": 8,
+              "neither_won": 12,
+              "pair_wins": 28,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 14,
+              "one_won": 5,
+              "neither_won": 11,
+              "pair_wins": 33,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 8,
+              "neither_won": 10,
+              "pair_wins": 32,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 15,
+              "one_won": 5,
+              "neither_won": 10,
+              "pair_wins": 35,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 10,
+              "neither_won": 9,
+              "pair_wins": 32,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 28,
+              "one_won": 2,
+              "neither_won": 0,
+              "pair_wins": 58,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 148,
+            "ties": 0,
+            "median": 0.03174315392971039,
+            "mean": 0.03147423076960776,
+            "pair_majority": 53,
+            "n_pairs": 60,
+            "image_both_majority": 25,
+            "n_images": 30
+          }
+        },
+        "replace_rel": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 22,
+              "one_won": 4,
+              "neither_won": 4,
+              "pair_wins": 48,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 13,
+              "neither_won": 6,
+              "pair_wins": 35,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 8,
+              "one_won": 12,
+              "neither_won": 10,
+              "pair_wins": 28,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 12,
+              "neither_won": 7,
+              "pair_wins": 34,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 14,
+              "one_won": 8,
+              "neither_won": 8,
+              "pair_wins": 36,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 7,
+              "neither_won": 12,
+              "pair_wins": 29,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 10,
+              "neither_won": 7,
+              "pair_wins": 36,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 113,
+            "ties": 0,
+            "median": 0.008173748850822449,
+            "mean": 0.01294623940355248,
+            "pair_majority": 39,
+            "n_pairs": 60,
+            "image_both_majority": 14,
+            "n_images": 30
+          }
+        },
+        "swap_att": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 16,
+              "neither_won": 3,
+              "pair_wins": 38,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 10,
+              "neither_won": 7,
+              "pair_wins": 36,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 14,
+              "one_won": 12,
+              "neither_won": 4,
+              "pair_wins": 40,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 9,
+              "neither_won": 8,
+              "pair_wins": 35,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 17,
+              "one_won": 7,
+              "neither_won": 6,
+              "pair_wins": 41,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 11,
+              "neither_won": 6,
+              "pair_wins": 37,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 13,
+              "one_won": 15,
+              "neither_won": 2,
+              "pair_wins": 41,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 91,
+            "ties": 0,
+            "median": 0.00023393705487251282,
+            "mean": -0.0012269395093123118,
+            "pair_majority": 30,
+            "n_pairs": 60,
+            "image_both_majority": 9,
+            "n_images": 30
+          }
+        },
+        "swap_obj": {
+          "arms": {
+            "original": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 16,
+              "one_won": 9,
+              "neither_won": 5,
+              "pair_wins": 41,
+              "pair_ties": 0
+            },
+            "wrong1": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 11,
+              "neither_won": 8,
+              "pair_wins": 33,
+              "pair_ties": 0
+            },
+            "wrong2": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 13,
+              "neither_won": 6,
+              "pair_wins": 35,
+              "pair_ties": 0
+            },
+            "wrong3": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 8,
+              "neither_won": 11,
+              "pair_wins": 30,
+              "pair_ties": 0
+            },
+            "near": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 11,
+              "one_won": 11,
+              "neither_won": 8,
+              "pair_wins": 33,
+              "pair_ties": 0
+            },
+            "far": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 12,
+              "one_won": 10,
+              "neither_won": 8,
+              "pair_wins": 34,
+              "pair_ties": 0
+            },
+            "text": {
+              "images": 30,
+              "contests": 60,
+              "both_won": 10,
+              "one_won": 8,
+              "neither_won": 12,
+              "pair_wins": 28,
+              "pair_ties": 0
+            }
+          },
+          "direct_original_minus_random": {
+            "observations": 180,
+            "larger": 111,
+            "ties": 0,
+            "median": 0.004541728645563126,
+            "mean": 0.004259781104822954,
+            "pair_majority": 37,
+            "n_pairs": 60,
+            "image_both_majority": 12,
+            "n_images": 30
+          }
+        }
+      },
+      "random_majority": {
+        "original_failed": 70,
+        "same_fail_random_majority": 31,
+        "same_fail_majority_and_text": 14
+      }
+    }
+  }
+}

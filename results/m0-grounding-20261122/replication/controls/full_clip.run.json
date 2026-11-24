@@ -1,0 +1,33 @@
+{
+  "model": "clip",
+  "run": "full_clip",
+  "gpu_model": "NVIDIA A100 80GB PCIe",
+  "gpu_uuid_sha256": "f8ad22f8e31d6955a6deaab03e7ab9cade60529f557a64a1616ac96a345b89a7",
+  "created_utc": "2026-11-22T10:24:11.139398+00:00",
+  "n": 200,
+  "resumed_count": 0,
+  "wall_seconds_last_pass": 6.175408909912221,
+  "predictions_sha256": "65d82e25b4aa452c828e73b31f8a6261f3db0887ff7c23531a9e6b49ec58ecbe",
+  "peak_allocated": 670179328,
+  "packages": {
+    "torch": "2.8.0+cu126",
+    "transformers": "4.57.3",
+    "Pillow": "12.3.0",
+    "numpy": "2.4.6"
+  },
+  "infer_sha256": "cc767621a28576d63ce4efdc2fbb6cf1034c86a7c8dba26591864a22f1bcaef4",
+  "manifest_sha256": "bf6b28b65b44d24cac6d6fc6572d110c1c5c6d4c788ab396680f404db814f07b",
+  "model_files": {
+    "config.json": "b575ef3c36f2a057fa19e221650105052d61cc9c1a972ec15019c6261ec98770",
+    "merges.txt": "f526393189112391ce6f9795d4695f704121ce452c3aad1f5335cc41337eba85",
+    "preprocessor_config.json": "910e70b3956ac9879ebc90b22fb3bc8a75b6a0677814500101a4c072bd7857bd",
+    "pytorch_model.bin": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f",
+    "special_tokens_map.json": "f8c0d6c39aee3f8431078ef6646567b0aba7f2246e9c54b8b99d55c22b707cbf",
+    "tokenizer.json": "b556ac8c99757ffb677208af34bc8c6721572114111a6e0aaf5fa69ff0b8d842",
+    "tokenizer_config.json": "34b7336e4bee12e0a9730eaf5189f582ef3c3eea5027f65730e5717256755aad",
+    "vocab.json": "5047b556ce86ccaf6aa22b3ffccfc52d391ea4accdab9c2f2407da5b742d4363"
+  },
+  "protocol_sha256": "735ba4f1638a63a42183b26cae40b7b9abba2092184d4bdf7b083bc128ea9763",
+  "max_length": 77,
+  "truncated_unique_captions_this_pass": 0
+}

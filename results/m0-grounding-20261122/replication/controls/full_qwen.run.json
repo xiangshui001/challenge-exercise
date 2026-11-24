@@ -1,0 +1,42 @@
+{
+  "model": "qwen",
+  "run": "full_qwen",
+  "gpu_model": "NVIDIA A100 80GB PCIe",
+  "gpu_uuid_sha256": "f8ad22f8e31d6955a6deaab03e7ab9cade60529f557a64a1616ac96a345b89a7",
+  "created_utc": "2026-11-22T10:27:56.702064+00:00",
+  "n": 200,
+  "resumed_count": 0,
+  "wall_seconds_last_pass": 206.01435117097571,
+  "predictions_sha256": "c6996c7d70fe7235e6741cb1e94ae4e7e79d19bc4e66d0ef3cc505c14bcd046b",
+  "peak_allocated": 7853890560,
+  "packages": {
+    "torch": "2.8.0+cu126",
+    "transformers": "4.57.3",
+    "Pillow": "12.3.0",
+    "numpy": "2.4.6"
+  },
+  "infer_sha256": "cc767621a28576d63ce4efdc2fbb6cf1034c86a7c8dba26591864a22f1bcaef4",
+  "manifest_sha256": "bf6b28b65b44d24cac6d6fc6572d110c1c5c6d4c788ab396680f404db814f07b",
+  "model_files": {
+    "chat_template.json": "ad60d90252ed0b0705ba14e2d0ad0fec0beac1ea955642b54059b36052d8bc96",
+    "config.json": "7ed3eed5be6924cc800e8a5e53fc405c1aab1aaf36bad65c33403b36c56827f5",
+    "generation_config.json": "533f191cc257b7de37a4fccd0a7a1706d75e1aa660f93efaa54e5a2a9f9aace9",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "model-00001-of-00002.safetensors": "41a8895c164b4d32bae6b302f4603fcbc1797f32dafa45c7e9bcda23c6755df8",
+    "model-00002-of-00002.safetensors": "365531ff8752420e89dee707b79d021fb2d6e25abafe486f080555a4fe6972e4",
+    "model.safetensors.index.json": "c7dd78a4c6bea60b51332f1baf37b8f8124ecab2c35395a29a29825bf2619768",
+    "preprocessor_config.json": "f2058c716eef96ccaed1cc1e2d0c08306b62586d535b28d9d08e691b2fab7ca0",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "4abd3520120e266da84c0864fee064d1fb10806f02225911a47253dd38dc5f56",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "protocol_sha256": "735ba4f1638a63a42183b26cae40b7b9abba2092184d4bdf7b083bc128ea9763",
+  "token_ids": [
+    9454,
+    2753
+  ],
+  "prompt": "Is the following caption an accurate description of the image? Answer Yes or No. Caption: {caption}",
+  "score": "float32 projection of final BF16 hidden state onto the frozen Yes and No output weights; subtract",
+  "min_pixels": 200704,
+  "max_pixels": 262144
+}

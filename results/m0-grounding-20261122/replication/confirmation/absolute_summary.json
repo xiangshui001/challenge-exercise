@@ -1,0 +1,181 @@
+{
+  "analysis": "exploratory; the benchmark foil is treated as unsupported for this diagnostic",
+  "selection_rule": "Train balanced accuracy; ties nearest zero then smaller value. Yes iff score > threshold.",
+  "old_scores_sha256": "c6996c7d70fe7235e6741cb1e94ae4e7e79d19bc4e66d0ef3cc505c14bcd046b",
+  "new_scores_sha256": "61bca011269a779afb011296e1816a7c65bcc724faf0fda89f163f8074a5396d",
+  "old_only_threshold": 0.8355131149291992,
+  "candidate_cutoffs": 602,
+  "maximizing_cutoffs": 2,
+  "old_200": {
+    "zero": {
+      "threshold": 0.0,
+      "images": 200,
+      "reference_captions": 400,
+      "foils": 200,
+      "both_references_outrank_foil": 178,
+      "both_win_but_foil_supported": 52,
+      "references_supported": 368,
+      "foils_supported": 71,
+      "foils_rejected": 129,
+      "reference_recall": 0.92,
+      "foil_rejection_rate": 0.645,
+      "balanced_accuracy": 0.7825,
+      "images_all_three_absolute_correct": 112,
+      "exact_threshold_ties": 0,
+      "image_repairs_vs_zero": 0,
+      "image_regressions_vs_zero": 0,
+      "caption_repairs_vs_zero": 0,
+      "caption_regressions_vs_zero": 0,
+      "foil_supported_by_type": {
+        "replace_att": {
+          "yes": 15,
+          "n": 40
+        },
+        "replace_obj": {
+          "yes": 2,
+          "n": 40
+        },
+        "replace_rel": {
+          "yes": 17,
+          "n": 40
+        },
+        "swap_att": {
+          "yes": 12,
+          "n": 40
+        },
+        "swap_obj": {
+          "yes": 25,
+          "n": 40
+        }
+      }
+    },
+    "old_threshold": {
+      "threshold": 0.8355131149291992,
+      "images": 200,
+      "reference_captions": 400,
+      "foils": 200,
+      "both_references_outrank_foil": 178,
+      "both_win_but_foil_supported": 31,
+      "references_supported": 334,
+      "foils_supported": 43,
+      "foils_rejected": 157,
+      "reference_recall": 0.835,
+      "foil_rejection_rate": 0.785,
+      "balanced_accuracy": 0.81,
+      "images_all_three_absolute_correct": 117,
+      "exact_threshold_ties": 0,
+      "image_repairs_vs_zero": 19,
+      "image_regressions_vs_zero": 14,
+      "caption_repairs_vs_zero": 28,
+      "caption_regressions_vs_zero": 34,
+      "foil_supported_by_type": {
+        "replace_att": {
+          "yes": 6,
+          "n": 40
+        },
+        "replace_obj": {
+          "yes": 1,
+          "n": 40
+        },
+        "replace_rel": {
+          "yes": 13,
+          "n": 40
+        },
+        "swap_att": {
+          "yes": 6,
+          "n": 40
+        },
+        "swap_obj": {
+          "yes": 17,
+          "n": 40
+        }
+      }
+    }
+  },
+  "new_150": {
+    "zero": {
+      "threshold": 0.0,
+      "images": 150,
+      "reference_captions": 300,
+      "foils": 150,
+      "both_references_outrank_foil": 138,
+      "both_win_but_foil_supported": 32,
+      "references_supported": 262,
+      "foils_supported": 42,
+      "foils_rejected": 108,
+      "reference_recall": 0.8733333333333333,
+      "foil_rejection_rate": 0.72,
+      "balanced_accuracy": 0.7966666666666666,
+      "images_all_three_absolute_correct": 85,
+      "exact_threshold_ties": 0,
+      "image_repairs_vs_zero": 0,
+      "image_regressions_vs_zero": 0,
+      "caption_repairs_vs_zero": 0,
+      "caption_regressions_vs_zero": 0,
+      "foil_supported_by_type": {
+        "replace_att": {
+          "yes": 6,
+          "n": 30
+        },
+        "replace_obj": {
+          "yes": 3,
+          "n": 30
+        },
+        "replace_rel": {
+          "yes": 8,
+          "n": 30
+        },
+        "swap_att": {
+          "yes": 7,
+          "n": 30
+        },
+        "swap_obj": {
+          "yes": 18,
+          "n": 30
+        }
+      }
+    },
+    "old_threshold": {
+      "threshold": 0.8355131149291992,
+      "images": 150,
+      "reference_captions": 300,
+      "foils": 150,
+      "both_references_outrank_foil": 138,
+      "both_win_but_foil_supported": 20,
+      "references_supported": 233,
+      "foils_supported": 26,
+      "foils_rejected": 124,
+      "reference_recall": 0.7766666666666666,
+      "foil_rejection_rate": 0.8266666666666667,
+      "balanced_accuracy": 0.8016666666666666,
+      "images_all_three_absolute_correct": 83,
+      "exact_threshold_ties": 0,
+      "image_repairs_vs_zero": 10,
+      "image_regressions_vs_zero": 12,
+      "caption_repairs_vs_zero": 16,
+      "caption_regressions_vs_zero": 29,
+      "foil_supported_by_type": {
+        "replace_att": {
+          "yes": 4,
+          "n": 30
+        },
+        "replace_obj": {
+          "yes": 0,
+          "n": 30
+        },
+        "replace_rel": {
+          "yes": 6,
+          "n": 30
+        },
+        "swap_att": {
+          "yes": 4,
+          "n": 30
+        },
+        "swap_obj": {
+          "yes": 12,
+          "n": 30
+        }
+      }
+    }
+  }
+}

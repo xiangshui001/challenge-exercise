@@ -1,0 +1,152 @@
+{
+  "n": 150,
+  "pairs": 300,
+  "seed": 2026112204,
+  "permutations": 30000,
+  "lexical": {
+    "ref1_closer": 144,
+    "ref2_closer": 5,
+    "tie": 1,
+    "mean_jaccard_by_reference": [
+      0.7846829754066595,
+      0.5207325883610712
+    ]
+  },
+  "model_errors_by_reference": {
+    "siglip": {
+      "original": [
+        35,
+        41
+      ],
+      "text": [
+        28,
+        66
+      ],
+      "persistent": [
+        22,
+        28
+      ],
+      "joint_text": [
+        4,
+        17
+      ]
+    },
+    "clip": {
+      "original": [
+        37,
+        33
+      ],
+      "text": [
+        26,
+        63
+      ],
+      "persistent": [
+        20,
+        11
+      ],
+      "joint_text": [
+        7,
+        7
+      ]
+    }
+  },
+  "cross_model": {
+    "original": {
+      "common_pairs": 32,
+      "common_images": 25,
+      "union_pairs": 114,
+      "by_reference": [
+        15,
+        17
+      ],
+      "permute_clip_within_category": {
+        "observed": 32,
+        "expected_exact": 21.133333333333333,
+        "central_95": [
+          15,
+          28
+        ],
+        "p_upper_plus_one": 0.001333288890370321,
+        "strata": 5
+      }
+    },
+    "persistent": {
+      "common_pairs": 9,
+      "common_images": 9,
+      "union_pairs": 72,
+      "by_reference": [
+        4,
+        5
+      ],
+      "permute_clip_within_category": {
+        "observed": 9,
+        "expected_exact": 5.566666666666666,
+        "central_95": [
+          2,
+          10
+        ],
+        "p_upper_plus_one": 0.0709976334122196,
+        "strata": 5
+      },
+      "permute_clip_within_category_and_its_original_mask": {
+        "observed": 9,
+        "expected_exact": 8.583333333333334,
+        "central_95": [
+          5,
+          12
+        ],
+        "p_upper_plus_one": 0.5198826705776474,
+        "strata": 18
+      },
+      "permute_siglip_within_category_and_its_original_mask": {
+        "observed": 9,
+        "expected_exact": 10.833333333333332,
+        "central_95": [
+          8,
+          14
+        ],
+        "p_upper_plus_one": 0.9384353854871504,
+        "strata": 18
+      }
+    },
+    "joint_text": {
+      "common_pairs": 3,
+      "common_images": 3,
+      "union_pairs": 32,
+      "by_reference": [
+        0,
+        3
+      ],
+      "permute_clip_within_category": {
+        "observed": 3,
+        "expected_exact": 1.5666666666666667,
+        "central_95": [
+          0,
+          4
+        ],
+        "p_upper_plus_one": 0.18839372020932635,
+        "strata": 5
+      },
+      "permute_clip_within_category_and_its_original_mask": {
+        "observed": 3,
+        "expected_exact": 1.85,
+        "central_95": [
+          0,
+          4
+        ],
+        "p_upper_plus_one": 0.2571914269524349,
+        "strata": 18
+      },
+      "permute_siglip_within_category_and_its_original_mask": {
+        "observed": 3,
+        "expected_exact": 3.2380952380952377,
+        "central_95": [
+          1,
+          5
+        ],
+        "p_upper_plus_one": 0.7959401353288224,
+        "strata": 18
+      }
+    }
+  }
+}

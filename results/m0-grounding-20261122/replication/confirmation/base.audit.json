@@ -1,0 +1,20 @@
+{
+  "n": 150,
+  "prior": 820,
+  "seed": 2026112202,
+  "sha256": "a6e9ac3f84c6301361075fe6e581f9cd35074d3c58c4b951dcf2114a8e73435a",
+  "skips": [
+    [
+      "coco/000000287347.jpg",
+      "caption"
+    ]
+  ],
+  "source_commit": "c083bbf039a5ca215acaf25e7ee736d2ea6f3864",
+  "source_blobs": {
+    "swap_obj": "8e9c3f66a2c2d3369146dec5324b1926b2fc1d40",
+    "swap_att": "61ea987bbac7d8c99e6a88f3c1028609fbea6c73",
+    "replace_att": "be89e623f6fd54d015f6a437ba9a34ffa39cc465",
+    "replace_rel": "69d447e3fcb33817b866bd5688741f42bad7c26a",
+    "replace_obj": "3b62823c003659737a68c3d78cfe721c57b44f5f"
+  }
+}
