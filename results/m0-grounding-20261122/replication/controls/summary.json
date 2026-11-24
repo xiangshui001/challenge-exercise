@@ -1,0 +1,463 @@
+{
+  "qwen": {
+    "model": "qwen",
+    "n": 200,
+    "orig_pairs": 31,
+    "persistent_pairs": 13,
+    "text_overlap": 19,
+    "joint_pairs": 8,
+    "orig_items": 22,
+    "persistent_items": 10,
+    "joint_items": 6,
+    "orig_xor_items": 13,
+    "both_failed_items": 9,
+    "both_won_items": 178,
+    "original_ties": 0,
+    "wrong_all3_pairs": 5,
+    "retention_each": [
+      9,
+      15,
+      14
+    ],
+    "orig_negative_strictly_wins_both": 9,
+    "categories": {
+      "replace_att": {
+        "n": 40,
+        "orig_pairs": 6,
+        "persistent_pairs": 4,
+        "text_overlap": 4,
+        "joint_pairs": 3,
+        "orig_items": 4,
+        "persistent_items": 3,
+        "joint_items": 2,
+        "orig_xor_items": 2,
+        "both_failed_items": 2,
+        "both_won_items": 36
+      },
+      "replace_obj": {
+        "n": 40,
+        "orig_pairs": 2,
+        "persistent_pairs": 0,
+        "text_overlap": 1,
+        "joint_pairs": 0,
+        "orig_items": 2,
+        "persistent_items": 0,
+        "joint_items": 0,
+        "orig_xor_items": 2,
+        "both_failed_items": 0,
+        "both_won_items": 38
+      },
+      "replace_rel": {
+        "n": 40,
+        "orig_pairs": 6,
+        "persistent_pairs": 1,
+        "text_overlap": 5,
+        "joint_pairs": 1,
+        "orig_items": 4,
+        "persistent_items": 1,
+        "joint_items": 1,
+        "orig_xor_items": 2,
+        "both_failed_items": 2,
+        "both_won_items": 36
+      },
+      "swap_att": {
+        "n": 40,
+        "orig_pairs": 7,
+        "persistent_pairs": 4,
+        "text_overlap": 1,
+        "joint_pairs": 0,
+        "orig_items": 5,
+        "persistent_items": 3,
+        "joint_items": 0,
+        "orig_xor_items": 3,
+        "both_failed_items": 2,
+        "both_won_items": 35
+      },
+      "swap_obj": {
+        "n": 40,
+        "orig_pairs": 10,
+        "persistent_pairs": 4,
+        "text_overlap": 8,
+        "joint_pairs": 4,
+        "orig_items": 7,
+        "persistent_items": 3,
+        "joint_items": 3,
+        "orig_xor_items": 4,
+        "both_failed_items": 3,
+        "both_won_items": 33
+      }
+    },
+    "arms": {
+      "original": {
+        "both_win": 178,
+        "one_win": 13,
+        "neither_wins": 9,
+        "pair_failures": 31,
+        "ties": 0
+      },
+      "wrong1": {
+        "both_win": 82,
+        "one_win": 56,
+        "neither_wins": 62,
+        "pair_failures": 180,
+        "ties": 0
+      },
+      "wrong2": {
+        "both_win": 72,
+        "one_win": 72,
+        "neither_wins": 56,
+        "pair_failures": 184,
+        "ties": 0
+      },
+      "wrong3": {
+        "both_win": 65,
+        "one_win": 68,
+        "neither_wins": 67,
+        "pair_failures": 202,
+        "ties": 0
+      },
+      "text": {
+        "both_win": 84,
+        "one_win": 64,
+        "neither_wins": 52,
+        "pair_failures": 168,
+        "ties": 0
+      }
+    },
+    "absolute_yes_no_diagnostic": {
+      "repeated_pair_by_wrong_image_comparisons": 31,
+      "both_prefer_no": 31,
+      "foil_prefers_yes_in_text_on_joint_pairs": 7
+    },
+    "bootstrap_fraction_ci95": [
+      [
+        0.21052631578947367,
+        0.6296783625730996
+      ],
+      [
+        0.08333333333333333,
+        0.45
+      ]
+    ],
+    "permuted_pair_counts": {
+      "mean": [
+        13.692,
+        5.11525
+      ],
+      "central95": [
+        [
+          8.0,
+          19.0
+        ],
+        [
+          1.0,
+          9.0
+        ]
+      ]
+    }
+  },
+  "siglip": {
+    "model": "siglip",
+    "n": 200,
+    "orig_pairs": 99,
+    "persistent_pairs": 57,
+    "text_overlap": 47,
+    "joint_pairs": 21,
+    "orig_items": 71,
+    "persistent_items": 45,
+    "joint_items": 20,
+    "orig_xor_items": 43,
+    "both_failed_items": 28,
+    "both_won_items": 129,
+    "original_ties": 0,
+    "wrong_all3_pairs": 28,
+    "retention_each": [
+      51,
+      61,
+      51
+    ],
+    "orig_negative_strictly_wins_both": 28,
+    "categories": {
+      "replace_att": {
+        "n": 40,
+        "orig_pairs": 17,
+        "persistent_pairs": 10,
+        "text_overlap": 5,
+        "joint_pairs": 1,
+        "orig_items": 12,
+        "persistent_items": 7,
+        "joint_items": 1,
+        "orig_xor_items": 7,
+        "both_failed_items": 5,
+        "both_won_items": 28
+      },
+      "replace_obj": {
+        "n": 40,
+        "orig_pairs": 3,
+        "persistent_pairs": 0,
+        "text_overlap": 0,
+        "joint_pairs": 0,
+        "orig_items": 2,
+        "persistent_items": 0,
+        "joint_items": 0,
+        "orig_xor_items": 1,
+        "both_failed_items": 1,
+        "both_won_items": 38
+      },
+      "replace_rel": {
+        "n": 40,
+        "orig_pairs": 27,
+        "persistent_pairs": 19,
+        "text_overlap": 15,
+        "joint_pairs": 9,
+        "orig_items": 17,
+        "persistent_items": 14,
+        "joint_items": 9,
+        "orig_xor_items": 7,
+        "both_failed_items": 10,
+        "both_won_items": 23
+      },
+      "swap_att": {
+        "n": 40,
+        "orig_pairs": 24,
+        "persistent_pairs": 15,
+        "text_overlap": 10,
+        "joint_pairs": 5,
+        "orig_items": 17,
+        "persistent_items": 12,
+        "joint_items": 4,
+        "orig_xor_items": 10,
+        "both_failed_items": 7,
+        "both_won_items": 23
+      },
+      "swap_obj": {
+        "n": 40,
+        "orig_pairs": 28,
+        "persistent_pairs": 13,
+        "text_overlap": 17,
+        "joint_pairs": 6,
+        "orig_items": 23,
+        "persistent_items": 12,
+        "joint_items": 6,
+        "orig_xor_items": 18,
+        "both_failed_items": 5,
+        "both_won_items": 17
+      }
+    },
+    "arms": {
+      "original": {
+        "both_win": 129,
+        "one_win": 43,
+        "neither_wins": 28,
+        "pair_failures": 99,
+        "ties": 0
+      },
+      "wrong1": {
+        "both_win": 67,
+        "one_win": 62,
+        "neither_wins": 71,
+        "pair_failures": 204,
+        "ties": 0
+      },
+      "wrong2": {
+        "both_win": 61,
+        "one_win": 65,
+        "neither_wins": 74,
+        "pair_failures": 213,
+        "ties": 0
+      },
+      "wrong3": {
+        "both_win": 77,
+        "one_win": 55,
+        "neither_wins": 68,
+        "pair_failures": 191,
+        "ties": 0
+      },
+      "text": {
+        "both_win": 105,
+        "one_win": 67,
+        "neither_wins": 28,
+        "pair_failures": 123,
+        "ties": 0
+      }
+    },
+    "bootstrap_fraction_ci95": [
+      [
+        0.46728780450436647,
+        0.6888963963963964
+      ],
+      [
+        0.13333333333333333,
+        0.29114231289172915
+      ]
+    ],
+    "permuted_pair_counts": {
+      "mean": [
+        50.77075,
+        16.2955
+      ],
+      "central95": [
+        [
+          42.0,
+          59.0
+        ],
+        [
+          10.0,
+          22.0
+        ]
+      ]
+    }
+  },
+  "clip": {
+    "model": "clip",
+    "n": 200,
+    "orig_pairs": 111,
+    "persistent_pairs": 55,
+    "text_overlap": 57,
+    "joint_pairs": 27,
+    "orig_items": 83,
+    "persistent_items": 47,
+    "joint_items": 27,
+    "orig_xor_items": 55,
+    "both_failed_items": 28,
+    "both_won_items": 117,
+    "original_ties": 0,
+    "wrong_all3_pairs": 23,
+    "retention_each": [
+      51,
+      57,
+      53
+    ],
+    "orig_negative_strictly_wins_both": 28,
+    "categories": {
+      "replace_att": {
+        "n": 40,
+        "orig_pairs": 21,
+        "persistent_pairs": 14,
+        "text_overlap": 11,
+        "joint_pairs": 8,
+        "orig_items": 14,
+        "persistent_items": 11,
+        "joint_items": 8,
+        "orig_xor_items": 7,
+        "both_failed_items": 7,
+        "both_won_items": 26
+      },
+      "replace_obj": {
+        "n": 40,
+        "orig_pairs": 4,
+        "persistent_pairs": 1,
+        "text_overlap": 0,
+        "joint_pairs": 0,
+        "orig_items": 3,
+        "persistent_items": 1,
+        "joint_items": 0,
+        "orig_xor_items": 2,
+        "both_failed_items": 1,
+        "both_won_items": 37
+      },
+      "replace_rel": {
+        "n": 40,
+        "orig_pairs": 30,
+        "persistent_pairs": 16,
+        "text_overlap": 14,
+        "joint_pairs": 8,
+        "orig_items": 23,
+        "persistent_items": 14,
+        "joint_items": 8,
+        "orig_xor_items": 16,
+        "both_failed_items": 7,
+        "both_won_items": 17
+      },
+      "swap_att": {
+        "n": 40,
+        "orig_pairs": 29,
+        "persistent_pairs": 11,
+        "text_overlap": 12,
+        "joint_pairs": 2,
+        "orig_items": 23,
+        "persistent_items": 9,
+        "joint_items": 2,
+        "orig_xor_items": 17,
+        "both_failed_items": 6,
+        "both_won_items": 17
+      },
+      "swap_obj": {
+        "n": 40,
+        "orig_pairs": 27,
+        "persistent_pairs": 13,
+        "text_overlap": 20,
+        "joint_pairs": 9,
+        "orig_items": 20,
+        "persistent_items": 12,
+        "joint_items": 9,
+        "orig_xor_items": 13,
+        "both_failed_items": 7,
+        "both_won_items": 20
+      }
+    },
+    "arms": {
+      "original": {
+        "both_win": 117,
+        "one_win": 55,
+        "neither_wins": 28,
+        "pair_failures": 111,
+        "ties": 0
+      },
+      "wrong1": {
+        "both_win": 73,
+        "one_win": 72,
+        "neither_wins": 55,
+        "pair_failures": 182,
+        "ties": 0
+      },
+      "wrong2": {
+        "both_win": 83,
+        "one_win": 54,
+        "neither_wins": 63,
+        "pair_failures": 180,
+        "ties": 0
+      },
+      "wrong3": {
+        "both_win": 75,
+        "one_win": 69,
+        "neither_wins": 56,
+        "pair_failures": 181,
+        "ties": 0
+      },
+      "text": {
+        "both_win": 91,
+        "one_win": 77,
+        "neither_wins": 32,
+        "pair_failures": 141,
+        "ties": 0
+      }
+    },
+    "bootstrap_fraction_ci95": [
+      [
+        0.40166666666666667,
+        0.5920058252427184
+      ],
+      [
+        0.17142213642213644,
+        0.3191534060432684
+      ]
+    ],
+    "permuted_pair_counts": {
+      "mean": [
+        50.6905,
+        19.41025
+      ],
+      "central95": [
+        [
+          42.0,
+          59.0
+        ],
+        [
+          14.0,
+          25.0
+        ]
+      ]
+    }
+  }
+}

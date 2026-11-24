@@ -1,0 +1,34 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同一场景换一个关系｜实验立项方案</title>
+<style>*{box-sizing:border-box}html{background:#f3f5f0;color:#202d26;font:16px/1.75 "Microsoft YaHei",system-ui,sans-serif}main{max-width:940px;margin:24px auto;padding:25px 38px 55px;background:white}h1{font-size:clamp(27px,4vw,40px);line-height:1.18;letter-spacing:-.035em;margin:10px 0}h2{font-size:23px;line-height:1.38;margin:32px 0 10px;color:#214f40}p{margin:8px 0}small{color:#52665a}a{color:#135b4a}th,td{vertical-align:top;text-align:left;padding:8px 10px;border-bottom:1px solid #d9e1d9}th{background:#e7eee7}table{width:100%;border-collapse:collapse;font-size:15px}.box{background:#edf4ef;border-left:4px solid #628b77;padding:10px 15px;margin:14px 0}.grid{overflow-x:auto}code{background:#eef2ed;padding:1px 4px}summary{cursor:pointer;color:#245b48;font-weight:650}details{margin:12px 0}li{margin:6px 0}@media(max-width:650px){main{margin:0;padding:18px 13px}th,td{padding:5px}}@media print{main{max-width:none;margin:0;padding:0}html{font-size:10.5pt;background:#fff}h2{break-after:avoid}tr{break-inside:avoid}}</style>
+<main><small>challenge-exercise　／　立项待确认　／　2026-11-22</small>
+<h1>同一场景换一个关系，模型的判断会跟着变吗？</h1>
+<p>把同一对主体拍两次，保持身份和背景，改变一句话能否成立的那一个关系。先由人写出两张图各自的可见证据，再把同一句英文分别交给模型。研究对象包括物体的空间关系、动作中谁作用于谁，以及属性属于哪个实体。</p>
+<p class="box">现有 <a href="../../results/m0-grounding-20261122/review/README.md">5 对真实照片盲评表</a>，共 10 张照片，可离线填写。当前阶段完成了配对和看图初查。新图对的模型推理尚未启动。</p>
+<h2>样本从哪里来</h2>
+<div class="grid"><table><thead><tr><th>层别与确认集目标</th><th>取得真图的路径</th><th>人工必须能指出什么</th></tr></thead><tbody>
+<tr><td>空间关系<br><b>30 对</b></td><td>先用 What’sUp 的受控实拍组，按同一实物与参照物配左右、上方承托与下方。前后关系另检查遮挡边界。对固定布景不足的部分，用固定相机、同一实物重新摆拍。<a href="https://aclanthology.org/2023.emnlp-main.568/">What’sUp 论文</a> · <a href="https://github.com/amitakamath/whatsup_vlms">作者数据与读取程序</a></td><td>物体相对哪个参照物、哪条边或承托面变了。允许摆放的自然阴影变化，另记可能单独猜出答案的朝向或取景线索。</td></tr>
+<tr><td>动作角色<br><b>30 对</b></td><td>优先核对 Hafri 等的受控实拍刺激。同一动作交叉操纵施事者和左右站位。已核查 OSF 顶层，公开的是行为数据、说明和论文，刺激原图尚未取得。若原图不可用，采用知情同意的定机位实拍，例如红衣人用刷子刷蓝衣人的袖口，再互换谁持刷，身份、衣服、左右站位与刷子不变。<a href="https://pubmed.ncbi.nlm.nih.gov/29459238/">原研究</a> · <a href="https://osf.io/uewfn/">作者开放材料</a></td><td>看得到哪只手握住工具，以及工具接触谁。优先可在单帧定位的动作。仅靠朝向、动作先后或揣测意图才能区分的“给／收”剔除。</td></tr>
+<tr><td>属性归属<br><b>30 对</b></td><td>真实连拍。两件有固定身份的物件同时入镜，例如有把手的杯子和无把手的瓶子。将可拆的红、蓝色环互换，主体、两种颜色及背景在两图均出现。拟同时收桌面和日常场景，改变物体位置与灯光布置须在不同场次完成。</td><td>能分别指认哪个圈实际套在哪个物件上。两张图的颜色清单相同，唯一语义变化为颜色与主体的对应。主体名不能依赖被交换的颜色。</td></tr>
+</tbody></table></div>
+<p><b>自然图的补充途径。</b>从 Winoground、NaturalBench 的现成图对找候选，先核对是否同一人、同一件物体及同一背景，再核对主要动作或属性。来源只保证图文成对或语义相近时，仅作外部检验。有可用的同一连拍、同一视频固定镜头时，以同一拍摄段为单位配对，排除切镜、替身、时序才可裁决的动作。Winoground 按其访问条件使用。<a href="https://huggingface.co/datasets/facebook/winoground">Winoground 数据卡</a> · <a href="https://linzhiqiu.github.io/papers/naturalbench/">NaturalBench 作者项目</a></p>
+<p>SugarCrepe++ 留作已有错误审计。上轮排除已用图片后，对象互换在感知去重前剩 33 个候选，又取了 30 个。至多 3 个名额仍需去重和检查，更无法保证有第二张同场反转照片。</p>
+<h2>这 5 对示意图已经检查了什么</h2>
+<p>从作者的 Controlled A 标注中，先固定三组左右、两组上／下，并跨普通椅、扶手椅和桌子选取五种不同物体。对每个分层按固定随机种子 621041 选一组，保留第一次抽到的结果。照片取自公开的 Controlled A 副本，十条行号及全部候选句逐条对齐作者标注。未读取副本分数来选题。表内重新独立打乱照片和句子的顺序，使用两条只改介词的英文句；部分物名改成直接可见的中性称呼。<a href="https://github.com/amitakamath/whatsup_vlms/blob/7c1f2550eace32e7b8c77de5a792347c402960d1/dataset_zoo/aro_datasets.py">作者标注入口</a> · <a href="https://huggingface.co/datasets/joaomonteirof/whatsup_subset_a_inference/tree/3c1b68d412c6b3cd9de2bef13f0420942bc1ce5e">抽样使用的照片副本版本</a></p>
+<p>这五对共用三种参照物和少数布景。它们可以检验读图、填写和收题规则，只覆盖空间关系。人物角色及属性归属进入正式采集前，各需至少四对通过开发阶段的人工复核。本页展示过的物体与布景组合从确认集隔离；若沿用同一布景，标作同一来源簇，另报剔除已见布景后的结果。</p>
+<details><summary>看图后再展开 · 五对的初查观察</summary>
+<p>P01 的瓶子、P03 的靠垫、P05 的平面图案物在两图都能辨认，可对照椅腿或桌腿的横向位置。P02 的布与 P04 的细长物需区别“落在桌椅下方”和“落在前方地面”；复核时看前后腿与落点是否给出足够的深度依据。布的折叠、细长物的朝向、靠垫的姿态也有变化。故 5 对均保留为示意候选，通过数由人工决定。五对都可能借目标的画面绝对位置答对，正式采集需加入移动参照物的照片。</p></details>
+<h2>先收人工证据，再冻结题目</h2>
+<ol><li><b>分批收题。</b>5 对展示材料独立于指标。开发集 12 对，每层 4 对，用于统一措辞和裁决口径。正式集目标 90 对，每层 30 对，计划先收约 150 对候选，按预先打乱的分层名单顺序复核，记下每个淘汰理由。数量未达时报告缺口。开发与确认按拍摄批次、人员和道具组合分开，禁止近重复跨集。同一设置的连续帧只能贡献一对，保存场景簇编号。</li>
+<li><b>先看图。</b>两位评阅者独立填写每对的四个图文格，选择支持、冲突、证据不足。每张图写出唯一可见细节，另选同场景是否成立、有无第二条解题线索。人物、主体、背景或镜头明显变化，或仅靠常识就能“猜”到，应留在淘汰记录。若目前仅一名人类标注，记录为单评，另行复核；助手初查单列。</li>
+<li><b>严格入选。</b>两图两句须形成交叉的“支持／冲突、冲突／支持”，并且两位评阅者独立指向同一个可定位的区别。四格里有证据不足、两句都成立，或关键接触点不可见，暂缓。分歧在看模型结果前仲裁，保存初判、最终判断和理由，同时报告一致率及各层纳入比例。</li>
+<li><b>消除捷径。</b>按观看者视角定义左右。在不同照片组间平衡哪件物体移动、主体的绝对画面位置、施事者左右站位和衣色。让一部分摆拍只移动参照物，关系反转时目标在画面中保持原位。另备同关系整体平移的控制对，检验只追随横坐标、道具方向或构图的策略。</li>
+<li><b>冻结。</b>在读取分数之前，锁定图像字节哈希、两句原文、来源、去重记录、四格人工判定、纳入清单、模型版本、提示及阈值。用户确认方案和试评后，才进入服务器阶段。</li></ol>
+<h2>怎样算模型真的跟着细节反转</h2>
+<p>每一对产生四个独立输入，每次只给一图一句，使用上轮 Qwen 的同一检查点、提示、图像预处理及首回答位置。<code>sᵢⱼ = logit(Yes) − logit(No)</code>，不沿用在旧数据上挑出的校准阈值。定义图 1 支持 A、图 2 支持 B，仅在统计时统一方向。</p>
+<table><thead><tr><th>预期分差</th><th>句 A</th><th>句 B</th></tr></thead><tbody><tr><th>图 1</th><td>s₁A &gt; 0</td><td>s₁B &lt; 0</td></tr><tr><th>图 2</th><td>s₂A &lt; 0</td><td>s₂B &gt; 0</td></tr></tbody></table>
+<ul><li><b>主指标为双句绝对反转率。</b>四格同时满足上表才算这一对通过。分差为零算未过，并单报平局。另报两句各自同句换图反转的比例、两图都答 Yes 或都答 No 的比例。</li>
+<li><b>次指标为图内排序反转率。</b>图 1 有 s₁A &gt; s₁B 且图 2 有 s₂B &gt; s₂A。两张图上都答 Yes 也可能满足排序，因此并列报告绝对反转和排序反转。给出交互差 (s₁A − s₁B) − (s₂A − s₂B) 的中位数与分布，检查变化幅度。</li>
+<li><b>控制与不确定性。</b>每句另测无图条件，记录措辞本身的 Yes 倾向。对同关系平移控制报告分数符号保持率。主指标仅以冻结的真实合格对为分母，逐层列出分子、分母及来源。按场景或拍摄者簇重采样估计 95% 区间；独立簇过少时只列逐簇计数并明确限制。90 对用于估计效应量，角色层的 30 对应与空间层分开解读。模型处理失败保留其题号并单列覆盖率，补跑规则固定。</li></ul>
+<h2>图像编辑的备用路线</h2>
+<p>如果某一层真实图不足，先报告短缺。编辑图单列探索集。掩膜限于目标与必要的接触或阴影区域，固定分辨率、构图和编码；同时做两个方向的编辑，另做经过同一编辑流程却保持原关系的假编辑。两种关系均衡分配为原图或编辑图，保留编辑参数与掩膜。</p>
+<p>图像配准后检查掩膜外差异，放大检查边缘、阴影、手指、文字和反射。不了解编辑方向的评阅者做同样的四格任务，再单独尝试辨认哪张被编辑。若能凭画质猜中、两张都成立、出现新的对象或不正常接触，剔除并记录。以上可筛掉可见伪影，剩余伪影风险仍随探索结果一并报告。</p></main></html>

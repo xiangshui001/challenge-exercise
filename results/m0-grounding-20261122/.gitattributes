@@ -1,0 +1,2 @@
+# Retain the precise bytes sealed before publication, including original line endings.
+replication/** -text whitespace=trailing-space,space-before-tab,cr-at-eol

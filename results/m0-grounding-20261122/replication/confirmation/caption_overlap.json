@@ -1,0 +1,13 @@
+{
+  "prior_groups": 820,
+  "new_groups": 150,
+  "matches_by_position": [
+    0,
+    0,
+    0
+  ],
+  "any_sentence_match": 0,
+  "ordered_triples_match": 0,
+  "unordered_triples_match": 0,
+  "new_unique_caption_hashes": 450
+}
