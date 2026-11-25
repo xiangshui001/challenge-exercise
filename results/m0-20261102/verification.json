@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "full_suite": {
+    "tests": 37,
+    "seconds": 117.7,
+    "skipped": 0,
+    "command": "python -m unittest discover -s tests -v",
+    "environment": "runtime-environment.json"
+  },
+  "local_m0_tests": {
+    "tests": 11,
+    "seconds": 0.224,
+    "python": "3.14",
+    "purpose": "independent CPU evidence checks"
+  },
+  "summary_cross_environment": {
+    "status": "identical_within_tolerance",
+    "absolute_tolerance": 1e-12,
+    "max_difference": 0
+  },
+  "linux_source_regeneration": {
+    "private_manifest_sha256": "9a2452230030e0851bbdbca480d49d0cca3c5190e600fd5efd43823b797aad98",
+    "public_manifest_sha256": "6a78fb30fe13551fa8717702cedb66882833c418979cc5cb66e36c554317b156",
+    "normalized_sources_identical": true
+  },
+  "inference_source_matches_current_files": {
+    "siglip": {
+      "prepare.py": true,
+      "metrics.py": true,
+      "run_dual.py": true
+    },
+    "clip": {
+      "prepare.py": true,
+      "metrics.py": true,
+      "run_dual.py": true
+    },
+    "qwen": {
+      "prepare.py": true,
+      "metrics.py": true,
+      "run_dual.py": true,
+      "run_joint.py": true,
+      "knowledge.py": true
+    }
+  },
+  "ai_visual_reviews": 32,
+  "human_reviews": 0,
+  "failed_attempts": [
+    {
+      "stage": "initial Qwen smoke",
+      "reason": "missing torchvision dependency",
+      "generated_answers": 0,
+      "resolution": "installed torchvision 0.21.0+cu124 in isolated environment, retried in new directory"
+    }
+  ],
+  "authorized_gpu_processes_at_end": "no m0.run_dual or m0.run_joint processes remaining",
+  "scope": "CPU tests are not semantic-quality evidence; predictions and visual review provide the latter.",
+  "final_exclusion_byte_guard_targeted_tests": {
+    "tests": 11,
+    "status": "passed",
+    "note": "Reran affected M0 suite after preserving exact pre-inference exclusion bytes and adding its fingerprint guard."
+  }
+}

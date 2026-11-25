@@ -17,4 +17,4 @@ test = ["scikit-learn>=1.3,<2"]
 exp5 = "exp5.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["exp5*"]
+include = ["exp5*", "m0*"]
